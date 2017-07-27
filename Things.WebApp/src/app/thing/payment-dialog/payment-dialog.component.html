@@ -1,0 +1,20 @@
+<md-dialog-content>
+  <button md-button md-dialog-close style="float: right;">
+    <md-icon>close</md-icon>
+  </button>
+
+  <h2 md-dialog-title style="float: left;">Donate</h2>
+
+  <div style="clear: both;"></div>
+
+  <p>Thank you. How much £ would you like to donate...</p>
+
+  <md-input-container>
+    <input type="number" mdInput #amountInput placeholder="amount in £">
+  </md-input-container>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-raised-button (click)="continue(amountInput.value)">
+  Continue
+  </button>
+</md-dialog-actions>

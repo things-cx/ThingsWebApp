@@ -1,0 +1,12 @@
+<md-card>
+    <md-card-subtitle>
+        Are you sure?
+    </md-card-subtitle>
+
+    <md-spinner *ngIf="isLoading"></md-spinner>
+
+    <md-card-actions>
+        <button md-raised-button [routerLink]="['/edit', thingModel?.thing?.id]">No</button>
+        <button md-raised-button color="warn" (click)="onDelete()">Yes</button>
+    </md-card-actions>
+</md-card>

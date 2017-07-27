@@ -1,0 +1,18 @@
+<md-tab-group (selectChange)="onTabSelectChange($event)">
+  <md-tab>
+    <ng-template md-tab-label>
+      <md-icon>all_inclusive</md-icon> All
+    </ng-template>
+
+    <app-thing-media-items *ngIf="viewedAllPosts" [thingId]="id" [isOfficial]="false"></app-thing-media-items>
+
+  </md-tab>
+  <md-tab>
+    <ng-template md-tab-label>
+      <md-icon>done</md-icon> Official
+    </ng-template>
+
+    <app-thing-media-items *ngIf="viewedOfficialPosts" [thingId]="id" [isOfficial]="true"></app-thing-media-items>
+
+  </md-tab>
+</md-tab-group>

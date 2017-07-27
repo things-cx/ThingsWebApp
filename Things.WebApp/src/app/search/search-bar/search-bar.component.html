@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+    <md-input-container style="width: 100%;">
+        <input mdInput placeholder="search Things" formControlName="term">
+    </md-input-container>
+    <div *ngIf="formErrors?.search" class="validation-message">{{ formErrors.search }}</div>
+</form>
+
+<h4 *ngIf="searchResults?.length > 0">Search results</h4>
+<md-spinner *ngIf="isProcessing"></md-spinner>
+
+<md-card *ngFor="let thing of searchResults" routerLink="/thing/{{thing.id}}" class="thing-item">
+    <md-card-header>
+        <app-media-type md-card-avatar [url]="thing?.media ? thing?.media[0] : ''" [thumbnail]="true"></app-media-type>
+        <md-card-title>{{thing.title}}</md-card-title>
+        <md-card-subtitle>{{thing.likes}} likes</md-card-subtitle>
+    </md-card-header>
+</md-card>

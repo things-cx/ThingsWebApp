@@ -1,0 +1,55 @@
+<md-card>
+    <md-card-subtitle>
+        <p>You are creating a Thing anonymously.</p>
+        <p>A Thing is just a title with an optional description and media items.</p>
+        <p>We recommend creatings an <a routerLink="/create-user">account</a> to sync your data and enable easy multiple devices
+            and editing on them</p>
+        <p>Your thing will be added to our Things account underneath the anonymous Thing and will have a number added to the 
+            title so that other people can also create Things with that title becuase Titles have to be unique :)</p>
+        <p>By creating this Thing anonymously, you agree to our <a routerLink="/thing/description/9">Terms</a> and <a routerLink="/thing/description/10">Privacy Policy</a></p>
+        <p *ngIf="isCreatingPublicRootThing">Why a password? For editing it later because we don't know who may make changes to it</p>
+    </md-card-subtitle>
+    <md-card-content>
+
+        <form [formGroup]="form">
+
+            <md-input-container>
+                <input mdInput formControlName="title" type="text" placeholder="title" required>
+            </md-input-container>
+            <div *ngIf="formErrors?.title" class="validation-message">{{ formErrors.title }}</div>
+
+            <br>
+
+            <md-input-container *ngIf="isCreatingPublicRootThing">
+                <input mdInput formControlName="password" type="password" placeholder="password" required>
+            </md-input-container>
+            <div *ngIf="formErrors?.password" class="validation-message">{{ formErrors.password }}</div>
+
+            <br>
+
+            <div *ngIf="isShortcutThing">
+
+                <md-input-container>
+                    <input mdInput placeholder="search for shortcut Thing" formControlName="searchShortcutThingTitle">
+                </md-input-container>
+
+                <md-spinner *ngIf="isSearching"></md-spinner>
+
+                <br>
+                <br>
+
+                <md-select *ngIf="shortcutThings && shortcutThings?.length > 0" placeholder="select shortcut Thing" formControlName="shortcutThingId"
+                    required>
+                    <md-option *ngFor="let thing of shortcutThings" [value]="thing.id">{{ thing.title }}</md-option>
+                </md-select>
+                <div *ngIf="formErrors?.shortcutThingId" class="validation-message">{{ formErrors.shortcutThingId }}</div>
+
+            </div>
+
+            <md-spinner *ngIf="isProcessing"></md-spinner>
+        </form>
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Proceed</button>
+    </md-card-actions>
+</md-card>

@@ -1,0 +1,41 @@
+<app-post-item [postModel]="post" [clickable]="false"></app-post-item>
+
+<div *ngIf="post">
+    <span style="font-size: 20px;">reply to</span>
+    <md-icon>arrow_upward</md-icon>
+    <br><br>
+</div>
+
+<md-card>
+    <md-card-content>
+        <md-spinner *ngIf="isLoadingReplyPost"></md-spinner>
+
+        <div #content contenteditable="true" placeholder="Type a message..." id="box"></div>
+        <div *ngIf="formErrors?.content" class="validation-message">{{ formErrors.content }}</div>
+        <button md-raised-button class="editor-btn" (click)="openMentionDialog();">mention</button>
+
+        <br>
+
+        <div *ngIf="mediaUrl === null || mediaUrl === ''">
+
+            <h3>Upload</h3>
+            <app-media-upload (onImageUploaded)="onUrlSave($event)"></app-media-upload>
+
+            <hr>
+
+            <h3>Gif</h3>
+            <app-gif-search (onGifSelect)="onUrlSave($event)"></app-gif-search>
+
+            <hr>
+
+        </div>
+
+        <img [src]="mediaUrl" *ngIf="mediaUrl !== null && mediaUrl !== ''" alt="post image" style="max-height: 150px; max-width: 150px;">
+        <div *ngIf="formErrors?.media" class="validation-message">{{ formErrors.media }}</div>
+
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button *ngIf="mediaUrl !== null && mediaUrl !== ''" color="warn" (click)="removeMedia()">Remove media</button>
+        <button md-raised-button color="primary" type="button" (click)="createPost(content)">Post</button>
+    </md-card-actions>
+</md-card>

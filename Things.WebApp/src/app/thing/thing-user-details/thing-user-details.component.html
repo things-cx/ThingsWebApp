@@ -1,0 +1,61 @@
+<md-card routerLink="/post/user/{{id}}" class="card-item">
+  <md-card-header>
+    <md-icon md-card-avatar>menu</md-icon>
+    <md-card-title>Posts</md-card-title>
+    <md-card-subtitle>
+      <md-spinner *ngIf="isProcessing" class="inline-preloader"></md-spinner>
+      {{userThingDetails?.posts}} posts
+    </md-card-subtitle>
+    <div style="float: right;">
+      <!-- <md-icon (click)="follow(thing, $event)" style="color: #aab8c2;" *ngIf="logedInUserId && !thing.followed">person_add</md-icon>
+      <md-icon (click)="unfollow(thing, $event)" style="color: green;" *ngIf="logedInUserId && thing.followed">person</md-icon> -->
+    </div>
+  </md-card-header>
+</md-card>
+
+<md-card routerLink="/followers/user/{{id}}" class="card-item">
+  <md-card-header>
+    <md-icon md-card-avatar>person</md-icon>
+    <md-card-title>Following</md-card-title>
+    <md-card-subtitle>
+      <md-spinner *ngIf="isProcessing" class="inline-preloader"></md-spinner>
+      {{userThingDetails?.thingsFollowing}} following
+    </md-card-subtitle>
+    <div style="float: right;">
+      <!-- <md-icon (click)="follow(thing, $event)" style="color: #aab8c2;" *ngIf="logedInUserId && !thing.followed">person_add</md-icon>
+      <md-icon (click)="unfollow(thing, $event)" style="color: green;" *ngIf="logedInUserId && thing.followed">person</md-icon> -->
+    </div>
+  </md-card-header>
+</md-card>
+
+<md-card routerLink="/likes/user/{{id}}" class="card-item">
+  <md-card-header>
+    <md-icon md-card-avatar>favorite</md-icon>
+    <md-card-title>Things liked</md-card-title>
+    <md-card-subtitle>
+      <md-spinner *ngIf="isProcessing" class="inline-preloader"></md-spinner>
+      {{userThingDetails?.thingsLiked}} Things liked
+    </md-card-subtitle>
+    <div style="float: right;">
+      <!-- <md-icon (click)="follow(thing, $event)" style="color: #aab8c2;" *ngIf="logedInUserId && !thing.followed">person_add</md-icon>
+      <md-icon (click)="unfollow(thing, $event)" style="color: green;" *ngIf="logedInUserId && thing.followed">person</md-icon> -->
+    </div>
+  </md-card-header>
+</md-card>
+
+<md-card routerLink="/post/likes/user/{{id}}" class="card-item">
+  <md-card-header>
+    <md-icon md-card-avatar>favorite</md-icon>
+    <md-card-title>Posts liked</md-card-title>
+    <md-card-subtitle>
+      <md-spinner *ngIf="isProcessing" class="inline-preloader"></md-spinner>
+      {{userThingDetails?.postsLiked}} posts liked
+    </md-card-subtitle>
+    <div style="float: right;">
+      <!-- <md-icon (click)="follow(thing, $event)" style="color: #aab8c2;" *ngIf="logedInUserId && !thing.followed">person_add</md-icon>
+      <md-icon (click)="unfollow(thing, $event)" style="color: green;" *ngIf="logedInUserId && thing.followed">person</md-icon> -->
+    </div>
+  </md-card-header>
+</md-card>
+
+<br>

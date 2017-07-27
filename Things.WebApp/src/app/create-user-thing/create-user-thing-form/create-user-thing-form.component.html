@@ -1,0 +1,36 @@
+<br>
+<md-card>
+    <md-card-content>
+        <form [formGroup]="form">
+
+            <md-input-container>
+                <input mdInput formControlName="email" type="text" placeholder="email" required>
+            </md-input-container>
+            <div *ngIf="formErrors?.email" class="validation-message">{{ formErrors.email }}</div>
+
+            <br>
+
+            <md-input-container>
+                <input mdInput formControlName="title" type="text" placeholder="username" required>
+            </md-input-container>
+            <div *ngIf="formErrors?.title" class="validation-message">{{ formErrors.title }}</div>
+
+            <br>
+
+            <md-input-container>
+                <input mdInput formControlName="password" type="password" placeholder="password" required>
+            </md-input-container>
+            <div *ngIf="formErrors?.password" class="validation-message">{{ formErrors.password }}</div>
+
+            <div class="signUpInfo">
+                By signing up, you agree to our <a routerLink="/thing/description/9">Terms</a> and <a routerLink="/thing/description/10">Privacy Policy</a>
+            </div>
+
+            <md-spinner *ngIf="isProcessing"></md-spinner>
+
+        </form>
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Sign up</button>
+    </md-card-actions>
+</md-card>

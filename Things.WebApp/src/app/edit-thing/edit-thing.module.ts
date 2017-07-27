@@ -1,0 +1,69 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditThingRoutingModule } from './edit-thing-routing.module';
+import { MediaUploaderService } from 'app/shared/media-uploader.service';
+import { MdButtonModule, MdInputModule, MdAutocompleteModule, MdProgressSpinnerModule, MdCardModule, MdIconModule, MdSnackBarModule, MdListModule, MdDialogModule } from '@angular/material';
+import { TagsComponent } from './tags/tags.component';
+import { DescriptionComponent } from './description/description.component';
+import { MediaComponent } from './media/media.component';
+import { AddTagsComponent } from 'app/edit-thing/add-tags/add-tags.component';
+import { EditComponent } from './edit/edit.component';
+import { GoogleCustomSearchService } from 'app/shared/google-custom-search.service';
+import { MediaUploadComponent } from 'app/edit-thing/media-upload/media-upload.component';
+import { GoogleCustomSearchComponent } from 'app/edit-thing/google-custom-search/google-custom-search.component';
+import { DeleteComponent } from './delete/delete.component';
+import { ThingModule } from 'app/thing/thing.module';
+import { GifSearchComponent } from './gif-search/gif-search.component';
+import { PreviewMediaDialogComponent } from './preview-media-dialog/preview-media-dialog.component';
+import { EditorModule } from 'app/shared/editor/editor.module';
+import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
+import { AmazonComponent } from './amazon/amazon.component';
+import { AmazonController } from "api-typings/bundle";
+
+@NgModule({
+  imports: [
+    CommonModule,
+    EditThingRoutingModule,
+    ReactiveFormsModule,
+    // TODO: Only using media importer. Move out and don't import create thing module. doesn't make sense
+    MdButtonModule,
+    MdInputModule,
+    MdAutocompleteModule,
+    MdProgressSpinnerModule,
+    MdCardModule,
+    MdIconModule,
+    MdSnackBarModule,
+    MdDialogModule,
+    // TODO: not sure where to put this. Don't want to export out of module and navigation breaks when addind it to multiple modules
+    ThingModule,
+    EditorModule,
+    MediaTypeModule
+  ],
+  declarations: [
+    TagsComponent,
+    DescriptionComponent,
+    MediaComponent,
+    MediaUploadComponent,
+    GoogleCustomSearchComponent,
+    AddTagsComponent,
+    EditComponent,
+    DeleteComponent,
+    GifSearchComponent,
+    PreviewMediaDialogComponent,
+    AmazonComponent
+  ],
+  providers: [
+    MediaUploaderService,
+    GoogleCustomSearchService,
+    AmazonController
+  ],
+  exports: [
+    MediaUploadComponent,
+    GifSearchComponent
+  ],
+  entryComponents: [
+    PreviewMediaDialogComponent
+  ]
+})
+export class EditThingModule { }

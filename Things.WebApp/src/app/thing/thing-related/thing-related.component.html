@@ -1,0 +1,18 @@
+<md-card *ngFor="let thing of things" routerLink="/thing/{{thing.id}}" class="card-item">
+    <md-card-header>
+        <app-media-type md-card-avatar [url]="thing?.media ? thing?.media[0] : ''" [thumbnail]="true"></app-media-type>
+        <md-card-title>{{thing.title}}</md-card-title>
+        <md-card-subtitle>{{thing.likes}} likes</md-card-subtitle>
+    </md-card-header>
+</md-card>
+
+<md-card *ngIf="things?.length <= 0 && !isProcessing" class="card-item" (click)="openNoContentDialog()">
+    <md-card-content>
+        <md-icon>do_not_disturb</md-icon>
+        <span>no related Things</span>
+        <md-icon style="float: right;">info_outline</md-icon>
+    </md-card-content>
+</md-card>
+
+<md-spinner *ngIf="isProcessing"></md-spinner>
+<br>

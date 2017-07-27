@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+
+  <md-input-container style="width: 100%;">
+    <input mdInput [mdAutocomplete]="auto" formControlName="searchTerm" placeholder="search sub Things">
+  </md-input-container>
+  <div *ngIf="formErrors?.searchTerm" class="validation-message">{{ formErrors.searchTerm }}</div>
+
+  <md-autocomplete #auto="mdAutocomplete">
+    <md-option *ngFor="let searchResult of searchResults" [value]="searchResult.id" (click)="onSearchClick(searchResult.id)">
+      {{searchResult.title}}
+    </md-option>
+  </md-autocomplete>
+
+</form>

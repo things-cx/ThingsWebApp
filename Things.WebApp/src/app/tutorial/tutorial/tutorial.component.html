@@ -1,0 +1,39 @@
+<div *ngIf="tutorialTypeEnum.createThing == type">
+  <app-create-thing (onDone)="onDone($event)"></app-create-thing>
+</div>
+
+<div *ngIf="tutorialTypeEnum.createPublicThing == type">
+  <app-create-public-thing (onDone)="onDone($event)"></app-create-public-thing>
+</div>
+
+<div *ngIf="tutorialTypeEnum.editThingTags == type">
+  <app-edit-thing-tags (onDone)="onDone($event)"></app-edit-thing-tags>
+</div>
+
+<div *ngIf="tutorialTypeEnum.editThingDescription == type">
+  <app-edit-thing-description (onDone)="onDone($event)"></app-edit-thing-description>
+</div>
+
+<div *ngIf="tutorialTypeEnum.editThingMedia == type">
+  <app-edit-thing-media (onDone)="onDone($event)"></app-edit-thing-media>
+</div>
+
+<div *ngIf="tutorialTypeEnum.thingDetails == type">
+  <app-thing-details (onDone)="onDone($event)"></app-thing-details>
+</div>
+
+<div *ngIf="tutorialTypeEnum.firstTimeUser == type">
+  <app-first-time-user (onDone)="onDone($event)"></app-first-time-user>
+</div>
+
+<div *ngIf="tutorialTypeEnum.createPost == type">
+  <app-create-post (onDone)="onDone($event)"></app-create-post>
+</div>
+
+<div *ngIf="tutorialTypeEnum.editAmazon == type">
+  <app-edit-amazon (onDone)="onDone($event)"></app-edit-amazon>
+</div>
+
+<div *ngIf="tutorialTypeEnum.createShortcutThing == type">
+  <app-create-shortcut-thing (onDone)="onDone($event)"></app-create-shortcut-thing>
+</div>

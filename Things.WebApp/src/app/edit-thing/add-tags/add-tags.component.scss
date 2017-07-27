@@ -1,0 +1,28 @@
+.tag {
+    color: rgba(0,0,0,.44);
+    background: #fafafa;
+    border-radius: 3px;
+    border: 1px solid #f0f0f0;
+    padding: 5px 10px;
+    margin-right: 10px;
+    float: left;
+
+    .remove-tag {
+        color: red;
+        margin: 10px;
+        cursor: pointer;
+        // font-size: 1.3rem;
+
+        &:hover {
+            color: purple;
+        }
+    }
+}
+
+.tag-text-input {
+    border: none;
+    outline: none;
+    color: rgba(0,0,0,.44);
+    float: left;
+    height: 28px;
+}

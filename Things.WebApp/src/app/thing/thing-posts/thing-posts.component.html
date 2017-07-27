@@ -1,0 +1,27 @@
+<div *ngIf="logedInUserId">
+  <br>
+  <button md-raised-button (click)="goToCreatePostWithRef()" style="width: 100%;">
+    <md-icon>link</md-icon>
+      Add new post
+    </button>
+  <br><br>
+</div>
+
+<md-tab-group (selectChange)="onTabSelectChange($event)">
+  <md-tab>
+    <ng-template md-tab-label>
+      <md-icon>all_inclusive</md-icon> All
+    </ng-template>
+
+    <app-thing-posts-items *ngIf="viewedAllPosts" [thingId]="thing.id" [isOfficial]="false" [thingHierarchy]="generatedHierarchy"></app-thing-posts-items>
+
+  </md-tab>
+  <md-tab>
+    <ng-template md-tab-label>
+      <md-icon>done</md-icon> Official
+    </ng-template>
+
+    <app-thing-posts-items *ngIf="viewedOfficialPosts" [thingId]="thing.id" [isOfficial]="true" [thingHierarchy]="generatedHierarchy"></app-thing-posts-items>
+
+  </md-tab>
+</md-tab-group>

@@ -1,0 +1,44 @@
+<md-card>
+    <md-card-subtitle>
+        Add one or more media items<br>
+        Has to be <strong>square</strong> and <strong>120x120</strong>
+    </md-card-subtitle>
+    <md-card-content>
+        <md-spinner *ngIf="isLoading"></md-spinner>
+
+        <br>
+
+        <span *ngFor="let item of mediaItems" style="display: inline-block;">
+            <app-media-type [url]="item" [thumbnail]="false"></app-media-type>
+            <button md-raised-button color="warn" (click)="onRemove(item)">Remove Image</button>
+        </span>
+
+        <br>
+
+        <h3>Enter custom url</h3>
+        <md-input-container>
+            <input mdInput #manualUrlInput placeholder="youtube, vimeo, image, etc">
+        </md-input-container>
+        <button md-raised-button (click)="onAdd(manualUrlInput.value)">Add</button>
+
+        <hr>
+
+        <h3>Upload</h3>
+        <app-media-upload (onImageUploaded)="onAdd($event)"></app-media-upload>
+
+        <hr>
+
+        <h3>Gifs</h3>
+        <app-gif-search (onGifSelect)="onAdd($event)"></app-gif-search>
+
+        <hr>
+
+        <h3>Google images</h3>
+        <app-google-custom-search (onImageSelected)="onAdd($event)"></app-google-custom-search>
+
+    </md-card-content>
+
+    <md-card-actions>
+        <button md-raised-button color="primary" *ngIf="editedMediaItems" (click)="onSave()">Save</button>
+    </md-card-actions>
+</md-card>

@@ -1,0 +1,20 @@
+.card-item {
+    margin-top: 10px;
+    cursor: pointer;
+    outline: none;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.title-container {
+    float: left; 
+    margin-left: 10px;
+    
+        .mat-icon {
+            height: 14px;
+            width: 14px;
+            font-size: 14px;
+        }
+}

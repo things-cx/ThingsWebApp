@@ -1,0 +1,27 @@
+<br>
+<md-card>
+    <md-card-content>
+        Don't have an account please <button md-raised-button color="accent" type="button" routerLink="/create-user">Sign up</button>
+        <form [formGroup]="form">
+
+            <md-input-container>
+                <input mdInput formControlName="emailOrUserThingName" type="text" placeholder="email or user Thing name" required>
+            </md-input-container>
+            <div *ngIf="formErrors?.title" class="validation-message">{{ formErrors.title }}</div>
+
+            <br>
+
+            <md-input-container>
+                <input mdInput formControlName="password" type="password" placeholder="password" required>
+            </md-input-container>
+            <div *ngIf="formErrors?.password" class="validation-message">{{ formErrors.password }}</div>
+
+        </form>
+
+        <md-spinner *ngIf="isProcessing"></md-spinner>
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Log in</button>
+        <button md-raised-button type="button" routerLink="/forgot-password">Forgot password</button>
+    </md-card-actions>
+</md-card>

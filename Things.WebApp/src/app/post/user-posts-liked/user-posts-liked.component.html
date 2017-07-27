@@ -1,0 +1,17 @@
+<br>
+
+<app-post-item *ngFor="let post of posts" [postModel]="post" [clickable]="true"></app-post-item>
+
+<md-card *ngIf="posts?.length <= 0 && !isProcessing" class="card-item">
+    <md-card-content>
+        <md-icon>do_not_disturb</md-icon>
+        <span>no posts liked</span>
+    </md-card-content>
+</md-card>
+
+<br>
+
+<md-spinner *ngIf="isProcessing"></md-spinner>
+
+<!--Default should be hidden-->
+<button md-raised-button *ngIf="posts?.length > 0 && posts?.length % 10 == 0" (click)="loadMore()">Load more</button>

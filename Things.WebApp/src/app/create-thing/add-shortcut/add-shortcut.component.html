@@ -1,0 +1,43 @@
+<md-card>
+    <md-card-content>
+        <form [formGroup]="form">
+
+            <div *ngIf="!logedInUserId">
+                <p>Warning: For now you can only add a shortcut when you are logged in sort of</p>
+                <button md-raised-button color="warn" type="button" routerLink="/login">Login</button>
+            </div>
+
+
+            <br>
+
+            <md-input-container>
+                <input mdInput formControlName="title" type="text" placeholder="title" required>
+            </md-input-container>
+            <div *ngIf="formErrors?.title" class="validation-message">{{ formErrors.title }}</div>
+
+            <br>
+
+            <md-input-container>
+                <input mdInput placeholder="search your things" formControlName="searchTerm">
+            </md-input-container>
+            <div *ngIf="formErrors?.searchTerm" class="validation-message">{{ formErrors.searchTerm }}</div>
+
+            <md-spinner *ngIf="isSearching"></md-spinner>
+
+            <br>
+            <br>
+
+            <md-select *ngIf="searchResults && searchResults?.length > 0" placeholder="select shortcut Thing" formControlName="parentThingId"
+                required>
+                <md-option *ngFor="let thing of searchResults" [value]="thing.id">{{ thing.title }}</md-option>
+            </md-select>
+            <div *ngIf="formErrors?.parentThingId" class="validation-message">{{ formErrors.parentThingId }}</div>
+
+            <md-spinner *ngIf="isProcessing"></md-spinner>
+
+        </form>
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Proceed</button>
+    </md-card-actions>
+</md-card>

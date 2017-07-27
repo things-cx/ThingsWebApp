@@ -1,0 +1,21 @@
+<div *ngIf="safeUrl !== null && safeUrl !== ''">
+
+  <div *ngIf="mediaTypeEnum.Image == mediaType">
+    <img [class.thumbnail]="thumbnail" [src]="safeUrl" alt="Thing image" class="img">
+  </div>
+
+  <div *ngIf="mediaTypeEnum.YouTube == mediaType">
+    <div *ngIf="thumbnail">
+      <img [class.thumbnail]="thumbnail" [src]="safeUrl" alt="Thing image" class="img">
+    </div>
+    <div *ngIf="!thumbnail">
+      <iframe [class.thumbnail]="thumbnail" [src]="safeUrl" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div *ngIf="mediaTypeEnum.Vimeo == mediaType">
+    <iframe [class.thumbnail]="thumbnail" [src]="safeUrl" width="560" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen
+      allowfullscreen></iframe>
+  </div>
+
+</div>

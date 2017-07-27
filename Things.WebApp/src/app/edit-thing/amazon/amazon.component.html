@@ -1,0 +1,79 @@
+<md-card>
+  <md-card-title>
+    Search amazon products
+  </md-card-title>
+  <md-card-subtitle>
+    Use this to create an Amazon button on your Thing that opens your product
+  </md-card-subtitle>
+
+  <md-card-content>
+
+    <!--TODO: centralize the amazon product html/css in seperate component-->
+    <div *ngIf="currentItem">
+      <div style="float: left;">
+        <div>
+          <a *ngIf="currentItem.mediumImage != null">
+            <img src="{{ currentItem.mediumImage.url }}" alt="{{ currentItem.itemAttributes.title }}" border="0" />
+          </a>
+        </div>
+        <span>ASIN: {{ currentItem.asin }}</span>
+      </div>
+      <div style="float: left;">
+        <p>{{ currentItem.itemAttributes.title }}</p>
+        <h3 *ngIf="currentItem.offerSummary?.lowestNewPrice?.formattedPrice">{{ currentItem.offerSummary?.lowestNewPrice?.formattedPrice }}</h3>
+        <!--@Html.ActionLink("Details", "Detail", "Amazon", new { articleNumber = Model.ASIN }, new { Class = "btn btn-primary" })-->
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+    <md-spinner *ngIf="isGettingCurrentProduct"></md-spinner>
+
+    <form [formGroup]="form">
+
+      <md-input-container>
+        <input mdInput formControlName="searchTerm" type="text" placeholder="product name">
+      </md-input-container>
+      <button md-raised-button type="button" (click)="search()">Search</button>
+      <div *ngIf="formErrors?.searchProduct" class="validation-message">{{ formErrors.searchProduct }}</div>
+
+      <br>
+
+      <md-input-container>
+        <input mdInput formControlName="lookupTerm" type="text" placeholder="product ASIN">
+      </md-input-container>
+      <button md-raised-button type="button" (click)="lookup()">Search</button>
+      <div *ngIf="formErrors?.lookupProduct" class="validation-message">{{ formErrors.lookupProduct }}</div>
+
+      <md-spinner *ngIf="isSearching"></md-spinner>
+
+    </form>
+
+    <md-card *ngIf="searchResults?.items?.item?.length === 0 && !isSearching" class="card-item">
+      <md-card-content>
+        <md-icon>do_not_disturb</md-icon>
+        <span>no results found</span>
+      </md-card-content>
+    </md-card>
+
+    <div *ngFor="let item of searchResults?.items?.item">
+      <div style="float: left;">
+        <div>
+          <a *ngIf="item.mediumImage != null">
+            <img src="{{ item.mediumImage.url }}" alt="{{ item.itemAttributes.title }}" border="0" />
+          </a>
+        </div>
+        <span>ASIN: {{ item.asin }}</span>
+      </div>
+      <div style="float: left;">
+        <p>{{ item.itemAttributes.title }}</p>
+        <h3 *ngIf="item.offerSummary?.lowestNewPrice?.formattedPrice">{{ item.offerSummary?.lowestNewPrice?.formattedPrice }}</h3>
+        <!--@Html.ActionLink("Details", "Detail", "Amazon", new { articleNumber = Model.ASIN }, new { Class = "btn btn-primary" })-->
+      </div>
+      <div style="clear: both;"></div>
+      <button md-raised-button color="primary" type="button" (click)="onChoose(item)">Choose</button>
+      <br>
+      <hr>
+    </div>
+
+  </md-card-content>
+</md-card>

@@ -1,0 +1,14 @@
+<md-spinner *ngIf="isProcessing"></md-spinner>
+
+<md-chip-list>
+    <md-chip *ngFor="let tag of model?.tags" [routerLink]="['/tag', tag.name]" style="cursor: pointer;" class="mat-h2">{{tag.name}}</md-chip>
+</md-chip-list>
+
+<md-card *ngFor="let thing of model?.things" routerLink="/thing/{{thing.id}}" class="card-item">
+    <md-card-header>
+        <app-media-type md-card-avatar [url]="thing?.media ? thing?.media[0] : ''" [thumbnail]="true"></app-media-type>
+
+        <md-card-title>{{thing.title}}</md-card-title>
+        <md-card-subtitle>{{thing.likes}} likes</md-card-subtitle>
+    </md-card-header>
+</md-card>

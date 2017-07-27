@@ -1,0 +1,58 @@
+<md-card-content>
+
+    <button md-raised-button class="editor-btn" (click)="openMentionDialog();">
+        <md-icon>title</md-icon>mention
+    </button>
+    <button md-raised-button class="editor-btn" (click)="openLinkDialog();">
+        <md-icon>insert_link</md-icon>link
+    </button>
+    <button md-raised-button class="editor-btn" (click)="openImageDialog();" disabled>
+        <md-icon>insert_photo</md-icon>image
+    </button>
+    <!--TODO: Auto recognize youtube, twitter, github, vimeo, ect-->
+
+    <br>
+
+    <div contenteditable="true" id="box" placeholder="describe your Thing..." [innerHTML]="thingModel?.description?.content"></div>
+
+    <p style="color: rgba(0,0,0,.54);">highlight text to use edit features</p>
+
+    <button md-raised-button class="editor-btn" (click)="bold();">
+        <md-icon>format_bold</md-icon>bold
+    </button>
+    <button md-raised-button class="editor-btn" (click)="italic();">
+        <md-icon>format_italic</md-icon>italic
+    </button>
+    <button md-raised-button class="editor-btn" (click)="underline();">
+        <md-icon>format_underlined</md-icon>underline
+    </button>
+    <button md-raised-button class="editor-btn" (click)="showHeaderOptions = !showHeaderOptions">
+        <md-icon>text_fields</md-icon>heading
+    </button>
+    <span *ngIf="showHeaderOptions">
+        <br>
+        <button md-raised-button class="editor-btn" (click)="h1();">1</button>
+        <button md-raised-button class="editor-btn" (click)="h2();">2</button>
+        <button md-raised-button class="editor-btn" (click)="h3();">3</button>
+        <button md-raised-button class="editor-btn" (click)="h4();">4</button>
+        <button md-raised-button class="editor-btn" (click)="h5();">5</button>
+        <button md-raised-button class="editor-btn" (click)="h6();">6</button>
+        <br>
+    </span>
+    <button md-raised-button class="editor-btn" (click)="quote();">
+        <md-icon>format_quote</md-icon>quote
+    </button>
+    <button md-raised-button class="editor-btn" (click)="bulletList();">
+        <md-icon>format_list_bulleted</md-icon>bullet list
+    </button>
+    <button md-raised-button class="editor-btn" (click)="numberList();">
+        <md-icon>format_list_numbered</md-icon>number list
+    </button>
+    <button md-raised-button class="editor-btn" (click)="hr()">
+        <md-icon>linear_scale</md-icon>devider
+    </button>
+
+</md-card-content>
+<md-card-actions>
+    <button md-raised-button color="primary" type="button" (click)="saveChanges()">Save</button>
+</md-card-actions>

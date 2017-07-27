@@ -1,0 +1,10 @@
+<app-post-item [postModel]="post" [clickable]="false"></app-post-item>
+
+<md-spinner *ngIf="isProcessing"></md-spinner>
+
+<app-post-item *ngFor="let postReply of postReplies" [postModel]="postReply" [clickable]="true" style="margin-left: 6%; display: block;"></app-post-item>
+
+<md-spinner *ngIf="isProcessingReplies"></md-spinner>
+
+<!--Default should be hidden-->
+<button md-raised-button *ngIf="postReplies?.length > 0 && postReplies?.length % 10 == 0" (click)="loadMore()">Load more</button>

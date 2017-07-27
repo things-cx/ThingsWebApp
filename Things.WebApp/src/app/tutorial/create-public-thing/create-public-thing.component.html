@@ -1,0 +1,15 @@
+<md-card>
+    <md-card-title>
+        Create anonymous Thing
+    </md-card-title>
+
+    <md-card-content>
+        <p>You don't need an account to create Things but we reccomend it so that you can sync it between devices and accsess
+            it more easily because of an account</p>
+    </md-card-content>
+
+    <md-card-actions>
+        <button md-raised-button color="accent" type="button" routerLink="/create-user" *ngIf="!logedInUserId">Sign up</button>
+        <button md-raised-button (click)="done()">Continue</button>
+    </md-card-actions>
+</md-card>

@@ -1,0 +1,46 @@
+<!--<div (drop)="onDrop($event, 'dropData')" (dragover)="allowDrop($event)">hllosfhklasudhf1</div>
+<div draggable="true" (dragstart)="onDragStart($event, 'dragData')">hllosfhklasudhf2</div>-->
+
+
+<md-card *ngFor="let thing of things" routerLink="/thing/{{thing.shortcutId !== null ? thing.shortcutId : thing.thing.id }}"
+    class="card-item" (drop)="onDrop($event, thing)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (dragenter)="onDragEnter($event)">
+    <md-card-content>
+
+        <md-icon style="cursor: move; float: left;" draggable="true" (dragstart)="onDragStart($event, thing)" *ngIf="showChildMoveHandle">drag_handle</md-icon>
+
+        <app-media-type [url]="thing?.thing?.media ? thing?.thing?.media[0] : ''" [thumbnail]="true" style="float: left;"></app-media-type>
+
+        <div class="title-container">
+            <div>
+                <md-icon style="color: #aab8c2;" *ngIf="logedInUserId && !thing.liked">favorite</md-icon>
+                <md-icon style="color: #f44336;" *ngIf="logedInUserId && thing.liked">favorite</md-icon>
+                <span>{{thing.thing.title}}</span>
+                <md-icon *ngIf="thing.shortcutId !== null">insert_link</md-icon>
+            </div>
+            <div style="color: rgba(0,0,0,.54);">
+                <span *ngIf="thing.underneathCount === 1">{{ thing.underneathCount }} sub</span>
+                <span *ngIf="thing.underneathCount !== 1">{{ thing.underneathCount }} subs</span>
+            </div>
+        </div>
+        <div style="float: right;">
+            <md-icon (click)="follow(thing, $event)" style="color: #aab8c2;" *ngIf="logedInUserId && !thing.followed">person_add</md-icon>
+            <md-icon (click)="unfollow(thing, $event)" style="color: green;" *ngIf="logedInUserId && thing.followed">person</md-icon>
+        </div>
+        <div style="clear: both;"></div>
+    </md-card-content>
+</md-card>
+
+<md-card *ngIf="things?.length <= 0 && !isProcessing" class="card-item" (click)="openNoContentDialog()">
+    <md-card-content>
+        <md-icon>do_not_disturb</md-icon>
+        <span>no Things underneath</span>
+        <md-icon style="float: right;">info_outline</md-icon>
+    </md-card-content>
+</md-card>
+
+<br>
+
+<md-spinner *ngIf="isProcessing"></md-spinner>
+
+<!--Default should be hidden-->
+<button md-raised-button *ngIf="things?.length > 0 && things?.length % 10 == 0" (click)="loadMore()">Load more</button>

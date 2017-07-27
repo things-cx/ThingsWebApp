@@ -1,0 +1,6 @@
+<md-card>
+    <md-spinner *ngIf="isLoading"></md-spinner>
+
+    <app-editor (onSave)="onEditorSave($event)" [thingModel]="thing"></app-editor>
+
+</md-card>

@@ -1,0 +1,44 @@
+<md-dialog-content>
+  <button md-button md-dialog-close style="float: right;">
+    <md-icon>close</md-icon>
+  </button>
+
+  <br><br>
+
+  <md-card *ngIf="selectedThings?.length == 0">
+      <md-card-subtitle>Search for a user</md-card-subtitle>
+  </md-card>
+
+  <md-card *ngIf="selectedThings?.length > 0">
+      <md-card-subtitle>Now search for any Things underneath if you want to</md-card-subtitle>
+  </md-card>
+
+  <md-card *ngFor="let selectedThing of selectedThings" class="selected-thing-item" (click)="goToSelectedThing(selectedThing)">
+    <md-card-header>
+      <app-media-type md-card-avatar [url]="selectedThing?.media ? selectedThing?.media[0] : ''" [thumbnail]="true"></app-media-type>
+      <md-card-title>{{selectedThing.title}}</md-card-title>
+      <md-card-subtitle>{{selectedThing.likes}} likes</md-card-subtitle>
+    </md-card-header>
+  </md-card>
+
+  <form [formGroup]="form">
+
+    <md-input-container style="width: 100%;">
+      <input mdInput [mdAutocomplete]="auto" formControlName="searchTerm" placeholder="search underneath">
+    </md-input-container>
+    <div *ngIf="formErrors?.searchTerm" class="validation-message">{{ formErrors.searchTerm }}</div>
+
+    <md-autocomplete #auto="mdAutocomplete">
+      <md-option *ngFor="let searchResult of searchResults" (click)="onSearchClick(searchResult)">
+        {{searchResult.title}}
+      </md-option>
+    </md-autocomplete>
+
+  </form>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-raised-button (click)="done()">
+    Done
+  </button>
+</md-dialog-actions>

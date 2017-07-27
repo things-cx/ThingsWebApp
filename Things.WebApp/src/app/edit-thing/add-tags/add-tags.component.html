@@ -1,0 +1,42 @@
+<md-card>
+  <md-card-subtitle>
+    Relate your Thing with others via tags
+  </md-card-subtitle>
+
+  <md-card-content>
+    <div>
+      <span *ngFor="let tag of tags" class="tag">
+    #{{ tag | uppercase }}
+    <span class="remove-tag" (click)="removeTag(tag)">  
+      <md-icon>close</md-icon>
+    </span>
+      </span>
+    </div>
+
+    <form [formGroup]="form">
+
+      <md-input-container>
+        <input mdInput [mdAutocomplete]="auto" formControlName="tags" (keydown.enter)="addTag()" (keydown.backspace)="onBackspace($event)"
+          type="text" class="tag-text-input" placeholder="Add a tag...">
+      </md-input-container>
+      <div *ngIf="formErrors?.tags" class="validation-message">{{ formErrors.tags }}</div>
+
+      <md-autocomplete #auto="mdAutocomplete">
+        <!--TODO: check what is the onsubmit/click for autocomplete and replace it with (click)-->
+        <md-option *ngFor="let searchResult of tagSearchResults" [value]="searchResult.name" (onSelectionChange)="onSearchResultOnSelect(searchResult.name)">
+          {{searchResult.name}} ({{searchResult.links}})
+        </md-option>
+      </md-autocomplete>
+
+      <!--TODO: is this necessary?-->
+      <div style="clear: both;"></div>
+
+    </form>
+
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button color="accent" type="button" (click)="addTag()">Add tag</button>
+
+    <button md-raised-button color="primary" type="button" (click)="save()" style="float: right;">Done</button>
+  </md-card-actions>
+</md-card>

@@ -1,0 +1,14 @@
+<md-dialog-content>
+  <button md-button md-dialog-close style="float: right;">
+    <md-icon>close</md-icon>
+  </button>
+
+  <br>
+
+  <img [src]="url" alt="preview image" class="preview-image">
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-raised-button (click)="onChoose()">
+    Choose
+  </button>
+</md-dialog-actions>

@@ -1,0 +1,19 @@
+<md-input-container>
+  <input mdInput #searchInput placeholder="Search images">
+</md-input-container>
+
+<button md-raised-button type="button" (click)="onSearch(searchInput)">Search</button><br>
+
+<div>powered by Google</div>
+
+<md-spinner *ngIf="isSearching"></md-spinner>
+
+<div style="overflow: auto; white-space: nowrap;">
+  <span *ngFor="let image of imageResults">
+    <img [src]="image.link" (click)="selectImage(image)" alt="google image" class="google-image-result" />
+  </span>
+</div>
+
+<button md-raised-button type="button" *ngIf="imageResults?.length > 0" (click)="getMore()">Load more</button>
+
+<br>

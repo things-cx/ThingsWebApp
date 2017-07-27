@@ -1,0 +1,11 @@
+<button md-icon-button (click)="back()" *ngIf="media?.length > 1" style="float: left;">
+      <md-icon>navigate_before</md-icon>
+</button>
+
+<app-media-type *ngIf="media != null" [url]="media[activeIndex]" [thumbnail]="false" style="float: left;"></app-media-type>
+
+<button md-icon-button (click)="next()" *ngIf="media?.length > 1" style="float: left;">
+      <md-icon>navigate_next</md-icon>
+</button>
+
+<div style="clear: both;"></div>

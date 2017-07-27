@@ -1,0 +1,70 @@
+<div *ngIf="navigationTypes.Primary == activeNavigation">
+
+  <nav md-tab-nav-bar>
+    <img src="assets/logo.png" alt="logo" class="logo" (click)="onLogoClick()">
+
+    <a md-tab-link *ngIf="logedInUserId" routerLink="/home" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive"
+      [routerLinkActiveOptions]="{exact: true}">
+      <md-icon>home</md-icon> Home
+    </a>
+    <a md-tab-link routerLink="/" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive" [routerLinkActiveOptions]="{exact: true}">
+      <md-icon>search</md-icon> Discover
+    </a>
+    <a md-tab-link *ngIf="!logedInUserId" routerLink="/login" routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive"
+      [routerLinkActiveOptions]="{exact: true}">
+      <md-icon>lock</md-icon> Login
+    </a>
+    <a md-tab-link *ngIf="!logedInUserId" routerLink="/create/public" routerLinkActive #rla4="routerLinkActive" [active]="rla4.isActive"
+      [routerLinkActiveOptions]="{exact: true}">
+      <md-icon>title</md-icon> Thing
+    </a>
+    <a md-tab-link *ngIf="logedInUserId" routerLink="/thing/{{logedInUserId}}" routerLinkActive #rla6="routerLinkActive" [active]="rla6.isActive"
+      [routerLinkActiveOptions]="{exact: true}">
+      <md-icon>account_circle</md-icon> Profile
+    </a>
+    <a md-tab-link *ngIf="logedInUserId" routerLink="/create-post" routerLinkActive #rla5="routerLinkActive" [active]="rla5.isActive"
+      [routerLinkActiveOptions]="{exact: true}">
+      <md-icon>menu</md-icon> Post
+    </a>
+
+    <!--<span class="example-spacer"></span>-->
+    <button md-icon-button [mdMenuTriggerFor]="menu" style="float: right;">
+      <md-icon>more_vert</md-icon>
+    </button>
+
+    <md-menu #menu="mdMenu">
+      <div *ngIf="logedInUserId">
+        <button md-menu-item routerLink="/settings">Settings</button>
+        <button md-menu-item routerLink="/create/public">Create anonymous Thing</button>
+        <hr>
+      </div>
+      <button md-menu-item routerLink="/feedback">Feedback</button>
+      <button md-menu-item routerLink="/thing/7">Help</button>
+      <button md-menu-item *ngIf="logedInUserId" (click)="logout()">Logout</button>
+      <!--TODO: impliment interests-->
+      <!--<button md-menu-item routerLink="/interests">Interests</button>-->
+    </md-menu>
+  </nav>
+
+</div>
+
+<div *ngIf="navigationTypes.Back == activeNavigation">
+  <nav md-tab-nav-bar>
+    <div (click)="back()" style="display: inline-block; cursor: pointer;">
+      <button md-icon-button>
+        <md-icon>arrow_back</md-icon>
+      </button>
+      <span style="font-weight: bold;">{{navigationBackTitle}}</span>
+    </div>
+  </nav>
+</div>
+
+<div *ngIf="showConsoleLogs" class="console-logs">
+  <h3>Console Logs
+    <md-icon (click)="showConsoleLogs = !showConsoleLogs" class="close-button">close</md-icon>
+  </h3>
+  <div *ngFor="let log of consoleLogs">
+    <span *ngIf="log === undefined" style="color: red;">undefined</span>
+    <span *ngIf="log === null" style="color: red;">null</span> {{ log }}
+  </div>
+</div>
