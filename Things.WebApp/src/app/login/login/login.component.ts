@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         }
 
         if (data.state === 1) {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/thing', data.data['thingId']]);
         } else {
           alert(data.msg);
           this.isProcessing = false;

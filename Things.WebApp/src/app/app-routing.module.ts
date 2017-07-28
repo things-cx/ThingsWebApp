@@ -11,7 +11,8 @@ import { AuthService } from 'app/shared/auth.service';
       { path: '', loadChildren: './search/search.module#SearchModule' },
       // Chrome extension routing workaround
       { path: 'index.extension.html', pathMatch: 'full', redirectTo: '' },
-      { path: 'home', loadChildren: './feed/feed.module#FeedModule' },
+      // TODO: add updates consumtion page back in
+      // { path: 'home', loadChildren: './feed/feed.module#FeedModule' },
       { path: 'post', loadChildren: './post/post.module#PostModule' },
       { path: 'thing', loadChildren: './thing/thing.module#ThingModule' },
       { path: 'create', loadChildren: './create-thing/create-thing.module#CreateThingModule' },

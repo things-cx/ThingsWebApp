@@ -17,6 +17,7 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.thingId = +this.route.snapshot.params['id'];
 
+    // TODO: don't think we are using this anymore
     this.route.queryParamMap.subscribe(queryParams => {
       if (queryParams.has('signup')) {
         this.wasSignUp = queryParams.get('signup') === 'true';
@@ -25,11 +26,7 @@ export class EditComponent implements OnInit {
   }
 
   doneEditing() {
-    if (this.wasSignUp) {
-      this.router.navigate(['/home']);
-    } else {
-      const link = ['/thing', this.thingId];
-      this.router.navigate(link);
-    }
+    const link = ['/thing', this.thingId];
+    this.router.navigate(link);
   }
 }

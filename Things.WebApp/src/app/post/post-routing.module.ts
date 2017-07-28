@@ -11,7 +11,7 @@ import { Navigation } from 'app/layout/navigation/navigation.component';
         RouterModule.forChild([
             { path: 'likes/user/:id', component: UserPostsLikedComponent, data: { title: 'User post likes', nav: Navigation.Primary } },
             { path: 'likes/:id', component: PostLikesComponent, data: { title: 'Post likes', nav: Navigation.Back } },
-            { path: 'user/:id', component: UserPostsComponent, data: { title: 'User posts', nav: Navigation.Back, backRouterPath: '/home' } },
+            { path: 'user/:id', component: UserPostsComponent, data: { title: 'User posts', nav: Navigation.Back, backRouterPath: '/' } },
             // TODO: route is confusing but can't think of something else
             { path: 'post/:uid', component: PostComponent, data: { title: 'Post', nav: Navigation.Back } }
         ])
