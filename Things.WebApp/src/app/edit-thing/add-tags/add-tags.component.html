@@ -6,7 +6,7 @@
   <md-card-content>
     <div>
       <span *ngFor="let tag of tags" class="tag">
-    #{{ tag | uppercase }}
+    #{{ tag }}
     <span class="remove-tag" (click)="removeTag(tag)">  
       <md-icon>close</md-icon>
     </span>
