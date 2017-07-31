@@ -1,0 +1,21 @@
+<md-card>
+  <md-card-subtitle *ngIf="!removingEmail">
+    Sign up for our newsletter
+  </md-card-subtitle>
+  <md-card-subtitle *ngIf="removingEmail">
+    We are sad to see you go 🙁
+  </md-card-subtitle>
+  <md-card-content>
+    <md-input-container>
+      <input mdInput #input type="text" placeholder="email" required>
+    </md-input-container>
+
+    <md-spinner *ngIf="isProcessing"></md-spinner>
+    <div *ngIf="message && !removingEmail" style="color: green;">We added you</div>
+    <div *ngIf="message && removingEmail" style="color: red;">We removed you</div>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button *ngIf="!removingEmail" (click)="add(input.value)">Add</button>
+    <button md-raised-button color="warn" *ngIf="removingEmail" (click)="remove(input.value)">Remove</button>
+  </md-card-actions>
+</md-card>

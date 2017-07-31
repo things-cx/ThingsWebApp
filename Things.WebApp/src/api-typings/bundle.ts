@@ -141,7 +141,7 @@ export class PostController {
             headers = this.httpService.addAuthHeaders(headers);
 
             const request = new Request({
-                url: `${this.httpService.apiUrl}/api/post/getPost/${uId}`,
+                url: `${this.httpService.apiUrl}/api/post/getPost/${encodeURIComponent(uId)}`,
                 method: `post`,
                 body: null,
                 headers: headers
@@ -587,7 +587,7 @@ export class ThingsController {
             headers = this.httpService.addAuthHeaders(headers);
 
             const request = new Request({
-                url: `${this.httpService.apiUrl}/api/things/editPublicThingTags/${id}?token=${token}`,
+                url: `${this.httpService.apiUrl}/api/things/editPublicThingTags/${id}?token=${encodeURIComponent(token)}`,
                 method: `post`,
                 body: viewModel,
                 headers: headers
@@ -629,7 +629,7 @@ export class ThingsController {
             headers = this.httpService.addAuthHeaders(headers);
 
             const request = new Request({
-                url: `${this.httpService.apiUrl}/api/things/editPublicThingDescription/${id}?token=${token}`,
+                url: `${this.httpService.apiUrl}/api/things/editPublicThingDescription/${id}?token=${encodeURIComponent(token)}`,
                 method: `post`,
                 body: viewModel,
                 headers: headers
@@ -671,7 +671,7 @@ export class ThingsController {
             headers = this.httpService.addAuthHeaders(headers);
 
             const request = new Request({
-                url: `${this.httpService.apiUrl}/api/things/editPublicThingMedia/${id}?token=${token}`,
+                url: `${this.httpService.apiUrl}/api/things/editPublicThingMedia/${id}?token=${encodeURIComponent(token)}`,
                 method: `post`,
                 body: viewModel,
                 headers: headers
@@ -713,7 +713,7 @@ export class ThingsController {
             headers = this.httpService.addAuthHeaders(headers);
 
             const request = new Request({
-                url: `${this.httpService.apiUrl}/api/things/editPublicThingAmazonLink/${id}?token=${token}`,
+                url: `${this.httpService.apiUrl}/api/things/editPublicThingAmazonLink/${id}?token=${encodeURIComponent(token)}`,
                 method: `post`,
                 body: viewModel,
                 headers: headers
@@ -902,7 +902,7 @@ export class ThingsController {
             headers = this.httpService.addAuthHeaders(headers);
 
             const request = new Request({
-                url: `${this.httpService.apiUrl}/api/things/getTag/${name}`,
+                url: `${this.httpService.apiUrl}/api/things/getTag/${encodeURIComponent(name)}`,
                 method: `get`,
                 body: null,
                 headers: headers
@@ -1316,6 +1316,90 @@ export class UserController {
                 .map((res) => this.httpService.extractData(res))
                 .catch((err) => this.httpService.handleError(err));
         };
+        /**
+        *
+        * TODO: Observable<userDetailFollowingType>
+        */
+        public createUserDetailFollower(id: number, userDetailFollowingType: Things.Api.ViewModels.Thing.UserDetailFollowingType):
+        Observable<number> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/user/createUserDetailFollower/${id}`,
+                method: `post`,
+                body: userDetailFollowingType,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<userDetailFollowingType>
+        */
+        public deleteUserDetailFollower(id: number, userDetailFollowingType: Things.Api.ViewModels.Thing.UserDetailFollowingType):
+        Observable<number> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/user/deleteUserDetailFollower/${id}`,
+                method: `post`,
+                body: userDetailFollowingType,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public createNewsletterMember(viewModel: Things.Api.ViewModels.User.NewsletterMemberViewModel):
+        Observable<boolean> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/user/createNewsletterMember`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public deleteNewsletterMember(viewModel: Things.Api.ViewModels.User.NewsletterMemberViewModel):
+        Observable<boolean> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/user/deleteNewsletterMember`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
 }
 export namespace Things.Api.ViewModels.Activity {
     export enum ActivityType {
@@ -1469,12 +1553,7 @@ export namespace AmazonProductAdvertising.Api.Model {
         sourceItem: AmazonProductAdvertising.Api.Model.Item;
     }
 }
-export namespace AmazonProductAdvertising.Api.Model {
-    export class Request {
-        isValid: string;
-        errors: AmazonProductAdvertising.Api.Model.AmazonError[];
-    }
-}
+
 export namespace AmazonProductAdvertising.Api.Model {
     export class Argument {
         name: string;
@@ -1487,7 +1566,12 @@ export namespace Things.Api.ViewModels.Thing {
         token: string;
     }
 }
-
+export namespace AmazonProductAdvertising.Api.Model {
+    export class Request {
+        isValid: string;
+        errors: AmazonProductAdvertising.Api.Model.AmazonError[];
+    }
+}
 export namespace AmazonProductAdvertising.Api.Model {
     export class BaseBrowseNodeLookupRequest extends Request {
         browseNodeLookupRequest: AmazonProductAdvertising.Api.Model.BrowseNodeLookupRequest;
@@ -1603,6 +1687,12 @@ export namespace AmazonProductAdvertising.Api.Model {
     export class CorrectedQuery {
         keywords: string;
         message: string;
+    }
+}
+
+export namespace Things.Api.ViewModels.User {
+    export class CreateNewsletterMemberViewModel {
+        email: number;
     }
 }
 
@@ -2039,6 +2129,12 @@ export namespace AmazonProductAdvertising.Api.Model {
     }
 }
 
+export namespace Things.Api.ViewModels.User {
+    export class NewsletterMemberViewModel {
+        email: string;
+    }
+}
+
 export namespace AmazonProductAdvertising.Api.Model {
     export class NonNegativeIntegerWithUnits {
         units: string;
@@ -2374,6 +2470,14 @@ export namespace AmazonProductAdvertising.Api.Model {
     }
 }
 
+export namespace Things.Api.ViewModels.Thing {
+    export enum UserDetailFollowingType {
+        posts = 1,
+        following = 2,
+        thingLikes = 3,
+        postLikes = 4,
+    }
+}
 export namespace Things.Api.Models.User {
     export class LoginViewModel {
         title: string;
