@@ -15,6 +15,7 @@ export class PostComponent implements OnInit {
   skip = 0;
   isProcessing = true;
   isProcessingReplies = true;
+  didCreate = false;
 
   constructor(private postController: PostController,
     private route: ActivatedRoute,
@@ -35,7 +36,7 @@ export class PostComponent implements OnInit {
     this.route.queryParamMap.subscribe(queryParams => {
       if (queryParams.has('didcreate')) {
         if (queryParams.get('didcreate') === 'true') {
-          this.router.navigate(['/post/user', this.post.user.id]);
+          this.didCreate = true;
         }
       }
     });
@@ -45,6 +46,11 @@ export class PostComponent implements OnInit {
     this.postController.getPost(this.postUId).subscribe(data => {
       this.isProcessing = false;
       this.post = data;
+
+      // Navigate to all posts if user created new post
+      if (this.didCreate) {
+        this.router.navigate(['/post/user', this.post.user.id]);
+      }
     });
   }
 
