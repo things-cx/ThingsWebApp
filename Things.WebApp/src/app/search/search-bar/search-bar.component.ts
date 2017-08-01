@@ -18,6 +18,7 @@ export class SearchBarComponent implements OnInit {
   formErrors;
   isProcessing = false;
   searchResults: Things.Api.Models.Thing[];
+  showNothingFoundMessage = false;
 
   constructor(private fb: FormBuilder,
     private thingsController: ThingsController,
@@ -47,6 +48,12 @@ export class SearchBarComponent implements OnInit {
       data => {
         this.isProcessing = false;
         this.searchResults = data;
+
+        if (data !== null && data.length > 0) {
+          this.showNothingFoundMessage = false;
+        } else {
+          this.showNothingFoundMessage = true;
+        }
       }, error => {
         this.isProcessing = false;
         this.formErrors = this.formService.showServerErrors(error);

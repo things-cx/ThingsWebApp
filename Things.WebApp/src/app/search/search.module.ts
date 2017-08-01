@@ -5,8 +5,15 @@ import { DiscoverComponent } from './discover/discover.component';
 import { SearchComponent } from './search/search.component';
 import { SearchRoutingModule } from './search-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdInputModule, MdChipsModule, MdListModule, MdCardModule, MdProgressSpinnerModule } from '@angular/material';
 import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
+import {
+  MdInputModule,
+  MdChipsModule,
+  MdListModule,
+  MdCardModule,
+  MdProgressSpinnerModule,
+  MdIconModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -18,6 +25,7 @@ import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
     MdListModule,
     MdCardModule,
     MdProgressSpinnerModule,
+    MdIconModule,
     MediaTypeModule
   ],
   declarations: [

@@ -5,6 +5,16 @@
     <div *ngIf="formErrors?.search" class="validation-message">{{ formErrors.search }}</div>
 </form>
 
+<div *ngIf="showNothingFoundMessage">
+    <md-card>
+        <md-card-content>
+            <md-icon>do_not_disturb</md-icon>
+            <span>Nothing found</span>
+        </md-card-content>
+    </md-card>
+    <br>
+</div>
+
 <h4 *ngIf="searchResults?.length > 0">Search results</h4>
 <md-spinner *ngIf="isProcessing"></md-spinner>
 
