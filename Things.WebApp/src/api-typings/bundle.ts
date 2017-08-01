@@ -1766,7 +1766,7 @@ export namespace AmazonProductAdvertising.Api.Model {
 
 export namespace Things.Api.ViewModels.Home {
     export class DiscoverViewModel {
-        things: Things.Api.Models.Thing[];
+        things: Things.Api.Models.ThingWithParents[];
         tags: Things.Api.Models.TagModel[];
     }
 }
@@ -2436,6 +2436,13 @@ export namespace Things.Api.Models {
         user = 3,
     }
 }
+export namespace Things.Api.Models {
+    export class ThingWithParents {
+        thing: Things.Api.Models.Thing;
+        parentHierarchy: string[];
+    }
+}
+
 export namespace Things.Api.Models {
     export class ThinThingModel {
         id: number;

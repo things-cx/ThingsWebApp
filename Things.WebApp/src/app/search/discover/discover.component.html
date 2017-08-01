@@ -4,11 +4,13 @@
     <md-chip *ngFor="let tag of model?.tags" [routerLink]="['/tag', tag.name]" style="cursor: pointer;" class="mat-h2">#{{tag.name}}</md-chip>
 </md-chip-list>
 
-<md-card *ngFor="let thing of model?.things" routerLink="/thing/{{thing.id}}" class="card-item">
+<md-card *ngFor="let thing of model?.things" routerLink="/thing/{{thing.thing.id}}" class="card-item">
     <md-card-header>
-        <app-media-type md-card-avatar [url]="thing?.media ? thing?.media[0] : ''" [thumbnail]="true"></app-media-type>
+        <app-media-type md-card-avatar [url]="thing?.thing.media ? thing?.thing.media[0] : ''" [thumbnail]="true"></app-media-type>
 
-        <md-card-title>{{thing.title}}</md-card-title>
-        <md-card-subtitle>{{thing.likes}} likes</md-card-subtitle>
+        <md-card-title>{{thing.thing.title}}</md-card-title>
+        <md-card-subtitle>
+            <span *ngFor="let hierarchyItem of thing?.parentHierarchy; let i = index"><span *ngIf="thing?.parentHierarchy?.length - 1 > i">@{{hierarchyItem}}</span></span>
+        </md-card-subtitle>
     </md-card-header>
 </md-card>
