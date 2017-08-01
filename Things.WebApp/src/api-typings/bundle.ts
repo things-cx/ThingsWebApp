@@ -1886,6 +1886,10 @@ export namespace Things.Api.ViewModels.Thing {
         thingsFollowing: number;
         thingsLiked: number;
         postsLiked: number;
+        followedPosts: boolean;
+        followedFollowing: boolean;
+        followedThingLikes: boolean;
+        followedPostLikes: boolean;
     }
 }
 

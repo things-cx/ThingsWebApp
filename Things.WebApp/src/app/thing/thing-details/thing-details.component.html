@@ -128,7 +128,7 @@
         <md-icon>account_circle</md-icon> User
       </ng-template>
 
-      <app-thing-user-details *ngIf="viewedUserDetailsTab" [id]="thingModel.thing.id"></app-thing-user-details>
+      <app-thing-user-details *ngIf="viewedUserDetailsTab" [id]="thingModel.thing.id" [logedInUserId]="logedInUserId"></app-thing-user-details>
 
     </md-tab>
     <md-tab>

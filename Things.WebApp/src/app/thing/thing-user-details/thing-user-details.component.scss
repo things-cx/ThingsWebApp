@@ -12,3 +12,19 @@
     height: 24px; 
     display: inline-block;
 }
+
+md-card-header {
+    display: block;
+
+    & > md-icon {
+        float: left;
+    }
+
+    & > div:nth-child(3) {
+        float: left;
+    }
+
+    & > div:nth-child(4) {
+        float: right;
+    }
+}
