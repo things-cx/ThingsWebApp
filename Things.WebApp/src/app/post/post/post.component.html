@@ -7,4 +7,4 @@
 <md-spinner *ngIf="isProcessingReplies"></md-spinner>
 
 <!--Default should be hidden-->
-<button md-raised-button *ngIf="postReplies?.length > 0 && postReplies?.length % 10 == 0" (click)="loadMore()">Load more</button>
+<button md-raised-button class="center" *ngIf="postReplies?.length > 0 && postReplies?.length % 10 == 0" (click)="loadMore()">Load more</button>

@@ -21,4 +21,4 @@
 <md-spinner *ngIf="isProcessing"></md-spinner>
 
 <!--Default should be hidden-->
-<button md-raised-button *ngIf="activities?.length > 0 && activities?.length % 10 == 0" (click)="loadMore()">Load more</button>
+<button md-raised-button class="center" *ngIf="activities?.length > 0 && activities?.length % 10 == 0" (click)="loadMore()">Load more</button>

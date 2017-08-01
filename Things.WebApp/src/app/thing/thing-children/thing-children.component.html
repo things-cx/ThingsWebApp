@@ -43,4 +43,4 @@
 <md-spinner *ngIf="isProcessing"></md-spinner>
 
 <!--Default should be hidden-->
-<button md-raised-button *ngIf="things?.length > 0 && things?.length % 10 == 0" (click)="loadMore()">Load more</button>
+<button md-raised-button class="center" *ngIf="things?.length > 0 && things?.length % 10 == 0" (click)="loadMore()">Load more</button>
