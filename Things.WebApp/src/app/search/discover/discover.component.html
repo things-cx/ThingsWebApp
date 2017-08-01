@@ -1,7 +1,7 @@
 <md-spinner *ngIf="isProcessing"></md-spinner>
 
 <md-chip-list>
-    <md-chip *ngFor="let tag of model?.tags" [routerLink]="['/tag', tag.name]" style="cursor: pointer;" class="mat-h2">{{tag.name}}</md-chip>
+    <md-chip *ngFor="let tag of model?.tags" [routerLink]="['/tag', tag.name]" style="cursor: pointer;" class="mat-h2">#{{tag.name}}</md-chip>
 </md-chip-list>
 
 <md-card *ngFor="let thing of model?.things" routerLink="/thing/{{thing.id}}" class="card-item">
