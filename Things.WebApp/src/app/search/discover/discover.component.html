@@ -1,5 +1,3 @@
-<md-spinner *ngIf="isProcessing"></md-spinner>
-
 <md-chip-list>
     <md-chip *ngFor="let tag of model?.tags" [routerLink]="['/tag', tag.name]" style="cursor: pointer;" class="mat-h2">#{{tag.name}}</md-chip>
 </md-chip-list>
@@ -14,3 +12,8 @@
         </md-card-subtitle>
     </md-card-header>
 </md-card>
+
+<md-spinner *ngIf="isProcessing"></md-spinner>
+
+<br>
+<button md-raised-button class="center" *ngIf="model?.things?.length > 0 && model?.things?.length % 10 == 0" (click)="loadMore()">Load more</button>

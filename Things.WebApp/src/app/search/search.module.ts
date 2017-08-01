@@ -12,7 +12,8 @@ import {
   MdListModule,
   MdCardModule,
   MdProgressSpinnerModule,
-  MdIconModule
+  MdIconModule,
+  MdButtonModule
 } from '@angular/material';
 
 @NgModule({
@@ -26,6 +27,7 @@ import {
     MdCardModule,
     MdProgressSpinnerModule,
     MdIconModule,
+    MdButtonModule,
     MediaTypeModule
   ],
   declarations: [

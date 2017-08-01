@@ -452,9 +452,9 @@ export class ThingsController {
         };
         /**
         *
-        * TODO: Observable<null>
+        * TODO: Observable<viewModel>
         */
-        public discoverThings():
+        public discoverThings(viewModel: Things.Api.ViewModels.Thing.DiscoverThingsViewModel):
         Observable<Things.Api.ViewModels.Home.DiscoverViewModel> {
 
             let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -462,8 +462,8 @@ export class ThingsController {
 
             const request = new Request({
                 url: `${this.httpService.apiUrl}/api/things/discoverThings`,
-                method: `get`,
-                body: null,
+                method: `post`,
+                body: viewModel,
                 headers: headers
             });
 
@@ -1761,6 +1761,12 @@ export namespace AmazonProductAdvertising.Api.Model {
     export class DecimalWithUnits {
         units: string;
         value: number;
+    }
+}
+
+export namespace Things.Api.ViewModels.Thing {
+    export class DiscoverThingsViewModel {
+        skip: number;
     }
 }
 
