@@ -6,20 +6,18 @@
   <br><br>
 
   <md-card *ngIf="selectedThings?.length == 0">
-      <md-card-subtitle>Search for a user</md-card-subtitle>
+    <md-card-subtitle>Search for a user</md-card-subtitle>
   </md-card>
 
   <md-card *ngIf="selectedThings?.length > 0">
-      <md-card-subtitle>Now search for any Things underneath if you want to</md-card-subtitle>
+    <md-card-subtitle>Now search for any Things underneath if you want to</md-card-subtitle>
   </md-card>
 
-  <md-card *ngFor="let selectedThing of selectedThings" class="selected-thing-item" (click)="goToSelectedThing(selectedThing)">
-    <md-card-header>
-      <app-media-type md-card-avatar [url]="selectedThing?.media ? selectedThing?.media[0] : ''" [thumbnail]="true"></app-media-type>
-      <md-card-title>{{selectedThing.title}}</md-card-title>
-      <md-card-subtitle>{{selectedThing.likes}} likes</md-card-subtitle>
-    </md-card-header>
-  </md-card>
+  <div *ngIf="selectedThings?.length > 0">
+    <br>
+    <div *ngFor="let selectedThing of selectedThings" class="selected-thing-item" (click)="removeUpUntilThisThing(selectedThing)">@{{selectedThing.title}}</div>
+    <br><br>
+  </div>
 
   <form [formGroup]="form">
 
@@ -36,7 +34,6 @@
 
   </form>
 </md-dialog-content>
-
 <md-dialog-actions>
   <button md-raised-button (click)="done()">
     Done

@@ -4,6 +4,9 @@ import { LinkComponent } from 'app/shared/editor/link/link.component';
 import { MentionComponent, Mention } from 'app/shared/editor/mention/mention.component';
 import { ImageComponent } from 'app/shared/editor/image/image.component';
 import { Things } from 'api-typings/bundle';
+import * as marked from 'marked';
+import { environment } from 'environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editor',
@@ -14,23 +17,35 @@ export class EditorComponent implements OnInit, OnChanges {
 
   @Input() thingModel: Things.Api.Models.ThingModel;
   @Output() onSave: EventEmitter<string> = new EventEmitter();
-  box: HTMLDivElement;
-  cursorSelectionRange: Range;
-  showHeaderOptions = false;
   mentions: Mention[];
+  viewPreviewScreen = false;
+  hasLocalBackup = false;
+  viewLocalBackupScreen = false;
+  renderingMarkdown = false;
+  previewHTML = '';
+  backupPreviewHTML = '';
+  textAreaKeyupTimeout: any;
+  localStorageBackupKey = 'description_backup_';
 
-  constructor(public dialog: MdDialog) { }
+  constructor(public dialog: MdDialog,
+    private router: Router) { }
 
-  ngOnInit() {
-    this.box = <HTMLDivElement>document.getElementById('box');
-  }
+  ngOnInit() { }
 
   // Check @Input() thingModel for changes to update posts
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === 'thingModel') {
         this.loadMentions();
+        this.getLocalBackup();
       }
+    }
+  }
+
+  getLocalBackup() {
+    const localBackup = localStorage.getItem(this.localStorageBackupKey + this.thingModel.thing.id);
+    if (localBackup !== null && localBackup !== undefined && localBackup !== '') {
+      this.hasLocalBackup = true;
     }
   }
 
@@ -57,175 +72,26 @@ export class EditorComponent implements OnInit, OnChanges {
     }
   }
 
-  wrap(tagName) {
-    const range = this.getRange();
-    if (range.toString() !== '') {
-      const element = document.createElement(tagName);
-      element.innerText = range.toString();
-      range.deleteContents();
-      range.insertNode(element);
-    }
-  }
-
-  wrapList(listTag) {
-    const range = this.getRange();
-    if (range.toString() !== '') {
-      const listElement = document.createElement(listTag);
-      const listItem = document.createElement('li');
-      listItem.innerText = range.toString();
-      listElement.appendChild(listItem);
-      range.deleteContents();
-      range.insertNode(listElement);
-    }
-  }
-
-  insert(tagName) {
-    const range = this.getRange();
-    const element = document.createElement(tagName);
-    range.insertNode(element);
-  }
-
-  insertWithText(tagName, text) {
-    const range = this.getRange();
-    const element = document.createElement(tagName);
-    element.innerText = text;
-    range.insertNode(element);
-  }
-
-  insertLink(name: string, url: string) {
-    const range = this.getRange();
-    const element = document.createElement('a') as HTMLAnchorElement;
-    element.innerText = name;
-    element.href = url;
-    range.insertNode(element);
-  }
-
-  insertMention(name: string) {
-    const range = this.getRange();
-    const element = document.createElement('span') as HTMLSpanElement;
-    element.innerText = name;
-    element.className = 'mention';
-    element.contentEditable = 'false';
-    range.insertNode(element);
-
-    range.collapse(false);
-    const textNode = document.createTextNode('\u00A0');
-    range.insertNode(textNode);
-  }
-
-  getRange(): Range {
-    if (window.getSelection) {
-      const selection = window.getSelection();
-      if (selection.rangeCount) {
-        return selection.getRangeAt(0);
-      }
-    }
-
-    return null;
-  }
-
-  saveSelection(): void {
-    if (window.getSelection) {
-      const selection = window.getSelection();
-      if (selection.getRangeAt && selection.rangeCount) {
-        this.cursorSelectionRange = selection.getRangeAt(0);
-      } else {
-        this.cursorSelectionRange = null;
-      }
-    }
-  }
-
-  restoreSelection() {
-    // Restore selection
-    if (this.cursorSelectionRange) {
-      if (window.getSelection) {
-        const selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(this.cursorSelectionRange);
-      }
-    }
-  }
-
-  bold() {
-    this.wrap('strong');
-  }
-
-  italic() {
-    this.wrap('i');
-  }
-
-  underline() {
-    this.wrap('u');
-  }
-
-  h1() {
-    this.wrap('h1');
-  }
-
-  h2() {
-    this.wrap('h2');
-  }
-
-  h3() {
-    this.wrap('h3');
-  }
-
-  h4() {
-    this.wrap('h4');
-  }
-
-  h5() {
-    this.wrap('h5');
-  }
-
-  h6() {
-    this.wrap('h6');
-  }
-
-  quote() {
-    this.wrap('blockquote');
-  }
-
-  hr() {
-    this.insert('hr');
-  }
-
-  bulletList() {
-    this.wrapList('ul');
-  }
-
-  numberList() {
-    this.wrapList('ol');
-  }
-
-  openLinkDialog(url = '') {
-    this.saveSelection();
-    // TODO: append dialog in comp name (my standard)
-    const dialogRef = this.dialog.open(LinkComponent);
-    dialogRef.componentInstance.url = url;
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined && result !== null) {
-        if (result.name !== '' && result.url !== '') {
-          this.restoreSelection();
-          this.insertLink(result.name, result.url);
-        }
-      }
-    });
-  }
-
   openMentionDialog() {
-    this.saveSelection();
     // TODO: append dialog in comp name (my standard)
     const dialogRef = this.dialog.open(MentionComponent);
 
     dialogRef.afterClosed().subscribe((result: Mention) => {
       if (result !== undefined && result !== null && result.hierarchy !== '') {
-        this.restoreSelection();
         // CONTINUE!!!
-        this.insertMention(result.hierarchy);
+        // this.insertMention(result.hierarchy);
       }
     });
+  }
+
+  viewLocalBackup() {
+    const localBackup = localStorage.getItem(this.localStorageBackupKey + this.thingModel.thing.id);
+    this.previewHTML = marked(localBackup);
+    this.viewPreviewScreen = true;
+  }
+
+  useLocalBackup() {
+    throw DOMException;
   }
 
   openImageDialog() {
@@ -233,7 +99,104 @@ export class EditorComponent implements OnInit, OnChanges {
     this.dialog.open(ImageComponent);
   }
 
-  saveChanges() {
-    this.onSave.emit(this.box.innerHTML);
+  saveChanges(textArea: HTMLTextAreaElement) {
+    localStorage.removeItem(this.localStorageBackupKey + this.thingModel.thing.id)
+    this.onSave.emit(textArea.value);
+  }
+
+  viewPreview(textArea: HTMLTextAreaElement) {
+    this.renderingMarkdown = true;
+    this.previewHTML = marked(textArea.value);
+    this.viewPreviewScreen = true;
+    this.renderingMarkdown = false;
+  }
+
+  goToMarkdownInfo() {
+    const link = ['/thing', 7];
+    const url = environment.hostUrlForSharingToWeb + this.router.createUrlTree(link).toString()
+    window.open(url);
+  }
+
+  wrap(textArea: HTMLTextAreaElement, value) {
+    if (textArea.selectionStart || textArea.selectionStart === 0) {
+      const startPos = textArea.selectionStart;
+      const endPos = textArea.selectionEnd;
+      textArea.value = textArea.value.substring(0, startPos)
+        + value
+        + textArea.value.substring(startPos, endPos)
+        + value
+        + textArea.value.substring(endPos, textArea.value.length);
+
+      textArea.selectionStart = startPos + value.length;
+      textArea.selectionEnd = endPos + value.length;
+    } else {
+      textArea.value += value;
+    }
+
+    textArea.focus();
+  }
+
+  insert(textArea: HTMLTextAreaElement, value) {
+    if (textArea.selectionStart || textArea.selectionStart === 0) {
+      const startPos = textArea.selectionStart;
+      const endPos = textArea.selectionEnd;
+      textArea.value = textArea.value.substring(0, startPos)
+        + value
+        + textArea.value.substring(startPos, endPos)
+        + textArea.value.substring(endPos, textArea.value.length);
+
+      textArea.selectionStart = startPos + value.length;
+      textArea.selectionEnd = endPos + value.length;
+    } else {
+      textArea.value += value;
+    }
+
+    textArea.focus();
+  }
+
+  insertUrl(textArea: HTMLTextAreaElement) {
+    if (textArea.selectionStart || textArea.selectionStart === 0) {
+      const startPos = textArea.selectionStart;
+      const endPos = textArea.selectionEnd;
+      textArea.value = textArea.value.substring(0, startPos)
+        + '['
+        + textArea.value.substring(startPos, endPos)
+        + '](url)'
+        + textArea.value.substring(endPos, textArea.value.length);
+
+      textArea.selectionStart = startPos + 1 + (endPos - startPos) + 2;
+      textArea.selectionEnd = textArea.selectionStart + 3;
+    } else {
+      textArea.value += '[](url)';
+    }
+
+    textArea.focus();
+  }
+
+  insertImageUrl(textArea: HTMLTextAreaElement) {
+    if (textArea.selectionStart || textArea.selectionStart === 0) {
+      const startPos = textArea.selectionStart;
+      const endPos = textArea.selectionEnd;
+      textArea.value = textArea.value.substring(0, startPos)
+        + '![Alternative text'
+        + textArea.value.substring(startPos, endPos)
+        + '](url)'
+        + textArea.value.substring(endPos, textArea.value.length);
+
+      textArea.selectionStart = startPos + 18 + (endPos - startPos) + 2;
+      textArea.selectionEnd = textArea.selectionStart + 3;
+    } else {
+      textArea.value += '![](url)';
+    }
+
+    textArea.focus();
+  }
+
+  onTextAreaKeyup(textArea: HTMLTextAreaElement) {
+    clearTimeout(this.textAreaKeyupTimeout);
+
+    this.textAreaKeyupTimeout = setTimeout(() => {
+      localStorage.setItem(this.localStorageBackupKey + this.thingModel.thing.id, textArea.value)
+    }, 3000);
   }
 }

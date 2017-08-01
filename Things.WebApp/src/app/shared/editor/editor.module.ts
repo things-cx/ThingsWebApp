@@ -3,10 +3,20 @@ import { CommonModule } from '@angular/common';
 import { LinkComponent } from 'app/shared/editor/link/link.component';
 import { MentionComponent } from 'app/shared/editor/mention/mention.component';
 import { ImageComponent } from 'app/shared/editor/image/image.component';
-import { MdButtonModule, MdInputModule, MdAutocompleteModule, MdProgressSpinnerModule, MdCardModule, MdIconModule, MdDialogModule } from '@angular/material';
 import { EditorComponent } from 'app/shared/editor/editor/editor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
+import {
+  MdButtonModule,
+  MdInputModule,
+  MdAutocompleteModule,
+  MdProgressSpinnerModule,
+  MdCardModule,
+  MdIconModule,
+  MdDialogModule,
+  MdMenuModule,
+  MdTooltipModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -19,7 +29,9 @@ import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
     MdCardModule,
     MdIconModule,
     MdDialogModule,
-    MediaTypeModule
+    MediaTypeModule,
+    MdMenuModule,
+    MdTooltipModule
   ],
   declarations: [
     EditorComponent,

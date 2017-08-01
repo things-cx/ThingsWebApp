@@ -1,58 +1,75 @@
 <md-card-content>
-
-    <button md-raised-button class="editor-btn" (click)="openMentionDialog();">
-        <md-icon>title</md-icon>mention
-    </button>
-    <button md-raised-button class="editor-btn" (click)="openLinkDialog();">
-        <md-icon>insert_link</md-icon>link
-    </button>
-    <button md-raised-button class="editor-btn" (click)="openImageDialog();" disabled>
-        <md-icon>insert_photo</md-icon>image
-    </button>
     <!--TODO: Auto recognize youtube, twitter, github, vimeo, ect-->
+    <div [hidden]="viewPreviewScreen">
+        <p style="color: rgba(0,0,0,.54); float: left;">Markdown editor</p>
 
-    <br>
+        <button md-raised-button color="accent" (click)="viewPreview(content)" style="float: right;">Preview</button>
+        <button md-raised-button color="warn" (click)="viewLocalBackup()" *ngIf="hasLocalBackup" style="float: right;">Preview local backup</button>
+        <div style="clear: both;"></div>
 
-    <div contenteditable="true" id="box" placeholder="describe your Thing..." [innerHTML]="thingModel?.description?.content"></div>
+        <div class="toolbar-group">
+            <button md-icon-button class="editor-btn" [mdMenuTriggerFor]="menu" mdTooltip="Heading">
+                <md-icon>text_fields</md-icon>
+            </button>
 
-    <p style="color: rgba(0,0,0,.54);">highlight text to use edit features</p>
+            <md-menu #menu="mdMenu">
+                <button md-menu-item (click)="insert(content, '# ')">Heading</button>
+                <button md-menu-item (click)="insert(content, '## ')" style="font-size: 0.9rem;">Heading</button>
+                <button md-menu-item (click)="insert(content, '### ')" style="font-size: 0.8rem;">Heading</button>
+            </md-menu>
 
-    <button md-raised-button class="editor-btn" (click)="bold();">
-        <md-icon>format_bold</md-icon>bold
-    </button>
-    <button md-raised-button class="editor-btn" (click)="italic();">
-        <md-icon>format_italic</md-icon>italic
-    </button>
-    <button md-raised-button class="editor-btn" (click)="underline();">
-        <md-icon>format_underlined</md-icon>underline
-    </button>
-    <button md-raised-button class="editor-btn" (click)="showHeaderOptions = !showHeaderOptions">
-        <md-icon>text_fields</md-icon>heading
-    </button>
-    <span *ngIf="showHeaderOptions">
-        <br>
-        <button md-raised-button class="editor-btn" (click)="h1();">1</button>
-        <button md-raised-button class="editor-btn" (click)="h2();">2</button>
-        <button md-raised-button class="editor-btn" (click)="h3();">3</button>
-        <button md-raised-button class="editor-btn" (click)="h4();">4</button>
-        <button md-raised-button class="editor-btn" (click)="h5();">5</button>
-        <button md-raised-button class="editor-btn" (click)="h6();">6</button>
-        <br>
-    </span>
-    <button md-raised-button class="editor-btn" (click)="quote();">
-        <md-icon>format_quote</md-icon>quote
-    </button>
-    <button md-raised-button class="editor-btn" (click)="bulletList();">
-        <md-icon>format_list_bulleted</md-icon>bullet list
-    </button>
-    <button md-raised-button class="editor-btn" (click)="numberList();">
-        <md-icon>format_list_numbered</md-icon>number list
-    </button>
-    <button md-raised-button class="editor-btn" (click)="hr()">
-        <md-icon>linear_scale</md-icon>devider
-    </button>
+            <button md-icon-button class="editor-btn" (click)="wrap(content, '**')" mdTooltip="Bold">
+                <md-icon>format_bold</md-icon>
+            </button>
+            <button md-icon-button class="editor-btn" (click)="wrap(content, '_')" mdTooltip="Italic">
+                <md-icon>format_italic</md-icon>
+            </button>
+        </div>
+        <div class="toolbar-group">
+            <button md-icon-button class="editor-btn" (click)="insert(content, '\n>')" mdTooltip="Quote">
+                <md-icon>format_quote</md-icon>
+            </button>
+            <button md-icon-button class="editor-btn" (click)="insert(content, '\n---\n')" mdTooltip="Divider">
+                <md-icon>linear_scale</md-icon>
+            </button>
+            <button md-icon-button class="editor-btn" (click)="insertUrl(content)" mdTooltip="Link">
+                <md-icon>insert_link</md-icon>
+            </button>
+        </div>
+        <div class="toolbar-group">
+            <button md-icon-button class="editor-btn" (click)="insert(content, '\n- ')" mdTooltip="Bullet list">
+                <md-icon>format_list_bulleted</md-icon>
+            </button>
+            <button md-icon-button class="editor-btn" (click)="insert(content, '\n1. ')" mdTooltip="Number list">
+                <md-icon>format_list_numbered</md-icon>
+            </button>
+        </div>
+        <div class="toolbar-group">
+            <button md-icon-button class="editor-btn" (click)="insert(content, '@')" mdTooltip="Mention">
+                @
+            </button>
+            <button md-icon-button class="editor-btn" (click)="insertImageUrl(content)" mdTooltip="Media">
+                <md-icon>insert_photo</md-icon>
+            </button>
+        </div>
+        <div style="clear: both;"></div>
 
+        <textarea id="content" #content (keyup)="onTextAreaKeyup(content)" placeholder="describe your Thing" [value]="thingModel?.description?.content"></textarea>
+
+        <button md-button (click)="goToMarkdownInfo()">
+            <md-icon>info_outline</md-icon>
+            Styling with Markdown is supported
+        </button>
+    </div>
+    <div [hidden]="!viewPreviewScreen">
+        <button md-raised-button color="accent" (click)="viewPreviewScreen = !viewPreviewScreen" style="float: right;">Editor</button>
+        <button md-raised-button color="warn" (click)="useLocalBackup()" *ngIf="hasLocalBackup" style="float: right;">Use local backup</button>
+        <div style="clear: both;"></div>
+        <md-spinner *ngIf="renderingMarkdown"></md-spinner>
+        <div *ngIf="previewHTML === ''">Nothing to preview</div>
+        <div class="preview-container" [innerHTML]="previewHTML"></div>
+    </div>
 </md-card-content>
 <md-card-actions>
-    <button md-raised-button color="primary" type="button" (click)="saveChanges()">Save</button>
+    <button md-raised-button color="primary" type="button" (click)="saveChanges(content)" style="float: right; margin-right: 20px;">Save</button>
 </md-card-actions>

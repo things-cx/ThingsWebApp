@@ -1,18 +1,21 @@
-#box {
-    border: 1px solid grey;
-    border-radius: 4px;
-    padding: 10px;
-    outline: none;
-}
-
 .editor-btn {
-    margin-bottom: 10px;
+    float: left;
 }
 
-[contenteditable=true]:empty:before {
-  content: attr(placeholder);
-  display: block;
-  opacity: 0.5;
+#content {
+    height: 200px;
+    min-height: 200px;
+    display: block;
+    width: 96%;
+    max-height: 500px;
+    padding: 8px;
+    resize: vertical;
+    border: 1px solid #dfe2e5;
+}
+
+.toolbar-group {
+    float: left;
+    margin-right: 25px;
 }
 
 ::ng-deep .mention {
@@ -20,4 +23,8 @@
     background-color: lightgray;
     padding: 5px;
     border-radius: 4px;
+}
+
+.preview-container ::ng-deep img {
+    width: 100%;
 }

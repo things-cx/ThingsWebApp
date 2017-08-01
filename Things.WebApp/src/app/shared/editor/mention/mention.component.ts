@@ -80,7 +80,7 @@ export class MentionComponent implements OnInit {
     this.search('');
   }
 
-  goToSelectedThing(thing: Things.Api.Models.Thing) {
+  removeUpUntilThisThing(thing: Things.Api.Models.Thing) {
     if (this.thingIdToSearchWithin !== thing.id) {
       this.thingIdToSearchWithin = thing.id;
 

@@ -1,4 +1,8 @@
 .selected-thing-item {
-    margin-top: 10px;
+    float: left;
+    padding: 10px;
+    background-color: lightgrey;
+    border-radius: 4px;
     cursor: pointer;
+    margin: 0 5px 5px 0;
 }
