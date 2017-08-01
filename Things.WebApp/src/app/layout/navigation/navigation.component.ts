@@ -43,14 +43,14 @@ export class NavigationComponent implements OnInit {
 
     const consoleLogsStore = [];
 
-    // console.error = function () {
-    //   for (const arg in arguments) {
-    //     if (arg) {
-    //       consoleLogsStore.push(arguments[arg]);
-    //     }
-    //   }
-    //   oldConsoleError.apply(console, arguments);
-    // }
+    console.error = function () {
+      for (const arg in arguments) {
+        if (arg) {
+          consoleLogsStore.push(arguments[arg]);
+        }
+      }
+      oldConsoleError.apply(console, arguments);
+    }
 
     console.info = function () {
       for (const arg in arguments) {
