@@ -1,12 +1,14 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { LinkComponent } from 'app/shared/editor/link/link.component';
 import { MentionComponent, Mention } from 'app/shared/editor/mention/mention.component';
-import { ImageComponent } from 'app/shared/editor/image/image.component';
 import { Things } from 'api-typings/bundle';
 import * as marked from 'marked';
 import { environment } from 'environments/environment';
 import { Router } from '@angular/router';
+import {
+  MarkdownHelperDialogComponent,
+  MarkdownHelperType
+} from 'app/shared/editor/markdown-helper-dialog/markdown-helper-dialog.component';
 
 @Component({
   selector: 'app-editor',
@@ -24,6 +26,7 @@ export class EditorComponent implements OnInit, OnChanges {
   backupPreviewHTML = '';
   textAreaKeyupTimeout: any;
   localStorageBackupKey = 'description_backup_';
+  markdownHelperTypeEnum = MarkdownHelperType;
 
   constructor(public dialog: MdDialog,
     private router: Router) { }
@@ -97,11 +100,6 @@ export class EditorComponent implements OnInit, OnChanges {
     this.viewPreviewScreen = false;
   }
 
-  openImageDialog() {
-    // TODO: append dialog in comp name (my standard)
-    this.dialog.open(ImageComponent);
-  }
-
   saveChanges(textArea: HTMLTextAreaElement) {
     localStorage.removeItem(this.localStorageBackupKey + this.thingModel.thing.id)
     this.onSave.emit(textArea.value);
@@ -155,45 +153,53 @@ export class EditorComponent implements OnInit, OnChanges {
     textArea.focus();
   }
 
-  insertUrl(textArea: HTMLTextAreaElement) {
-    if (textArea.selectionStart || textArea.selectionStart === 0) {
-      const startPos = textArea.selectionStart;
-      const endPos = textArea.selectionEnd;
-      textArea.value = textArea.value.substring(0, startPos)
-        + '['
-        + textArea.value.substring(startPos, endPos)
-        + '](url)'
-        + textArea.value.substring(endPos, textArea.value.length);
+  markdownHelper(textArea: HTMLTextAreaElement, markdownHelperType: MarkdownHelperType) {
+    const dialog = this.dialog.open(MarkdownHelperDialogComponent);
+    dialog.componentInstance.markdownHelperType = markdownHelperType;
 
-      textArea.selectionStart = startPos + 1 + (endPos - startPos) + 2;
-      textArea.selectionEnd = textArea.selectionStart + 3;
-    } else {
-      textArea.value += '[](url)';
+    let startPos = textArea.selectionStart;
+    let endPos = textArea.selectionEnd;
+
+    const value = textArea.value.substring(startPos, endPos);
+    if (value !== undefined && value !== '') {
+      dialog.componentInstance.input = textArea.value.substring(startPos, endPos);
     }
 
-    textArea.focus();
-  }
+    dialog.afterClosed().subscribe((result: string) => {
+      if (result !== null && result !== undefined) {
+        switch (markdownHelperType) {
+          case MarkdownHelperType.image:
+            textArea.value = `${textArea.value.substring(0, startPos)}${result}${textArea.value.substring(endPos, textArea.value.length)}`;
+            startPos = startPos + 2;
+            endPos = endPos + 2;
+            break;
+          case MarkdownHelperType.youtube: case MarkdownHelperType.imgLink:
+            textArea.value = `${textArea.value.substring(0, startPos)}${result}${textArea.value.substring(endPos, textArea.value.length)}`;
+            startPos = startPos + 3;
+            endPos = endPos + 3;
+            break;
+          case MarkdownHelperType.link: case MarkdownHelperType.mailto:
+            textArea.value = `${textArea.value.substring(0, startPos)}${result}${textArea.value.substring(endPos, textArea.value.length)}`;
+            startPos++;
+            endPos++
+            break;
 
-  insertImageUrl(textArea: HTMLTextAreaElement) {
-    if (textArea.selectionStart || textArea.selectionStart === 0) {
-      const startPos = textArea.selectionStart;
-      const endPos = textArea.selectionEnd;
-      textArea.value = textArea.value.substring(0, startPos)
-        + '![Alternative text'
-        + textArea.value.substring(startPos, endPos)
-        + '](url)'
-        + textArea.value.substring(endPos, textArea.value.length);
+          default:
+            break;
+        }
 
-      textArea.selectionStart = startPos + 18 + (endPos - startPos) + 2;
-      textArea.selectionEnd = textArea.selectionStart + 3;
-    } else {
-      textArea.value += '![](url)';
-    }
-
-    textArea.focus();
+        textArea.selectionStart = startPos;
+        textArea.selectionEnd = endPos;
+        textArea.focus();
+        this.onTextAreaKeyup(textArea);
+      }
+    });
   }
 
   onTextAreaKeyup(textArea: HTMLTextAreaElement) {
+    textArea.style.height = '1px';
+    textArea.style.height = (10 + textArea.scrollHeight) + 'px';
+
     clearTimeout(this.textAreaKeyupTimeout);
 
     this.textAreaKeyupTimeout = setTimeout(() => {
@@ -201,6 +207,6 @@ export class EditorComponent implements OnInit, OnChanges {
       if (this.hasLocalBackup) {
         this.hasLocalBackup = false;
       }
-    }, 3000);
+    }, 1500);
   }
 }

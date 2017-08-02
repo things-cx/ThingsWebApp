@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LinkComponent } from 'app/shared/editor/link/link.component';
 import { MentionComponent } from 'app/shared/editor/mention/mention.component';
-import { ImageComponent } from 'app/shared/editor/image/image.component';
 import { EditorComponent } from 'app/shared/editor/editor/editor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
@@ -15,8 +13,10 @@ import {
   MdIconModule,
   MdDialogModule,
   MdMenuModule,
-  MdTooltipModule
+  MdTooltipModule,
+  MdSelectModule
 } from '@angular/material';
+import { MarkdownHelperDialogComponent } from './markdown-helper-dialog/markdown-helper-dialog.component';
 
 @NgModule({
   imports: [
@@ -31,19 +31,21 @@ import {
     MdDialogModule,
     MediaTypeModule,
     MdMenuModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdSelectModule
   ],
   declarations: [
     EditorComponent,
-    LinkComponent,
     MentionComponent,
-    ImageComponent
+    MarkdownHelperDialogComponent
   ],
-  exports: [EditorComponent, MentionComponent],
+  exports: [
+    EditorComponent,
+    MentionComponent
+  ],
   entryComponents: [
-    LinkComponent,
     MentionComponent,
-    ImageComponent
+    MarkdownHelperDialogComponent
   ]
 })
 export class EditorModule { }

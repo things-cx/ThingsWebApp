@@ -1,0 +1,106 @@
+<md-dialog-content>
+  <button md-button md-dialog-close style="float: right;">
+    <md-icon>close</md-icon>
+  </button>
+  <div style="clear: both;"></div>
+
+  <form [formGroup]="form">
+    <div *ngIf="markdownHelperTypeEnum.image == markdownHelperType">
+      <md-select formControlName="imageHost">
+        <md-option value="http://">http://</md-option>
+        <md-option value="https://">https://</md-option>
+      </md-select>
+
+      <md-input-container>
+        <input mdInput formControlName="imageUrl" placeholder="url">
+      </md-input-container>
+
+      <br>
+
+      <md-input-container>
+        <input mdInput formControlName="imageAltText" placeholder="text when load fails">
+      </md-input-container>
+    </div>
+
+    <div *ngIf="markdownHelperTypeEnum.youtube == markdownHelperType">
+      <md-input-container>
+        <input mdInput formControlName="youtubeId" placeholder="YouTube video ID">
+      </md-input-container>
+      <p>Example: GF60Iuh643I TODO: (pic)</p>
+
+      <br>
+
+      <md-input-container>
+        <input mdInput formControlName="youtubeAltText" placeholder="text when load fails">
+      </md-input-container>
+    </div>
+
+    <div *ngIf="markdownHelperTypeEnum.vimeo == markdownHelperType">
+    </div>
+
+    <div *ngIf="markdownHelperTypeEnum.link == markdownHelperType">
+      <md-input-container>
+        <input mdInput formControlName="linkName" placeholder="name">
+      </md-input-container>
+
+      <br>
+
+      <md-select formControlName="linkHost">
+        <md-option value="http://">http://</md-option>
+        <md-option value="https://">https://</md-option>
+      </md-select>
+
+      <md-input-container>
+        <input mdInput formControlName="linkUrl" placeholder="url">
+      </md-input-container>
+    </div>
+
+    <div *ngIf="markdownHelperTypeEnum.imgLink == markdownHelperType">
+      <md-input-container>
+        <input mdInput formControlName="imgLinkAltText" placeholder="text when load fails">
+      </md-input-container>
+
+      <br>
+
+      <md-select formControlName="imgLinkHost">
+        <md-option value="http://">http://</md-option>
+        <md-option value="https://">https://</md-option>
+      </md-select>
+
+      <md-input-container>
+        <input mdInput formControlName="imgLinkUrl" placeholder="link url">
+      </md-input-container>
+
+      <br>
+
+      <md-select formControlName="imgLinkImgHost">
+        <md-option value="http://">http://</md-option>
+        <md-option value="https://">https://</md-option>
+      </md-select>
+
+      <md-input-container>
+        <input mdInput formControlName="imgLinkImgUrl" placeholder="image url">
+      </md-input-container>
+    </div>
+
+    <div *ngIf="markdownHelperTypeEnum.mailto == markdownHelperType">
+      <md-input-container>
+        <input mdInput formControlName="mailtoName" placeholder="name">
+      </md-input-container>
+
+      <br>
+
+      <md-input-container>
+        <input mdInput formControlName="mailtoUrl" placeholder="email address">
+      </md-input-container>
+    </div>
+
+    <div *ngIf="markdownHelperTypeEnum.table == markdownHelperType">
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions align="end">
+  <button md-raised-button (click)="add()">
+    Add
+  </button>
+</md-dialog-actions>

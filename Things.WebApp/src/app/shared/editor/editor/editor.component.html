@@ -2,17 +2,20 @@
     <!--TODO: Auto recognize youtube, twitter, github, vimeo, ect-->
     <div [hidden]="viewPreviewScreen">
         <p style="color: rgba(0,0,0,.54); float: left;">Markdown editor</p>
-
+        <button md-icon-button (click)="goToMarkdownInfo()" style="float: left;">
+            <md-icon>info_outline</md-icon>
+        </button>
+        
         <button md-raised-button color="accent" (click)="viewPreview(content)" style="float: right;">Preview</button>
         <button md-raised-button color="warn" (click)="viewLocalBackup()" *ngIf="hasLocalBackup" style="float: right; margin-right: 20px;">Preview local backup</button>
         <div style="clear: both;"></div>
 
         <div class="toolbar-group">
-            <button md-icon-button class="editor-btn" [mdMenuTriggerFor]="menu" mdTooltip="Heading">
+            <button md-icon-button class="editor-btn" [mdMenuTriggerFor]="headingmenu" mdTooltip="Heading">
                 <md-icon>text_fields</md-icon>
             </button>
 
-            <md-menu #menu="mdMenu">
+            <md-menu #headingmenu="mdMenu">
                 <button md-menu-item (click)="insert(content, '# ')">Heading</button>
                 <button md-menu-item (click)="insert(content, '## ')" style="font-size: 0.9rem;">Heading</button>
                 <button md-menu-item (click)="insert(content, '### ')" style="font-size: 0.8rem;">Heading</button>
@@ -32,9 +35,15 @@
             <button md-icon-button class="editor-btn" (click)="insert(content, '\n---\n')" mdTooltip="Divider">
                 <md-icon>linear_scale</md-icon>
             </button>
-            <button md-icon-button class="editor-btn" (click)="insertUrl(content)" mdTooltip="Link">
+            <button md-icon-button class="editor-btn" [mdMenuTriggerFor]="linkmenu" mdTooltip="Link">
                 <md-icon>insert_link</md-icon>
             </button>
+
+            <md-menu #linkmenu="mdMenu">
+                <button md-menu-item (click)="markdownHelper(content, markdownHelperTypeEnum.link)">Link</button>
+                <button md-menu-item (click)="markdownHelper(content, markdownHelperTypeEnum.imgLink)">Image link</button>
+                <button md-menu-item (click)="markdownHelper(content, markdownHelperTypeEnum.mailto)">Email address</button>
+            </md-menu>
         </div>
         <div class="toolbar-group">
             <button md-icon-button class="editor-btn" (click)="insert(content, '\n- ')" mdTooltip="Bullet list">
@@ -43,23 +52,27 @@
             <button md-icon-button class="editor-btn" (click)="insert(content, '\n1. ')" mdTooltip="Number list">
                 <md-icon>format_list_numbered</md-icon>
             </button>
+            <button md-icon-button class="editor-btn" (click)="insert(content, '\n1. ')" mdTooltip="Table">
+                <md-icon>border_all</md-icon>
+            </button>
         </div>
         <div class="toolbar-group">
             <button md-icon-button class="editor-btn" (click)="insert(content, '@')" mdTooltip="Mention">
                 @
             </button>
-            <button md-icon-button class="editor-btn" (click)="insertImageUrl(content)" mdTooltip="Media">
+            <button md-icon-button class="editor-btn" [mdMenuTriggerFor]="mediamenu" mdTooltip="Media">
                 <md-icon>insert_photo</md-icon>
             </button>
+
+            <md-menu #mediamenu="mdMenu">
+                <button md-menu-item (click)="markdownHelper(content, markdownHelperTypeEnum.image)">Image</button>
+                <button md-menu-item (click)="markdownHelper(content, markdownHelperTypeEnum.youtube)">YouTube</button>
+                <!-- <button md-menu-item (click)="markdownHelper(content, markdownHelperTypeEnum.vimeo)">Vimeo</button> -->
+            </md-menu>
         </div>
         <div style="clear: both;"></div>
 
         <textarea id="content" #content (keyup)="onTextAreaKeyup(content)" placeholder="describe your Thing" [value]="thingModel?.description?.content"></textarea>
-
-        <button md-button (click)="goToMarkdownInfo()">
-            <md-icon>info_outline</md-icon>
-            Styling with Markdown is supported
-        </button>
     </div>
     <div [hidden]="!viewPreviewScreen">
         <button md-raised-button color="accent" (click)="viewPreviewScreen = !viewPreviewScreen" style="float: right;">Editor</button>
