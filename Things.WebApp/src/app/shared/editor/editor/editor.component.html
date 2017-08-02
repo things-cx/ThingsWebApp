@@ -4,7 +4,7 @@
         <p style="color: rgba(0,0,0,.54); float: left;">Markdown editor</p>
 
         <button md-raised-button color="accent" (click)="viewPreview(content)" style="float: right;">Preview</button>
-        <button md-raised-button color="warn" (click)="viewLocalBackup()" *ngIf="hasLocalBackup" style="float: right;">Preview local backup</button>
+        <button md-raised-button color="warn" (click)="viewLocalBackup()" *ngIf="hasLocalBackup" style="float: right; margin-right: 20px;">Preview local backup</button>
         <div style="clear: both;"></div>
 
         <div class="toolbar-group">
@@ -63,9 +63,9 @@
     </div>
     <div [hidden]="!viewPreviewScreen">
         <button md-raised-button color="accent" (click)="viewPreviewScreen = !viewPreviewScreen" style="float: right;">Editor</button>
-        <button md-raised-button color="warn" (click)="useLocalBackup()" *ngIf="hasLocalBackup" style="float: right;">Use local backup</button>
+        <button md-raised-button color="warn" (click)="useLocalBackup(content)" *ngIf="hasLocalBackup" style="float: right; margin-right: 20px;">Use local backup</button>
         <div style="clear: both;"></div>
-        <md-spinner *ngIf="renderingMarkdown"></md-spinner>
+        <!-- <md-spinner *ngIf="renderingMarkdown"></md-spinner> -->
         <div *ngIf="previewHTML === ''">Nothing to preview</div>
         <div class="preview-container" [innerHTML]="previewHTML"></div>
     </div>

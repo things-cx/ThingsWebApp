@@ -20,8 +20,6 @@ export class EditorComponent implements OnInit, OnChanges {
   mentions: Mention[];
   viewPreviewScreen = false;
   hasLocalBackup = false;
-  viewLocalBackupScreen = false;
-  renderingMarkdown = false;
   previewHTML = '';
   backupPreviewHTML = '';
   textAreaKeyupTimeout: any;
@@ -43,9 +41,11 @@ export class EditorComponent implements OnInit, OnChanges {
   }
 
   getLocalBackup() {
-    const localBackup = localStorage.getItem(this.localStorageBackupKey + this.thingModel.thing.id);
-    if (localBackup !== null && localBackup !== undefined && localBackup !== '') {
-      this.hasLocalBackup = true;
+    if (this.thingModel !== null && this.thingModel !== undefined) {
+      const localBackup = localStorage.getItem(this.localStorageBackupKey + this.thingModel.thing.id);
+      if (localBackup !== null && localBackup !== undefined && localBackup !== '') {
+        this.hasLocalBackup = true;
+      }
     }
   }
 
@@ -90,8 +90,11 @@ export class EditorComponent implements OnInit, OnChanges {
     this.viewPreviewScreen = true;
   }
 
-  useLocalBackup() {
-    throw DOMException;
+  useLocalBackup(textArea: HTMLTextAreaElement) {
+    const localBackup = localStorage.getItem(this.localStorageBackupKey + this.thingModel.thing.id);
+    textArea.value = localBackup;
+    this.hasLocalBackup = false;
+    this.viewPreviewScreen = false;
   }
 
   openImageDialog() {
@@ -105,10 +108,8 @@ export class EditorComponent implements OnInit, OnChanges {
   }
 
   viewPreview(textArea: HTMLTextAreaElement) {
-    this.renderingMarkdown = true;
     this.previewHTML = marked(textArea.value);
     this.viewPreviewScreen = true;
-    this.renderingMarkdown = false;
   }
 
   goToMarkdownInfo() {
@@ -196,7 +197,10 @@ export class EditorComponent implements OnInit, OnChanges {
     clearTimeout(this.textAreaKeyupTimeout);
 
     this.textAreaKeyupTimeout = setTimeout(() => {
-      localStorage.setItem(this.localStorageBackupKey + this.thingModel.thing.id, textArea.value)
+      localStorage.setItem(this.localStorageBackupKey + this.thingModel.thing.id, textArea.value);
+      if (this.hasLocalBackup) {
+        this.hasLocalBackup = false;
+      }
     }, 3000);
   }
 }
