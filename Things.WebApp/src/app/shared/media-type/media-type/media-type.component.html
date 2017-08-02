@@ -1,7 +1,7 @@
-<div *ngIf="safeUrl !== null && safeUrl !== ''">
+<div *ngIf="safeUrl !== null">
 
   <div *ngIf="mediaTypeEnum.Image == mediaType">
-    <img [class.thumbnail]="thumbnail" [src]="safeUrl" alt="Thing image" class="img">
+    <img [class.thumbnail]="thumbnail" [class.large]="!thumbnail" (click)="viewMedia()" [src]="safeUrl" alt="Thing image">
   </div>
 
   <div *ngIf="mediaTypeEnum.YouTube == mediaType">

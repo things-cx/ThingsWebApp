@@ -1,5 +1,7 @@
 import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MdDialog } from '@angular/material';
+import { ViewMediaDialogComponent } from 'app/shared/media-type/view-media-dialog/view-media-dialog.component';
 
 @Component({
   selector: 'app-media-type',
@@ -14,7 +16,8 @@ export class MediaTypeComponent implements OnChanges {
   mediaTypeEnum = MediaType;
   safeUrl: SafeResourceUrl;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer,
+    public dialog: MdDialog) { }
 
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
@@ -57,6 +60,13 @@ export class MediaTypeComponent implements OnChanges {
     } else {
       this.mediaType = MediaType.Image;
       this.safeUrl = this.url;
+    }
+  }
+
+  viewMedia() {
+    if (!this.thumbnail) {
+      const dialog = this.dialog.open(ViewMediaDialogComponent);
+      dialog.componentInstance.url = this.url;
     }
   }
 }

@@ -1,9 +1,3 @@
-.img {
-    width: 120px;
-    height: 120px;
-    display: block;
-}
-
 iframe {
     max-width: 420px;
 }
@@ -11,4 +5,12 @@ iframe {
 .thumbnail {
     height: 40px;
     width: 40px;
+    display: block;
+}
+
+.large {
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    display: block;
 }
