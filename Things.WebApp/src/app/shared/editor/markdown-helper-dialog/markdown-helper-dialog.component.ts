@@ -107,6 +107,5 @@ export enum MarkdownHelperType {
   vimeo = 3,
   link = 4,
   imgLink = 5,
-  mailto = 6,
-  table = 7
+  mailto = 6
 }

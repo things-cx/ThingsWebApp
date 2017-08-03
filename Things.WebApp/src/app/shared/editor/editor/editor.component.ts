@@ -153,6 +153,33 @@ export class EditorComponent implements OnInit, OnChanges {
     textArea.focus();
   }
 
+  insertTable(textArea: HTMLTextAreaElement) {
+    const table = `
+
+| Tables   | Are   | Cool  |
+| -------- |------ | ----- |
+| Here     | is    | one   |
+| to       | show  | you   |
+| how      | it    | works |
+`;
+
+    if (textArea.selectionStart || textArea.selectionStart === 0) {
+      const startPos = textArea.selectionStart;
+      const endPos = textArea.selectionEnd;
+      textArea.value = textArea.value.substring(0, startPos)
+        + table
+        + textArea.value.substring(startPos, endPos)
+        + textArea.value.substring(endPos, textArea.value.length);
+
+      textArea.selectionStart = startPos;
+      textArea.selectionEnd = endPos;
+    } else {
+      textArea.value += table;
+    }
+
+    textArea.focus();
+  }
+
   markdownHelper(textArea: HTMLTextAreaElement, markdownHelperType: MarkdownHelperType) {
     const dialog = this.dialog.open(MarkdownHelperDialogComponent);
     dialog.componentInstance.markdownHelperType = markdownHelperType;

@@ -32,7 +32,7 @@
             <button md-icon-button class="editor-btn" (click)="insert(content, '\n>')" mdTooltip="Quote">
                 <md-icon>format_quote</md-icon>
             </button>
-            <button md-icon-button class="editor-btn" (click)="insert(content, '\n---\n')" mdTooltip="Divider">
+            <button md-icon-button class="editor-btn" (click)="insert(content, '\n\n---\n')" mdTooltip="Divider">
                 <md-icon>linear_scale</md-icon>
             </button>
             <button md-icon-button class="editor-btn" [mdMenuTriggerFor]="linkmenu" mdTooltip="Link">
@@ -52,7 +52,7 @@
             <button md-icon-button class="editor-btn" (click)="insert(content, '\n1. ')" mdTooltip="Number list">
                 <md-icon>format_list_numbered</md-icon>
             </button>
-            <button md-icon-button class="editor-btn" (click)="insert(content, '\n1. ')" mdTooltip="Table">
+            <button md-icon-button class="editor-btn" (click)="insertTable(content)" mdTooltip="Table">
                 <md-icon>border_all</md-icon>
             </button>
         </div>
