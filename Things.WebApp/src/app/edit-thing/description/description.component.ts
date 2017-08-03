@@ -46,7 +46,7 @@ export class DescriptionComponent implements OnInit {
     let link = ['/edit', this.thingId];
 
     // not equal has to be like that
-    if (content != '' && content !== this.thing.description.content) {
+    if (content !== '' && content !== this.thing.description.content) {
       const viewModel = new Things.Api.ViewModels.Thing.Edit.EditThingDescriptionViewModel;
       viewModel.content = content;
 

@@ -26,6 +26,10 @@
     cursor: pointer;
 }
 
+.description ::ng-deep img {
+    width: 100%;
+}
+
 .fade-out:before {
     content: '';
     width: 100%;
