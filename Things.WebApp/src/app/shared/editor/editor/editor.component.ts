@@ -56,8 +56,10 @@ export class EditorComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(MentionComponent);
 
     dialogRef.afterClosed().subscribe((result: Mention) => {
-      if (result !== undefined && result !== null && result.hierarchy !== '') {
+      if (result !== undefined && result !== null && result.hierarchy !== undefined && result.hierarchy !== '') {
         this.insertMention(textArea, result.hierarchy);
+      } else {
+        textArea.focus();
       }
     });
   }

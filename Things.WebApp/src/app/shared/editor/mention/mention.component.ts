@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Things, ThingsController } from 'api-typings/bundle';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormService } from 'app/shared/form.service';
-import { MdDialogRef } from '@angular/material';
+import { MdDialogRef, MdAutocomplete, MdAutocompleteTrigger } from '@angular/material';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/filter';
@@ -22,6 +22,9 @@ export class MentionComponent implements OnInit {
   thingIdToSearchWithin: number;
   isSearching = false;
   selectedThings: Things.Api.Models.Thing[] = [];
+  mdAutocomplete;
+
+  @ViewChild(MdAutocompleteTrigger) trigger: MdAutocompleteTrigger;
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -32,7 +35,7 @@ export class MentionComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
 
-    // this.search('');
+    this.search('');
   }
 
   buildForm() {
@@ -43,27 +46,28 @@ export class MentionComponent implements OnInit {
     this.form.get('searchTerm').valueChanges
       .map(x => {
         if (x === '') {
-          this.searchResults = null;
+          // this.searchResults = null;
         }
         return x;
       })
       .debounceTime(1000)
       .filter(x => x !== '')
-      .switchMap(value => this.search(value))
+      .switchMap(value => this.$search(value))
       .subscribe(
       data => {
         this.isSearching = false;
         this.searchResults = data;
+        this.trigger.openPanel();
       }, error => {
         this.isSearching = false;
         this.formErrors = this.formService.showServerErrors(error);
       });
   }
 
-  search(term: string) {
+  $search(term: string) {
     this.isSearching = true;
     const viewModel = new Things.Api.ViewModels.Thing.SearchViewModel;
-    viewModel.term = term;
+    viewModel.term = term || '';
 
     if (this.thingIdToSearchWithin !== null && this.thingIdToSearchWithin !== undefined && this.thingIdToSearchWithin !== 0) {
       return this.thingsController.searchThingStartWithForParent(this.thingIdToSearchWithin, viewModel);
@@ -72,12 +76,36 @@ export class MentionComponent implements OnInit {
     }
   }
 
-  onSearchClick(thing: Things.Api.Models.Thing) {
+  search(term: string) {
+    this.isSearching = true;
+    const viewModel = new Things.Api.ViewModels.Thing.SearchViewModel;
+    viewModel.term = term || '';
+
+    if (this.thingIdToSearchWithin !== null && this.thingIdToSearchWithin !== undefined && this.thingIdToSearchWithin !== 0) {
+      this.thingsController.searchThingStartWithForParent(this.thingIdToSearchWithin, viewModel).subscribe(
+        data => {
+          this.isSearching = false;
+          this.searchResults = data;
+        }, error => {
+          this.isSearching = false;
+          this.formErrors = this.formService.showServerErrors(error);
+        });
+    } else {
+      this.thingsController.searchUserStartWith(viewModel).subscribe(
+        data => {
+          this.isSearching = false;
+          this.searchResults = data;
+        }, error => {
+          this.isSearching = false;
+          this.formErrors = this.formService.showServerErrors(error);
+        });
+    }
+  }
+
+  onSearchClick(thing: Things.Api.Models.Thing, autocomplete: MdAutocomplete) {
     this.thingIdToSearchWithin = thing.id;
 
     this.selectedThings.push(thing);
-
-    this.search('');
   }
 
   removeUpUntilThisThing(thing: Things.Api.Models.Thing) {
