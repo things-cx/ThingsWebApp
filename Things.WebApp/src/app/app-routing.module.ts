@@ -31,6 +31,7 @@ import { AuthService } from 'app/shared/auth.service';
       { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackModule' },
       { path: 'newsletter', loadChildren: './newsletter/newsletter.module#NewsletterModule' },
       { path: 'activity', loadChildren: './activity/activity.module#ActivityModule' },
+      { path: 'launch', loadChildren: './launch/launch.module#LaunchModule' },
       { path: 'discover', pathMatch: 'full', redirectTo: '' }
     ])
   ],
