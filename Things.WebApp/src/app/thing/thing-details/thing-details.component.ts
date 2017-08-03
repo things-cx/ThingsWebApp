@@ -12,6 +12,7 @@ import { PaymentService } from 'app/shared/payment.service';
 import { PaymentDialogComponent } from 'app/thing/payment-dialog/payment-dialog.component';
 import { RootPublicThingDialogComponent } from 'app/thing/root-public-thing-dialog/root-public-thing-dialog.component';
 import { ShareOptionsDialogComponent } from 'app/thing/share-options-dialog/share-options-dialog.component';
+import * as marked from 'marked';
 
 @Component({
   selector: 'app-thing-details',
@@ -95,34 +96,34 @@ export class ThingDetailsComponent implements OnInit {
 
         this.isProcessing = false;
 
-        this.loadDescription();
+        this.thingModel.description.content = marked(this.thingModel.description.content);
       }, error => {
         this.isProcessing = false;
       });
   }
 
-  loadDescription() {
-    // TODO: this could be made more performant
-    if (this.thingModel.description !== null && this.thingModel.description.content !== '') {
-      let description = this.thingModel.description.content;
+  // loadDescription() {
+  //   // TODO: this could be made more performant
+  //   if (this.thingModel.description !== null && this.thingModel.description.content !== '') {
+  //     let description = this.thingModel.description.content;
 
-      for (const mention of this.thingModel.mentions) {
-        let linkName = this.thingModel.description.content.substring(mention.indicies[0], mention.indicies[1]);
-        let linkHref = '';
-        if (mention.version !== null) {
-          linkHref = `/thing/${mention.thingId}/${mention.version}`;
-        } else {
-          linkHref = `/thing/${mention.thingId}`;
-        }
-        const link = `<a class="thing-ref" href="${linkHref}">${linkName}</a>`;
+  //     for (const mention of this.thingModel.mentions) {
+  //       let linkName = this.thingModel.description.content.substring(mention.indicies[0], mention.indicies[1]);
+  //       let linkHref = '';
+  //       if (mention.version !== null) {
+  //         linkHref = `/thing/${mention.thingId}/${mention.version}`;
+  //       } else {
+  //         linkHref = `/thing/${mention.thingId}`;
+  //       }
+  //       const link = `<a class="thing-ref" href="${linkHref}">${linkName}</a>`;
 
-        linkName = linkName.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
+  //       linkName = linkName.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
 
-        description = description.replace(new RegExp(linkName, 'g'), link);
-      }
-      this.thingModel.description.content = description;
-    }
-  }
+  //       description = description.replace(new RegExp(linkName, 'g'), link);
+  //     }
+  //     this.thingModel.description.content = description;
+  //   }
+  // }
 
   onTabSelectChange(event: MdTabChangeEvent) {
     let tabIndex = 0;

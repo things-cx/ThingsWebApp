@@ -4,6 +4,7 @@ import { ThingsController, Things } from 'api-typings/bundle';
 import { PublicThingService } from 'app/shared/public-thing.service';
 import { MdSnackBar } from '@angular/material';
 import { TutorialArea, TutorialService } from 'app/tutorial/tutorial.service';
+import * as marked from 'marked';
 
 @Component({
   selector: 'app-description',
@@ -12,7 +13,7 @@ import { TutorialArea, TutorialService } from 'app/tutorial/tutorial.service';
 })
 export class DescriptionComponent implements OnInit {
 
-  thing: Things.Api.Models.ThingModel;
+  thingModel: Things.Api.Models.ThingModel;
   thingId: number;
   isLoading = true;
 
@@ -24,9 +25,10 @@ export class DescriptionComponent implements OnInit {
 
     // TODO: This should actually be onRouterParamChange and check other places as well
     // TODO: catch error from server if any
-    if (this.thing == null) {
+    if (this.thingModel == null) {
       this.thingsController.readThing(this.thingId).subscribe(data => {
-        this.thing = data;
+        this.thingModel = data;
+        this.thingModel.description.content = marked(this.thingModel.description.content);
         this.isLoading = false;
       });
     } else {

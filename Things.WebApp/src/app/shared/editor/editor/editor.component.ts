@@ -37,7 +37,6 @@ export class EditorComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === 'thingModel') {
-        this.loadMentions();
         this.getLocalBackup();
       }
     }
@@ -49,29 +48,6 @@ export class EditorComponent implements OnInit, OnChanges {
       if (localBackup !== null && localBackup !== undefined && localBackup !== '') {
         this.hasLocalBackup = true;
       }
-    }
-  }
-
-  loadMentions() {
-    // TODO: this could be made more performant
-    if (this.thingModel != null && this.thingModel.description.content !== null && this.thingModel.description.content !== '') {
-      let description = this.thingModel.description.content;
-
-      for (const mention of this.thingModel.mentions) {
-        let linkName = this.thingModel.description.content.substring(mention.indicies[0], mention.indicies[1]);
-        let linkHref = '';
-        if (mention.version !== null) {
-          linkHref = `/thing/${mention.thingId}/${mention.version}`;
-        } else {
-          linkHref = `/thing/${mention.thingId}`;
-        }
-        const link = `<a class="mention" href="${linkHref}">${linkName}</a>`;
-
-        linkName = linkName.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
-
-        description = description.replace(new RegExp(linkName, 'g'), link);
-      }
-      this.thingModel.description.content = description;
     }
   }
 
