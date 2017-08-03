@@ -19,7 +19,7 @@
   <img md-card-image [src]="postModel?.post.media" *ngIf="postModel?.post.media" alt="post image" class="post-image">
 
   <md-card-content>
-    <md-card-title [innerHTML]="postModel.post.content"></md-card-title>
+    <md-card-title [innerHTML]="postModel.post.content" (click)="preventDefault($event)"></md-card-title>
     <md-card-subtitle>{{postModel.post.dateTimeCreated | date}}</md-card-subtitle>
   </md-card-content>
 

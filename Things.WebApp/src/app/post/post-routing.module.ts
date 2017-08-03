@@ -9,7 +9,7 @@ import { Navigation } from 'app/layout/navigation/navigation.component';
 @NgModule({
     imports: [
         RouterModule.forChild([
-            { path: 'likes/user/:id', component: UserPostsLikedComponent, data: { title: 'User post likes', nav: Navigation.Primary } },
+            { path: 'likes/user/:id', component: UserPostsLikedComponent, data: { title: 'User post likes', nav: Navigation.Back } },
             { path: 'likes/:id', component: PostLikesComponent, data: { title: 'Post likes', nav: Navigation.Back } },
             { path: 'user/:id', component: UserPostsComponent, data: { title: 'User posts', nav: Navigation.Back, backRouterPath: '/' } },
             // TODO: route is confusing but can't think of something else
