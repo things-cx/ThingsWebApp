@@ -96,34 +96,14 @@ export class ThingDetailsComponent implements OnInit {
 
         this.isProcessing = false;
 
-        this.thingModel.description.content = marked(this.thingModel.description.content);
+        // tslint:disable-next-line:max-line-length
+        if (this.thingModel.description !== null && this.thingModel.description.content !== null && this.thingModel.description.content !== '') {
+          this.thingModel.description.content = marked(this.thingModel.description.content);
+        }
       }, error => {
         this.isProcessing = false;
       });
   }
-
-  // loadDescription() {
-  //   // TODO: this could be made more performant
-  //   if (this.thingModel.description !== null && this.thingModel.description.content !== '') {
-  //     let description = this.thingModel.description.content;
-
-  //     for (const mention of this.thingModel.mentions) {
-  //       let linkName = this.thingModel.description.content.substring(mention.indicies[0], mention.indicies[1]);
-  //       let linkHref = '';
-  //       if (mention.version !== null) {
-  //         linkHref = `/thing/${mention.thingId}/${mention.version}`;
-  //       } else {
-  //         linkHref = `/thing/${mention.thingId}`;
-  //       }
-  //       const link = `<a class="thing-ref" href="${linkHref}">${linkName}</a>`;
-
-  //       linkName = linkName.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
-
-  //       description = description.replace(new RegExp(linkName, 'g'), link);
-  //     }
-  //     this.thingModel.description.content = description;
-  //   }
-  // }
 
   onTabSelectChange(event: MdTabChangeEvent) {
     let tabIndex = 0;

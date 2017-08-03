@@ -1720,6 +1720,7 @@ export namespace Things.Api.ViewModels.User {
 export namespace Things.Api.ViewModels.Post.Create {
     export class CreatePostViewModel {
         content: string;
+        htmlContent: string;
         media: string;
         replyToPostUId: string;
     }
@@ -2448,7 +2449,6 @@ export namespace Things.Api.Models {
         tags: string[];
         parentHierarchy: string[][];
         description: Things.Api.Models.ThingDescription;
-        mentions: Things.Api.Models.ThingMentionModel[];
         latestVersion: number;
         liked: boolean;
         followed: boolean;

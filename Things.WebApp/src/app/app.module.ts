@@ -17,7 +17,6 @@ import { PublicThingService } from 'app/shared/public-thing.service';
 import { FormService } from 'app/shared/form.service';
 import { TutorialService } from 'app/tutorial/tutorial.service';
 import { EditorComponent } from './shared/editor/editor/editor.component';
-import { MentionComponent } from './shared/editor/mention/mention.component';
 import { GaService } from 'app/shared/ga.service';
 import { LoggerService } from 'app/shared/logger.service';
 

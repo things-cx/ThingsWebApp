@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MentionComponent } from 'app/shared/editor/mention/mention.component';
+import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
 import { EditorComponent } from 'app/shared/editor/editor/editor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
@@ -36,15 +36,15 @@ import { MarkdownHelperDialogComponent } from './markdown-helper-dialog/markdown
   ],
   declarations: [
     EditorComponent,
-    MentionComponent,
+    MentionDialogComponent,
     MarkdownHelperDialogComponent
   ],
   exports: [
     EditorComponent,
-    MentionComponent
+    MentionDialogComponent
   ],
   entryComponents: [
-    MentionComponent,
+    MentionDialogComponent,
     MarkdownHelperDialogComponent
   ]
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { MentionComponent, Mention } from 'app/shared/editor/mention/mention.component';
+import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
 import { Things } from 'api-typings/bundle';
 import * as marked from 'marked';
 import { environment } from 'environments/environment';
@@ -19,7 +19,6 @@ export class EditorComponent implements OnInit, OnChanges {
 
   @Input() thingModel: Things.Api.Models.ThingModel;
   @Output() onSave: EventEmitter<string> = new EventEmitter();
-  mentions: Mention[];
   viewPreviewScreen = false;
   hasLocalBackup = false;
   previewHTML = '';
@@ -53,11 +52,11 @@ export class EditorComponent implements OnInit, OnChanges {
 
   openMentionDialog(textArea: HTMLTextAreaElement) {
     // TODO: append dialog in comp name (my standard)
-    const dialogRef = this.dialog.open(MentionComponent);
+    const dialogRef = this.dialog.open(MentionDialogComponent);
 
-    dialogRef.afterClosed().subscribe((result: Mention) => {
-      if (result !== undefined && result !== null && result.hierarchy !== undefined && result.hierarchy !== '') {
-        this.insertMention(textArea, result.hierarchy);
+    dialogRef.afterClosed().subscribe((hierarchy: string) => {
+      if (hierarchy !== undefined && hierarchy !== null && hierarchy !== '') {
+        this.insertMention(textArea, hierarchy);
       } else {
         textArea.focus();
       }

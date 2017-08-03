@@ -11,10 +11,10 @@ import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-mention',
-  templateUrl: './mention.component.html',
-  styleUrls: ['./mention.component.scss']
+  templateUrl: './mention-dialog.component.html',
+  styleUrls: ['./mention-dialog.component.scss']
 })
-export class MentionComponent implements OnInit {
+export class MentionDialogComponent implements OnInit {
 
   form: FormGroup;
   formErrors;
@@ -22,7 +22,6 @@ export class MentionComponent implements OnInit {
   thingIdToSearchWithin: number;
   isSearching = false;
   selectedThings: Things.Api.Models.Thing[] = [];
-  mdAutocomplete;
 
   @ViewChild(MdAutocompleteTrigger) trigger: MdAutocompleteTrigger;
 
@@ -30,7 +29,7 @@ export class MentionComponent implements OnInit {
     private fb: FormBuilder,
     private thingsController: ThingsController,
     private formService: FormService,
-    public dialogRef: MdDialogRef<MentionComponent>) { }
+    public dialogRef: MdDialogRef<MentionDialogComponent>) { }
 
   ngOnInit() {
     this.buildForm();
@@ -119,24 +118,13 @@ export class MentionComponent implements OnInit {
   }
 
   done() {
-    const mention = new Mention();
     let hierarchy = '';
 
     for (const selectedThing of this.selectedThings) {
-      mention.title = selectedThing.title;
-      mention.thingId = selectedThing.id;
-
       hierarchy += `@${selectedThing.title}`;
     }
-    mention.hierarchy = hierarchy;
 
-    this.dialogRef.close(mention);
+    this.dialogRef.close(hierarchy);
+    this.trigger.closePanel();
   }
-}
-
-export class Mention {
-  title: string;
-  hierarchy: string;
-  thingId: number;
-  indicies: string[];
 }

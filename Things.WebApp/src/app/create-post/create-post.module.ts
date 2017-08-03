@@ -3,11 +3,19 @@ import { CommonModule } from '@angular/common';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CreatePostRoutingModule } from 'app/create-post/create-post-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule, MdInputModule, MdAutocompleteModule, MdProgressSpinnerModule, MdCardModule, MdIconModule, MdDialogModule } from '@angular/material';
 import { EditThingModule } from 'app/edit-thing/edit-thing.module';
 import { EditorModule } from 'app/shared/editor/editor.module';
-import { MentionComponent } from "app/shared/editor/mention/mention.component";
-import { PostModule } from "app/post/post.module";
+import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
+import { PostModule } from 'app/post/post.module';
+import {
+  MdButtonModule,
+  MdInputModule,
+  MdAutocompleteModule,
+  MdProgressSpinnerModule,
+  MdCardModule,
+  MdIconModule,
+  MdDialogModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -27,9 +35,11 @@ import { PostModule } from "app/post/post.module";
     EditorModule,
     PostModule
   ],
-  declarations: [CreatePostComponent],
+  declarations: [
+    CreatePostComponent
+  ],
   entryComponents: [
-    MentionComponent,
+    MentionDialogComponent
   ]
 })
 export class CreatePostModule { }

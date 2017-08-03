@@ -5,7 +5,7 @@ import { FormService } from 'app/shared/form.service';
 import { MdDialog } from '@angular/material';
 import { PreviewMediaDialogComponent } from 'app/edit-thing/preview-media-dialog/preview-media-dialog.component';
 import { TutorialService, TutorialArea } from 'app/tutorial/tutorial.service';
-import { MentionComponent, Mention } from 'app/shared/editor/mention/mention.component';
+import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
 
 @Component({
   selector: 'app-create-post',
@@ -54,6 +54,7 @@ export class CreatePostComponent implements OnInit {
     const viewModel = new Things.Api.ViewModels.Post.Create.CreatePostViewModel;
     viewModel.replyToPostUId = this.replyToPostUId;
     viewModel.content = element.textContent;
+    viewModel.htmlContent = element.innerHTML;
     viewModel.media = this.mediaUrl;
 
     this.postController.createPost(viewModel).subscribe(data => {
@@ -119,7 +120,7 @@ export class CreatePostComponent implements OnInit {
   insertMention(name: string) {
     const range = this.getRange();
     const element = document.createElement('span') as HTMLSpanElement;
-    element.innerText = name + ' ';
+    element.innerText = name;
     element.className = 'mention';
     element.contentEditable = 'false';
     range.insertNode(element);
@@ -130,17 +131,16 @@ export class CreatePostComponent implements OnInit {
     // range.collapse(false);
   }
 
-  openMentionDialog() {
+  openMentionDialog(content: HTMLDivElement) {
+    content.focus();
     this.saveSelection();
     // TODO: append dialog in comp name (my standard)
-    const dialogRef = this.dialog.open(MentionComponent);
+    const dialogRef = this.dialog.open(MentionDialogComponent);
 
-    dialogRef.afterClosed().subscribe((result: Mention) => {
-      if (result !== undefined && result !== null) {
-        if (result.hierarchy !== '') {
-          this.restoreSelection();
-          this.insertMention(result.hierarchy);
-        }
+    dialogRef.afterClosed().subscribe((hierarchy: string) => {
+      if (hierarchy !== undefined && hierarchy !== null && hierarchy !== '') {
+        this.restoreSelection();
+        this.insertMention(hierarchy);
       }
     });
   }
