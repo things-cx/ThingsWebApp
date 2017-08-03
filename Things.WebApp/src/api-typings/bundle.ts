@@ -536,6 +536,27 @@ export class ThingsController {
         };
         /**
         *
+        * TODO: Observable<null>
+        */
+        public readThingForHierarchy(hierarchy: string):
+        Observable<number> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/readThingForHierarchy/${encodeURIComponent(hierarchy)}`,
+                method: `get`,
+                body: null,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
         * TODO: Observable<viewModel>
         */
         public editThing(id: number, viewModel: Things.Api.ViewModels.Thing.Edit.EditThingViewModel):

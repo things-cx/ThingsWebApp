@@ -57,7 +57,7 @@
             </button>
         </div>
         <div class="toolbar-group">
-            <button md-icon-button class="editor-btn" (click)="insert(content, '@')" mdTooltip="Mention">
+            <button md-icon-button class="editor-btn" (click)="openMentionDialog(content)" mdTooltip="Mention">
                 @
             </button>
             <button md-icon-button class="editor-btn" [mdMenuTriggerFor]="mediamenu" mdTooltip="Media">
@@ -72,7 +72,7 @@
         </div>
         <div style="clear: both;"></div>
 
-        <textarea id="content" #content (keyup)="onTextAreaKeyup(content)" placeholder="describe your Thing" [value]="thingModel?.description?.content"></textarea>
+        <textarea id="content" #content (keyup)="saveChanges(content)" placeholder="describe your Thing" [value]="thingModel?.description?.content"></textarea>
     </div>
     <div [hidden]="!viewPreviewScreen">
         <button md-raised-button color="accent" (click)="viewPreviewScreen = !viewPreviewScreen" style="float: right;">Editor</button>
@@ -84,5 +84,5 @@
     </div>
 </md-card-content>
 <md-card-actions>
-    <button md-raised-button color="primary" type="button" (click)="saveChanges(content)" style="float: right; margin-right: 20px;">Save</button>
+    <button md-raised-button color="primary" type="button" (click)="save(content)" style="float: right; margin-right: 20px;">Save</button>
 </md-card-actions>

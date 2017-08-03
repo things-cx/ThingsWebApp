@@ -11,7 +11,7 @@ import { TutorialArea, TutorialService } from 'app/tutorial/tutorial.service';
 import { PaymentService } from 'app/shared/payment.service';
 import { PaymentDialogComponent } from 'app/thing/payment-dialog/payment-dialog.component';
 import { RootPublicThingDialogComponent } from 'app/thing/root-public-thing-dialog/root-public-thing-dialog.component';
-import { ShareOptionsDialogComponent } from "app/thing/share-options-dialog/share-options-dialog.component";
+import { ShareOptionsDialogComponent } from 'app/thing/share-options-dialog/share-options-dialog.component';
 
 @Component({
   selector: 'app-thing-details',
@@ -55,21 +55,31 @@ export class ThingDetailsComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       if (params.has('id') && params.has('version')) {
-        this.thingId = +params.get('id');
         this.version = +params.get('version');
+        this.getThingId(params.get('id'));
 
-        this.loadThing();
       } else if (params.has('id')) {
-        this.thingId = +params.get('id');
         this.version = null;
-
-        this.loadThing();
+        this.getThingId(params.get('id'));
       }
     });
 
     this.authService.logedInUserId$.subscribe(id => {
       this.logedInUserId = id;
     });
+  }
+
+  getThingId(idParam: string) {
+    if (idParam.startsWith('@')) {
+      this.thingsController.readThingForHierarchy(idParam).subscribe(
+        data => {
+          this.thingId = data;
+          this.loadThing()
+        });
+    } else {
+      this.thingId = +idParam;
+      this.loadThing()
+    }
   }
 
   loadThing() {
@@ -85,16 +95,9 @@ export class ThingDetailsComponent implements OnInit {
 
         this.isProcessing = false;
 
-        // TODO: enable this again
-        // this.appInsightsService.trackPageView('app-thing-details', null, {
-        //   'thingId': this.thingModel.thing.id
-        // });
-
         this.loadDescription();
       }, error => {
         this.isProcessing = false;
-        // TODO: if thing could not be found do something (like redirect back or show message)
-        // this.appInsightsService.trackException(error);
       });
   }
 

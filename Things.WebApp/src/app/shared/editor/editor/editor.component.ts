@@ -75,14 +75,13 @@ export class EditorComponent implements OnInit, OnChanges {
     }
   }
 
-  openMentionDialog() {
+  openMentionDialog(textArea: HTMLTextAreaElement) {
     // TODO: append dialog in comp name (my standard)
     const dialogRef = this.dialog.open(MentionComponent);
 
     dialogRef.afterClosed().subscribe((result: Mention) => {
       if (result !== undefined && result !== null && result.hierarchy !== '') {
-        // CONTINUE!!!
-        // this.insertMention(result.hierarchy);
+        this.insertMention(textArea, result.hierarchy);
       }
     });
   }
@@ -100,7 +99,7 @@ export class EditorComponent implements OnInit, OnChanges {
     this.viewPreviewScreen = false;
   }
 
-  saveChanges(textArea: HTMLTextAreaElement) {
+  save(textArea: HTMLTextAreaElement) {
     localStorage.removeItem(this.localStorageBackupKey + this.thingModel.thing.id)
     this.onSave.emit(textArea.value);
   }
@@ -133,6 +132,7 @@ export class EditorComponent implements OnInit, OnChanges {
     }
 
     textArea.focus();
+    this.saveChanges(textArea);
   }
 
   insert(textArea: HTMLTextAreaElement, value) {
@@ -151,6 +151,24 @@ export class EditorComponent implements OnInit, OnChanges {
     }
 
     textArea.focus();
+    this.saveChanges(textArea);
+  }
+
+  insertMention(textArea: HTMLTextAreaElement, value) {
+    if (textArea.selectionStart || textArea.selectionStart === 0) {
+      const startPos = textArea.selectionStart;
+      const endPos = textArea.selectionEnd;
+      // tslint:disable-next-line:max-line-length
+      textArea.value = `${textArea.value.substring(0, startPos)}[${value}](thing/${value})${textArea.value.substring(startPos, textArea.value.length)}`;
+
+      textArea.selectionStart = startPos;
+      textArea.selectionEnd = endPos;
+    } else {
+      textArea.value += value;
+    }
+
+    textArea.focus();
+    this.saveChanges(textArea);
   }
 
   insertTable(textArea: HTMLTextAreaElement) {
@@ -178,6 +196,7 @@ export class EditorComponent implements OnInit, OnChanges {
     }
 
     textArea.focus();
+    this.saveChanges(textArea);
   }
 
   markdownHelper(textArea: HTMLTextAreaElement, markdownHelperType: MarkdownHelperType) {
@@ -218,12 +237,12 @@ export class EditorComponent implements OnInit, OnChanges {
         textArea.selectionStart = startPos;
         textArea.selectionEnd = endPos;
         textArea.focus();
-        this.onTextAreaKeyup(textArea);
+        this.saveChanges(textArea);
       }
     });
   }
 
-  onTextAreaKeyup(textArea: HTMLTextAreaElement) {
+  saveChanges(textArea: HTMLTextAreaElement) {
     textArea.style.height = '1px';
     textArea.style.height = (10 + textArea.scrollHeight) + 'px';
 
