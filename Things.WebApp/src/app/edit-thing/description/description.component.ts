@@ -15,6 +15,7 @@ export class DescriptionComponent implements OnInit {
   thing: Things.Api.Models.ThingModel;
   thingId: number;
   isLoading = true;
+  localStorageBackupKey = 'description_backup_';
 
   constructor(private thingsController: ThingsController,
     private route: ActivatedRoute,
@@ -53,12 +54,16 @@ export class DescriptionComponent implements OnInit {
       const rootPublicThingId = this.publicThingService.getRootThingIdFromThing(this.thing.parentHierarchy, this.thing.thing.id);
       if (rootPublicThingId === null) {
         this.thingsController.editThingDescription(this.thingId, viewModel).subscribe(data => {
+          localStorage.removeItem(this.localStorageBackupKey + this.thingId)
+
           this.router.navigate(link);
         });
       } else {
         const token = this.publicThingService.getPublicThingValue(rootPublicThingId);
         if (token !== null) {
           this.thingsController.editPublicThingDescription(this.thingId, token, viewModel).subscribe(data => {
+            localStorage.removeItem(this.localStorageBackupKey + this.thingId)
+
             this.router.navigate(link);
           });
         } else {

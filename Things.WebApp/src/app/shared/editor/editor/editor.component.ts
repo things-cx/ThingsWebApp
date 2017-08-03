@@ -78,7 +78,6 @@ export class EditorComponent implements OnInit, OnChanges {
   }
 
   save(textArea: HTMLTextAreaElement) {
-    localStorage.removeItem(this.localStorageBackupKey + this.thingModel.thing.id)
     this.onSave.emit(textArea.value);
   }
 
