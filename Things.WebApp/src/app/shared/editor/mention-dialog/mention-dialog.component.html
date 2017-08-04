@@ -1,17 +1,12 @@
 <md-dialog-content>
+  <h3 style="float: left;">Mention</h3>
   <button md-button md-dialog-close style="float: right;">
     <md-icon>close</md-icon>
   </button>
+  <div style="clear: both;"></div>
 
-  <br><br>
-
-  <md-card *ngIf="selectedThings?.length == 0">
-    <md-card-subtitle>Search for a user</md-card-subtitle>
-  </md-card>
-
-  <md-card *ngIf="selectedThings?.length > 0">
-    <md-card-subtitle>Now search for any Things underneath if you want to</md-card-subtitle>
-  </md-card>
+  <p *ngIf="selectedThings?.length == 0">Search for a user</p>
+  <p *ngIf="selectedThings?.length > 0">Now search for any Things underneath if you want to</p>
 
   <div *ngIf="selectedThings?.length > 0">
     <br>

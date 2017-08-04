@@ -72,7 +72,7 @@
         </div>
         <div style="clear: both;"></div>
 
-        <textarea id="content" #content (keyup)="saveChanges(content)" placeholder="describe your Thing" [value]="thingModel?.description?.content"></textarea>
+        <textarea id="content" #content (keyup)="saveChanges(content)" (keydown)="onKeydown($event, content)" placeholder="describe your Thing" [value]="thingModel?.description?.content"></textarea>
     </div>
     <div [hidden]="!viewPreviewScreen">
         <button md-raised-button color="accent" (click)="viewPreviewScreen = !viewPreviewScreen" style="float: right;">Editor</button>

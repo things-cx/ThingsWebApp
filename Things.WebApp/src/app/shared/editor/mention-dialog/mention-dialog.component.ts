@@ -56,7 +56,9 @@ export class MentionDialogComponent implements OnInit {
       data => {
         this.isSearching = false;
         this.searchResults = data;
-        this.trigger.openPanel();
+        if (this.trigger.panelOpen) {
+          this.trigger.openPanel();
+        }
       }, error => {
         this.isSearching = false;
         this.formErrors = this.formService.showServerErrors(error);
@@ -124,7 +126,7 @@ export class MentionDialogComponent implements OnInit {
       hierarchy += `@${selectedThing.title}`;
     }
 
-    this.dialogRef.close(hierarchy);
     this.trigger.closePanel();
+    this.dialogRef.close(hierarchy);
   }
 }

@@ -10,7 +10,7 @@
     <md-card-content>
         <md-spinner *ngIf="isLoadingReplyPost"></md-spinner>
 
-        <div #content contenteditable="true" placeholder="Type a message..." id="box"></div>
+        <div #content contenteditable="true" (keydown)="onKeydown($event, content)" placeholder="Type a message..." id="box"></div>
         <div *ngIf="formErrors?.content" class="validation-message">{{ formErrors.content }}</div>
         <button md-raised-button class="editor-btn" (click)="openMentionDialog(content);">mention</button>
 
