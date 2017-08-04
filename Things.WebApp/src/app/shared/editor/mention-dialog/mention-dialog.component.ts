@@ -3,7 +3,7 @@ import { Things, ThingsController } from 'api-typings/bundle';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormService } from 'app/shared/form.service';
-import { MdDialogRef, MdAutocomplete, MdAutocompleteTrigger } from '@angular/material';
+import { MdDialogRef, MdAutocomplete, MdAutocompleteTrigger, MdInputDirective } from '@angular/material';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/filter';
@@ -22,6 +22,7 @@ export class MentionDialogComponent implements OnInit {
   thingIdToSearchWithin: number;
   isSearching = false;
   selectedThings: Things.Api.Models.Thing[] = [];
+  dialogClosed = false;
 
   @ViewChild(MdAutocompleteTrigger) trigger: MdAutocompleteTrigger;
 
@@ -56,7 +57,7 @@ export class MentionDialogComponent implements OnInit {
       data => {
         this.isSearching = false;
         this.searchResults = data;
-        if (this.trigger.panelOpen) {
+        if (!this.dialogClosed) {
           this.trigger.openPanel();
         }
       }, error => {
@@ -126,6 +127,7 @@ export class MentionDialogComponent implements OnInit {
       hierarchy += `@${selectedThing.title}`;
     }
 
+    this.dialogClosed = true;
     this.trigger.closePanel();
     this.dialogRef.close(hierarchy);
   }
