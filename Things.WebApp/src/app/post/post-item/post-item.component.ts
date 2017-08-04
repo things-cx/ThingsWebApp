@@ -57,7 +57,7 @@ export class PostItemComponent implements OnInit, OnChanges {
 
         linkName = linkName.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
 
-        description = description.replace(new RegExp(linkName, 'g'), link);
+        description = description.replace(new RegExp(`(?!>)(${linkName})(?!@)`, 'g'), link);
       }
       this.postModel.post.content = description;
     }
