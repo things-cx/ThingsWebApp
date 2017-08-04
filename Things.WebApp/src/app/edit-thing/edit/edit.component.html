@@ -1,44 +1,46 @@
 <md-card>
     <md-card-content>
         <div *ngIf="wasSignUp">
-            You just created your profile Thing. <br> Now you can create as many Things as you want underneath
-            it but first add more information to you profile if you want
+            You just created your profile Thing. <br> Now you can create as many Things as you want underneath it but first
+            add more information to you profile if you want
+        </div>
+        <div *ngIf="!wasSignUp">
+            <button md-raised-button [routerLink]="['/edit/tags', thingId]">Edit tags</button>
+
+            <br><br>
+
+            <button md-raised-button [routerLink]="['/edit/description', thingId]">Edit description</button>
+
+            <br><br>
+
+            <button md-raised-button [routerLink]="['/edit/media', thingId]">Edit media</button>
+
+            <br><br>
+
+            <button md-raised-button [routerLink]="['/edit/amazon', thingId]" class="amazon-button">Edit Amazon link</button>
+
+            <br><br>
+
+            <button md-raised-button disabled="disabled">Edit payment</button>
+
+            <br><br>
+
+            <button md-raised-button disabled="disabled">Edit location</button>
+
+            <br><br>
+
+            <button md-raised-button disabled="disabled">Edit event dates</button>
+
+            <br><br>
+
+            <button md-raised-button color="warn" [routerLink]="['/edit/delete', thingId]">Delete</button>
             <br><br>
         </div>
-
-        <button md-raised-button [routerLink]="['/edit/tags', thingId]">Edit tags</button>
-
-        <br><br>
-
-        <button md-raised-button [routerLink]="['/edit/description', thingId]">Edit description</button>
-
-        <br><br>
-
-        <button md-raised-button [routerLink]="['/edit/media', thingId]">Edit media</button>
-
-        <br><br>
-
-        <button md-raised-button [routerLink]="['/edit/amazon', thingId]" class="amazon-button">Edit Amazon link</button>
-
-        <br><br>
-
-        <button md-raised-button disabled="disabled">Edit payment</button>
-
-        <br><br>
-
-        <button md-raised-button disabled="disabled">Edit location</button>
-
-        <br><br>
-
-        <button md-raised-button disabled="disabled">Edit event dates</button>
-
-        <br><br>
-
-        <button md-raised-button color="warn" [routerLink]="['/edit/delete', thingId]">Delete</button>
-        
-        <br><br>
     </md-card-content>
     <md-card-actions>
-        <button md-raised-button color="primary" (click)="doneEditing()">Done</button>
+        <button md-raised-button *ngIf="!wasSignUp" color="primary" (click)="doneEditing()">Done</button>
+
+        <button md-raised-button *ngIf="wasSignUp" color="accent" (click)="wasSignUp = !wasSignUp">Edit information</button>
+        <button md-raised-button *ngIf="wasSignUp" (click)="doneEditing()">Go to profile</button>
     </md-card-actions>
 </md-card>
