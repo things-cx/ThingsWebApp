@@ -914,18 +914,18 @@ export class ThingsController {
         };
         /**
         *
-        * TODO: Observable<null>
+        * TODO: Observable<viewModel>
         */
-        public getTag(name: string):
+        public getThingsForTag(viewModel: Things.Api.ViewModels.Thing.GetThingForTagViewModel):
         Observable<Things.Api.Models.Thing[]> {
 
             let headers = new Headers({ 'Content-Type': 'application/json' });
             headers = this.httpService.addAuthHeaders(headers);
 
             const request = new Request({
-                url: `${this.httpService.apiUrl}/api/things/getTag/${encodeURIComponent(name)}`,
-                method: `get`,
-                body: null,
+                url: `${this.httpService.apiUrl}/api/things/getThingsForTag`,
+                method: `post`,
+                body: viewModel,
                 headers: headers
             });
 
@@ -1892,6 +1892,13 @@ export namespace Things.Api.ViewModels.Thing {
 
 export namespace Things.Api.ViewModels.Thing {
     export class GetThingFollowersViewModel {
+        skip: number;
+    }
+}
+
+export namespace Things.Api.ViewModels.Thing {
+    export class GetThingForTagViewModel {
+        tag: string;
         skip: number;
     }
 }

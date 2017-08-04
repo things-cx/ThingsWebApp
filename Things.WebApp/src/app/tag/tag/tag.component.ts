@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThingsController, Things } from 'api-typings/bundle';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { AuthService } from 'app/shared/auth.service';
 
 @Component({
   selector: 'app-tag',
@@ -11,23 +9,49 @@ import { AuthService } from 'app/shared/auth.service';
 })
 export class TagComponent implements OnInit {
 
-  things: Observable<Things.Api.Models.Thing[]>;
+  things: Things.Api.Models.Thing[];
+  tag: string;
+  skip = 0;
+  isProcessing = true;
 
   constructor(private thingsController: ThingsController,
-    private route: ActivatedRoute,
-    private authService: AuthService) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const tagLabel = this.route.snapshot.params['label'];
-
-    this.getThingsForTag(tagLabel);
-  }
-
-  getThingsForTag(tag: string) {
     this.route.paramMap.subscribe(params => {
       if (params.has('label')) {
-        this.things = this.thingsController.getTag(tag);
+        this.tag = params.get('label');
+        this.things = [];
+        this.skip = 0;
+        this.getThingsForTag();
       }
+    });
+  }
+
+  getThingsForTag() {
+    this.isProcessing = true;
+
+    const viewModel = new Things.Api.ViewModels.Thing.GetThingForTagViewModel;
+    viewModel.tag = this.tag;
+    viewModel.skip = this.skip;
+
+    this.thingsController.getThingsForTag(viewModel).subscribe(data => {
+      this.isProcessing = false;
+      this.things = data;
+    });
+  }
+
+  loadMore() {
+    this.isProcessing = true;
+
+    this.skip += 10;
+    const viewModel = new Things.Api.ViewModels.Thing.GetThingForTagViewModel;
+    viewModel.tag = this.tag;
+    viewModel.skip = this.skip;
+
+    this.thingsController.getThingsForTag(viewModel).subscribe(data => {
+      this.isProcessing = false;
+      this.things = this.things.concat(data);
     });
   }
 }
