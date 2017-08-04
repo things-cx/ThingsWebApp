@@ -44,7 +44,8 @@
     <!--TODO: warning. I think this the tag and even the item could easily be replaced by browser extensions. make it more difficult to change-->
     <!--TODO: rather create details page with product info to keep user on the Things platform-->
     <button md-raised-button style="width: 100%;" color="primary" *ngIf="thingModel.thing.id === 1" (click)="donateToThings()">Donate</button>
-    <a md-raised-button class="amazon-button" rel="noopener noreferrer" target="_blank" *ngIf="thingModel.thing.amazonProductId" href="https://www.amazon.com/dp/{{thingModel.thing.amazonProductId}}/?tag=things0b9-20">Amazon item</a>
+    <a md-raised-button class="amazon-button" rel="noopener noreferrer" target="_blank" *ngIf="thingModel.thing.amazonProductId"
+      href="https://www.amazon.com/dp/{{thingModel.thing.amazonProductId}}/?tag=things0b9-20">Amazon item</a>
 
     <div style="float: left;">
       <button md-button [routerLink]="['/followers', thingModel.thing.id]">
@@ -79,6 +80,7 @@
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
       </button>
     </div>
+
     <div style="float: left;">
       <button md-raised-button (click)="openShareDialog()" [class.share-button]="logedInUserId">
         <md-icon style="color: #aab8c2;">share</md-icon> share
@@ -98,7 +100,7 @@
   </md-card>
 
   <md-tab-group (selectChange)="onTabSelectChange($event)">
-    <md-tab style="padding-left: 5px;">
+    <md-tab>
       <ng-template md-tab-label>
         <md-icon>subdirectory_arrow_right</md-icon> Sub
       </ng-template>
@@ -123,7 +125,7 @@
       </div>
 
     </md-tab>
-    <md-tab *ngIf="thingModel.parentHierarchy === null">
+    <md-tab *ngIf="thingModel.parentHierarchy === null" (click)="test($event)">
       <ng-template md-tab-label>
         <md-icon>account_circle</md-icon> User
       </ng-template>

@@ -55,6 +55,7 @@ export class PostItemComponent implements OnInit, OnChanges {
         }
         const link = `<a class="thing-ref" href="${linkHref}">${linkName}</a>`;
 
+        // Escape all regex characters with backslashs (\)
         linkName = linkName.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
 
         description = description.replace(new RegExp(`(?!>)(${linkName})(?!@)`, 'g'), link);
