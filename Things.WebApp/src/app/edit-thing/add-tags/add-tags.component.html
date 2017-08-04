@@ -1,6 +1,7 @@
 <md-card>
   <md-card-subtitle>
-    Relate your Thing with others via tags
+    Use tags to categorize this Thing and help it relate to others.<br>
+    eg. news, tech, business, science, gaming, movies, music, etc.
   </md-card-subtitle>
 
   <md-card-content>
@@ -17,7 +18,7 @@
 
       <md-input-container>
         <input mdInput [mdAutocomplete]="auto" formControlName="tags" (keydown.enter)="addTag()" (keydown.backspace)="onBackspace($event)"
-          type="text" class="tag-text-input" placeholder="Add a tag...">
+          type="text" class="tag-text-input" placeholder="tag">
       </md-input-container>
       <div *ngIf="formErrors?.tags" class="validation-message">{{ formErrors.tags }}</div>
 
