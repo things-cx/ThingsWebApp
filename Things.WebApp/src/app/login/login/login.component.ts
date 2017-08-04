@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'app/shared/auth.service';
 import { FormService } from 'app/shared/form.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private router: Router,
-    private formService: FormService) {
+    private formService: FormService,
+    private location: Location) {
   }
 
   ngOnInit() {
@@ -59,7 +61,8 @@ export class LoginComponent implements OnInit {
         }
 
         if (data.state === 1) {
-          this.router.navigate(['/thing', data.data['thingId']]);
+          this.location.back();
+          // this.router.navigate(['/thing', data.data['thingId']]);
         } else {
           alert(data.msg);
           this.isProcessing = false;
