@@ -27,11 +27,12 @@ import { AuthService } from 'app/shared/auth.service';
       { path: 'followers', loadChildren: './followers/followers.module#FollowersModule' },
       { path: 'authorize', loadChildren: './authorize/authorize.module#AuthorizeModule' },
       { path: 'forgot-password', loadChildren: './forgot-password/forgot-password.module#ForgotPasswordModule' },
-      { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
+      { path: 'settings', loadChildren: './settings/settings.module#SettingsModule', canActivate: [AuthService] },
       { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackModule' },
       { path: 'newsletter', loadChildren: './newsletter/newsletter.module#NewsletterModule' },
       { path: 'activity', loadChildren: './activity/activity.module#ActivityModule' },
       { path: 'launch', loadChildren: './launch/launch.module#LaunchModule' },
+      { path: 'verify', loadChildren: './verify/verify.module#VerifyModule', canActivate: [AuthService] },
       { path: 'discover', pathMatch: 'full', redirectTo: '' }
     ])
   ],

@@ -1421,6 +1421,27 @@ export class UserController {
                 .map((res) => this.httpService.extractData(res))
                 .catch((err) => this.httpService.handleError(err));
         };
+        /**
+        *
+        * TODO: Observable<null>
+        */
+        public verifyEmail(code: string):
+        Observable<boolean> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/user/verifyEmail/${encodeURIComponent(code)}`,
+                method: `post`,
+                body: null,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
 }
 export namespace Things.Api.ViewModels.Activity {
     export enum ActivityType {
