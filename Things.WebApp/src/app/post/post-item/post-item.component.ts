@@ -45,6 +45,7 @@ export class PostItemComponent implements OnInit, OnChanges {
     if (this.postModel != null && this.postModel.post.content !== null && this.postModel.post.content !== '') {
       let description = this.postModel.post.content;
 
+      // Mentions
       for (const mention of this.postModel.mentions) {
         let linkName = this.postModel.post.content.substring(mention.indicies[0], mention.indicies[1]);
         let linkHref = '';
@@ -60,6 +61,12 @@ export class PostItemComponent implements OnInit, OnChanges {
 
         description = description.replace(new RegExp(`(?!>)(${linkName})(?!@)`, 'g'), link);
       }
+
+      // Urls
+      description = description.replace(/(https?:\/\/[^\s]+)/g, function (url) {
+        return '<a target="_blank" href="' + url + '">' + url + '</a>';
+      })
+
       this.postModel.post.content = description;
     }
   }
