@@ -12,13 +12,8 @@ iframe {
     }
 }
 
-.large-container {
-    width: 120px;
-    height: 120px;
-
-    .large {
-        max-width: 120px;
-        max-height: 120px;
-        cursor: pointer;
-    }
+.large {
+    max-width: 120px;
+    max-height: 120px;
+    cursor: pointer;
 }

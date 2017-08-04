@@ -1,7 +1,8 @@
 <div *ngIf="safeUrl !== null">
 
-  <div [class.thumbnail-container]="thumbnail" [class.large-container]="!thumbnail" *ngIf="mediaTypeEnum.Image == mediaType">
-    <img [class.thumbnail]="thumbnail" [class.large]="!thumbnail" (click)="viewMedia()" [src]="safeUrl" alt="Thing image">
+  <div [class.thumbnail-container]="thumbnail" *ngIf="mediaTypeEnum.Image == mediaType">
+    <img appImgError [class.thumbnail]="thumbnail" [class.large]="!thumbnail" *ngIf="safeUrl !== ''" (click)="viewMedia()"
+      [src]="safeUrl" alt="Thing image">
   </div>
 
   <div *ngIf="mediaTypeEnum.YouTube == mediaType">

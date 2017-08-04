@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MediaTypeComponent } from 'app/shared/media-type/media-type/media-type.component';
 import { ViewMediaDialogComponent } from './view-media-dialog/view-media-dialog.component';
 import { MdDialogModule, MdButtonModule } from '@angular/material';
+import { ImgErrorDirective } from './img-error.directive';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { MdDialogModule, MdButtonModule } from '@angular/material';
   ],
   declarations: [
     MediaTypeComponent,
-    ViewMediaDialogComponent
+    ViewMediaDialogComponent,
+    ImgErrorDirective
   ],
   exports: [
     MediaTypeComponent
