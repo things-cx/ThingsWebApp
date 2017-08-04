@@ -2,15 +2,23 @@ iframe {
     max-width: 420px;
 }
 
-.thumbnail {
+.thumbnail-container {
     height: 40px;
     width: 40px;
-    display: block;
+
+    .thumbnail {
+        max-height: 40px;
+        max-width: 40px;
+    }
 }
 
-.large {
+.large-container {
     width: 120px;
     height: 120px;
-    cursor: pointer;
-    display: block;
+
+    .large {
+        max-width: 120px;
+        max-height: 120px;
+        cursor: pointer;
+    }
 }

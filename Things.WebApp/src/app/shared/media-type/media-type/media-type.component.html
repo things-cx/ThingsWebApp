@@ -1,6 +1,6 @@
 <div *ngIf="safeUrl !== null">
 
-  <div *ngIf="mediaTypeEnum.Image == mediaType">
+  <div [class.thumbnail-container]="thumbnail" [class.large-container]="!thumbnail" *ngIf="mediaTypeEnum.Image == mediaType">
     <img [class.thumbnail]="thumbnail" [class.large]="!thumbnail" (click)="viewMedia()" [src]="safeUrl" alt="Thing image">
   </div>
 
