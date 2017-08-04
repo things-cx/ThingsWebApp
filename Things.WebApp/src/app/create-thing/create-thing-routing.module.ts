@@ -8,7 +8,7 @@ import { Navigation } from 'app/layout/navigation/navigation.component';
 @NgModule({
     imports: [
         RouterModule.forChild([
-            { path: 'public', component: CreatePublicThingComponent, data: { title: 'Create public Thing', nav: Navigation.Back } },
+            { path: 'public', component: CreatePublicThingComponent, data: { title: 'Create anonymous Thing', nav: Navigation.Back } },
             { path: 'public/:id', component: CreatePublicThingComponent, data: { title: 'Create anonymous Thing', nav: Navigation.Back } },
             { path: ':id', component: CreateThingComponent, data: { title: 'Create Thing', nav: Navigation.Back } },
             { path: 'shortcut/:id', component: AddShortcutComponent, data: { title: 'Create shortcut Thing', nav: Navigation.Back } },
