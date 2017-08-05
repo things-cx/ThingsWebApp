@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Things, ThingsController } from 'api-typings/bundle';
+import { Things, PostController } from 'api-typings/bundle';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,17 +10,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ActivityComponent implements OnInit {
 
   thingId: number;
-  activities: Things.Api.ViewModels.Activity.ThingActivityViewModel[];
-  activityTypeEnum = Things.Api.ViewModels.Activity.ActivityType;
+  activities: Things.Api.Models.Post.PostModel[];
   skip = 0;
   isProcessing = true;
 
-  constructor(private thingsController: ThingsController,
+  constructor(private postController: PostController,
     private route: ActivatedRoute,
     private router: Router) {
   }
 
   ngOnInit() {
+    // TODO: get unofficial activity
     this.route.paramMap.subscribe(params => {
       if (params.has('id')) {
         this.thingId = +params.get('id');
@@ -34,13 +34,13 @@ export class ActivityComponent implements OnInit {
   getActivity() {
     this.isProcessing = true;
 
-    const viewModel = new Things.Api.ViewModels.Activity.GetThingActivityViewModel;
+    const viewModel = new Things.Api.ViewModels.Post.GetThingActivityViewModel;
+    viewModel.getOfficial = true;
     viewModel.skip = this.skip;
 
-    this.thingsController.getThingActivity(this.thingId, viewModel).subscribe(data => {
+    this.postController.getThingActivity(this.thingId, viewModel).subscribe(data => {
       this.isProcessing = false;
       this.activities = data;
-      console.log(data);
     });
   }
 
@@ -49,10 +49,11 @@ export class ActivityComponent implements OnInit {
 
     this.skip += 10;
 
-    const viewModel = new Things.Api.ViewModels.Activity.GetThingActivityViewModel;
+    const viewModel = new Things.Api.ViewModels.Post.GetThingActivityViewModel;
+    viewModel.getOfficial = true;
     viewModel.skip = this.skip;
 
-    this.thingsController.getThingActivity(this.thingId, viewModel).subscribe(data => {
+    this.postController.getThingActivity(this.thingId, viewModel).subscribe(data => {
       this.isProcessing = false;
       this.activities = this.activities.concat(data);
     });

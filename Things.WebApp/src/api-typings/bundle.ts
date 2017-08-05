@@ -403,6 +403,48 @@ export class PostController {
                 .map((res) => this.httpService.extractData(res))
                 .catch((err) => this.httpService.handleError(err));
         };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public getThingActivityList(viewModel: Things.Api.ViewModels.Post.GetThingActivityListViewModel):
+        Observable<Things.Api.ViewModels.Post.ThingActivityListViewModel[]> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/post/getThingActivityList`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public getThingActivity(id: number, viewModel: Things.Api.ViewModels.Post.GetThingActivityViewModel):
+        Observable<Things.Api.Models.Post.PostModel[]> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/post/getThingActivity/${id}`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
 }
 
 @Injectable()
@@ -1187,27 +1229,6 @@ export class ThingsController {
         };
         /**
         *
-        * TODO: Observable<viewModel>
-        */
-        public getThingActivity(id: number, viewModel: Things.Api.ViewModels.Activity.GetThingActivityViewModel):
-        Observable<Things.Api.ViewModels.Activity.ThingActivityViewModel[]> {
-
-            let headers = new Headers({ 'Content-Type': 'application/json' });
-            headers = this.httpService.addAuthHeaders(headers);
-
-            const request = new Request({
-                url: `${this.httpService.apiUrl}/api/things/getThingActivity/${id}`,
-                method: `post`,
-                body: viewModel,
-                headers: headers
-            });
-
-            return this.http.request(request)
-                .map((res) => this.httpService.extractData(res))
-                .catch((err) => this.httpService.handleError(err));
-        };
-        /**
-        *
         * TODO: Observable<null>
         */
         public getUserThingDetails(id: number):
@@ -1237,7 +1258,7 @@ export class UserController {
         * TODO: Observable<viewModel>
         */
         public createUserThing(viewModel: Things.Api.ViewModels.User.CreateUserThingViewModel):
-        Observable<Things.Api.Models.Thing> {
+        Observable<Things.Api.Models.UserThing> {
 
             let headers = new Headers({ 'Content-Type': 'application/json' });
             headers = this.httpService.addAuthHeaders(headers);
@@ -1899,8 +1920,16 @@ export namespace Things.Api.ViewModels.Post {
     }
 }
 
-export namespace Things.Api.ViewModels.Activity {
+export namespace Things.Api.ViewModels.Post {
+    export class GetThingActivityListViewModel {
+        getOfficial: boolean;
+        skip: number;
+    }
+}
+
+export namespace Things.Api.ViewModels.Post {
     export class GetThingActivityViewModel {
+        getOfficial: boolean;
         skip: number;
     }
 }
@@ -2410,14 +2439,22 @@ export namespace Things.Api.Models {
     export class Thing extends BaseThing {
         description: string;
         media: string[];
-        password: string;
-        passwordSalt: string;
         version: string;
         isPublished: boolean;
         isVerified: boolean;
         likes: number;
         followers: number;
         amazonProductId: string;
+    }
+}
+
+export namespace Things.Api.ViewModels.Post {
+    export class ThingActivityListViewModel {
+        thingId: number;
+        thingTitle: string;
+        unreadCount: number;
+        dateTimeLastActivity: number;
+        parentHierarchy: string[];
     }
 }
 
@@ -2549,6 +2586,22 @@ export namespace Things.Api.Models.User {
         title: string;
         email: string;
         password: string;
+    }
+}
+
+export namespace Things.Api.Models {
+    export class UserThing extends Thing {
+        password: string;
+        passwordSalt: string;
+        emailCode: string;
+        emailVerified: boolean;
+    }
+}
+
+export namespace Things.Api.Models {
+    export class UserThingModel extends Thing {
+        password: string;
+        passwordSalt: string;
     }
 }
 

@@ -1,18 +1,9 @@
-<md-card *ngFor="let activity of activities" class="card-item">
+<app-post-item *ngFor="let post of activities" [postModel]="post" [clickable]="true"></app-post-item>
+
+<md-card *ngIf="activities?.length <= 0 && !isProcessing" class="card-item">
     <md-card-content>
-        <!-- <app-media-type md-card-avatar [url]="thing?.media ? thing?.media[0] : ''" [thumbnail]="true"></app-media-type> -->
-        <div *ngIf="activity.activityType == activityTypeEnum.officialPost" routerLink="/post/post/{{activity.data.uId}}">
-            <h2>Post</h2>
-            {{activity.data.content}}
-            <br>
-            Reply/Link
-        </div>
-        <div *ngIf="activity.activityType == activityTypeEnum.newThing" routerLink="/thing/{{activity.data.id}}">
-            Thing <strong>{{activity.data.title}}</strong> was created underneath X
-        </div>
-        <div *ngIf="activity.activityType == activityTypeEnum.descriptionChange" routerLink="/thing/description/{{activity.data.id}}">
-            Thing <strong>{{activity.data.title}}</strong> updated its description
-        </div>
+        <md-icon>do_not_disturb</md-icon>
+        <span>no unread</span>
     </md-card-content>
 </md-card>
 
