@@ -51,6 +51,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   createPost(element: HTMLDivElement) {
+    this.isProcessing = true;
     const viewModel = new Things.Api.ViewModels.Post.Create.CreatePostViewModel;
     viewModel.replyToPostUId = this.replyToPostUId;
     viewModel.content = element.textContent;

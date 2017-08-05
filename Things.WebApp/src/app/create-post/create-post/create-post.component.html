@@ -32,6 +32,7 @@
 
         <img [src]="mediaUrl" *ngIf="mediaUrl !== null && mediaUrl !== ''" alt="post image" style="max-height: 150px; max-width: 150px;">
         <div *ngIf="formErrors?.media" class="validation-message">{{ formErrors.media }}</div>
+        <md-spinner *ngIf="isProcessing"></md-spinner>
 
     </md-card-content>
     <md-card-actions>
