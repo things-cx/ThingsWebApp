@@ -52,11 +52,12 @@ export class CreatePostComponent implements OnInit {
 
   createPost(element: HTMLDivElement) {
     this.isProcessing = true;
+
     const viewModel = new Things.Api.ViewModels.Post.Create.CreatePostViewModel;
     viewModel.replyToPostUId = this.replyToPostUId;
     viewModel.content = element.textContent;
-    viewModel.htmlContent = element.innerHTML;
     viewModel.media = this.mediaUrl;
+    viewModel.htmlContent = element.innerHTML;
 
     this.postController.createPost(viewModel).subscribe(data => {
       const link = ['/post/post', data.uId];
@@ -129,7 +130,7 @@ export class CreatePostComponent implements OnInit {
     range.collapse(false);
     const textNode = document.createTextNode('\u00A0');
     range.insertNode(textNode);
-    // range.collapse(false);
+    range.collapse(false);
   }
 
   openMentionDialog(content: HTMLDivElement) {
