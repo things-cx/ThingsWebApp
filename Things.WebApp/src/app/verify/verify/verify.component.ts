@@ -10,26 +10,29 @@ import { UserController } from 'api-typings/bundle';
 export class VerifyComponent implements OnInit {
 
   code: string;
-  message: string;
+  verifyResult: boolean;
+  isProcessing = true;
 
   constructor(private userController: UserController,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       if (params.has('code')) {
         this.code = params.get('code');
 
         if (this.code !== undefined && this.code !== '') {
           this.userController.verifyEmail(this.code).subscribe(data => {
             if (data === true) {
-              this.message = 'Success';
+              this.verifyResult = true;
             } else {
-              this.message = 'Error';
+              this.verifyResult = false;
             }
+            this.isProcessing = false;
           }, error => {
-            this.message = 'Error';
+            this.verifyResult = false;
+            this.isProcessing = false;
           });
         }
       }

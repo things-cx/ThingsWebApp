@@ -1,3 +1,17 @@
-<p>
-  verify works!
-</p>
+<md-card *ngIf="verifyResult !== undefined" class="card-item">
+  <md-card-content>
+    <div *ngIf="verifyResult">
+      <md-icon>done</md-icon>
+      <span>Email verification successful</span>
+    </div>
+    <div *ngIf="!verifyResult">
+      <md-icon>error_outline</md-icon>
+      <span>Email verification error</span>
+    </div>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button routerLink="/">Home</button>
+  </md-card-actions>
+</md-card>
+
+<md-spinner *ngIf="isProcessing"></md-spinner>
