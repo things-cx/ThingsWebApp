@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'app/shared/auth.service';
 import { FormService } from 'app/shared/form.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -17,18 +16,24 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   formErrors;
   isProcessing = false;
+  returnUrl: string;
 
   constructor(private fb: FormBuilder,
     private userController: UserController,
     private route: ActivatedRoute,
     private authService: AuthService,
     private router: Router,
-    private formService: FormService,
-    private location: Location) {
+    private formService: FormService) {
   }
 
   ngOnInit() {
+    if (this.authService.checkLogin()) {
+      this.router.navigate(['/']);
+    }
+
     this.buildForm();
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   buildForm() {
@@ -61,8 +66,7 @@ export class LoginComponent implements OnInit {
         }
 
         if (data.state === 1) {
-          this.location.back();
-          // this.router.navigate(['/thing', data.data['thingId']]);
+          this.router.navigateByUrl(this.returnUrl);
         } else {
           alert(data.msg);
           this.isProcessing = false;

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
-
-import { Router, CanActivate } from '@angular/router';
-
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 // import { RequestResult } from "./RequestResult";
@@ -24,11 +22,11 @@ export class AuthService implements CanActivate {
         ).catch(this.handleError);
     }
 
-    public canActivate() {
+    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.checkLogin()) {
             return true;
         } else {
-            this.router.navigate(['login']);
+            this.router.navigate(['login'], { queryParams: { returnUrl: state.url }});
             return false;
         }
     }
