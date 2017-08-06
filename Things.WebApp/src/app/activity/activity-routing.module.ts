@@ -7,7 +7,7 @@ import { ActivityListComponent } from 'app/activity/activity-list/activity-list.
 @NgModule({
     imports: [
         RouterModule.forChild([
-            { path: '', component: ActivityListComponent, data: { title: 'User activity', nav: Navigation.Back } },
+            { path: '', component: ActivityListComponent, data: { title: 'User activity', nav: Navigation.Primary } },
             { path: ':id', component: ActivityComponent, data: { title: 'Activity', nav: Navigation.Back } }
         ])
     ],
