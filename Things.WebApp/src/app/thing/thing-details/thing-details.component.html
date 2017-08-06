@@ -1,3 +1,5 @@
+<app-thing-nav [thingId]="thingModel.thing.id" [logedInUserId]="logedInUserId" [showAuthorizedMenuItems]="showAuthorizedMenuItems"
+  [showPublicThingAuthorizeMenuItem]="showPublicThingAuthorizeMenuItem" [parentHierarchy]="thingModel.parentHierarchy" (onAuthorizePublicThing)="goToAuthorizePublicThing()"></app-thing-nav>
 <div *ngIf="thingModel">
 
   <button md-raised-button color="warn" *ngIf="version !== null && version !== thingModel.latestVersion" [routerLink]="['/thing', thingModel.thing.id]"
@@ -6,31 +8,6 @@
   </button>
 
   <md-card>
-    <button md-icon-button [mdMenuTriggerFor]="menu" style="position: absolute; right: 0; top: 0;">
-      <md-icon>expand_more</md-icon>
-    </button>
-    <!--TODO: this menu should be in a seperate module. Don't need to load and execute code if not needed!-->
-    <md-menu #menu="mdMenu">
-      <!-- <button md-menu-item [routerLink]="['/activity', thingModel.thing.id]">Activity</button> -->
-      <button md-menu-item *ngIf="showAuthorizedMenuItems && (logedInUserId == 1 || thingModel.thing.id != 2)" [routerLink]="['/edit', thingModel.thing.id]">Edit</button>
-      <button md-menu-item *ngIf="showPublicThingAuthorizeMenuItem" (click)="goToAuthorizePublicThing()">Authorize</button>
-      <button md-menu-item *ngIf="logedInUserId" [routerLink]="['/create/shortcut', thingModel.thing.id]">Shortcut</button>
-
-      <div *ngIf="thingModel.thing.id === logedInUserId">
-        <hr>
-        <button md-menu-item (click)="export()">Export</button>
-        <hr>
-      </div>
-
-      <button md-menu-item (click)="openReportDialog()">Report</button>
-    </md-menu>
-
-    <div class="chips-nowrap" style="margin: 10px 0;" *ngIf="thingModel.parentHierarchy != null">
-      <md-chip-list>
-        <md-chip *ngFor="let item of thingModel.parentHierarchy" [routerLink]="['/thing', item[0]]" style="cursor: pointer;">{{item[1]}}</md-chip>
-      </md-chip-list>
-    </div>
-
     <app-media-viewer [media]="thingModel?.thing?.media" style="display: block; float: left;"></app-media-viewer>
     <h3 style="float: left; margin-left: 20px;">
       {{thingModel.thing.title}}

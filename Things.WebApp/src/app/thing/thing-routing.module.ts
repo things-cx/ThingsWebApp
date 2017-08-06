@@ -8,9 +8,9 @@ import { DescriptionComponent } from 'app/thing/description/description.componen
 @NgModule({
     imports: [
         RouterModule.forChild([
-            { path: ':id', component: ThingDetailsComponent, data: { title: 'Thing', nav: Navigation.Primary } },
+            { path: ':id', component: ThingDetailsComponent, data: { title: 'Thing' } },
             { path: 'description/:id', component: DescriptionComponent, data: { title: 'Description', nav: Navigation.Back } },
-            { path: ':id/:version', component: ThingDetailsComponent, data: { title: 'Thing', nav: Navigation.Primary } },
+            { path: ':id/:version', component: ThingDetailsComponent, data: { title: 'Thing' } },
         ])
     ],
     exports: [RouterModule]

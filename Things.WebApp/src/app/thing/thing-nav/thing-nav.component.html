@@ -1,0 +1,39 @@
+<nav md-tab-nav-bar>
+  <div (click)="back()" style="float: left; cursor: pointer;">
+    <button md-icon-button>
+      <md-icon>arrow_back</md-icon>
+    </button>
+  </div>
+
+  <!--Hierarchy -->
+  <div class="chips-nowrap" *ngIf="parentHierarchy != null">
+    <md-chip-list>
+      <md-chip *ngFor="let item of parentHierarchy" [routerLink]="['/thing', item[0]]" style="cursor: pointer;">{{item[1]}}</md-chip>
+    </md-chip-list>
+  </div>
+
+  <button md-icon-button [mdMenuTriggerFor]="menu" style="float: right;">
+      <md-icon>more_vert</md-icon>
+    </button>
+
+  <!--TODO: this menu should be in a seperate module. Don't need to load and execute code if not needed!-->
+  <md-menu #menu="mdMenu">
+    <!-- <button md-menu-item [routerLink]="['/activity', thingId]">Activity</button> -->
+    <button md-menu-item *ngIf="showAuthorizedMenuItems && (logedInUserId == 1 || thingId != 2)" [routerLink]="['/edit', thingId]">Edit</button>
+    <button md-menu-item *ngIf="showPublicThingAuthorizeMenuItem" (click)="goToAuthorizePublicThing()">Authorize</button>
+    <button md-menu-item *ngIf="logedInUserId" [routerLink]="['/create/shortcut', thingId]">Shortcut</button>
+    <button md-menu-item *ngIf="thingId === logedInUserId" disabled>Export</button>
+
+    <button md-menu-item (click)="openReportDialog()">Report</button>
+    <div *ngIf="logedInUserId">
+      <hr>
+      <button md-menu-item routerLink="/settings">Settings</button>
+      <button md-menu-item routerLink="/create/public">Create anonymous Thing</button>
+      <hr>
+    </div>
+    <button md-menu-item routerLink="/feedback">Feedback</button>
+    <button md-menu-item routerLink="/newsletter">Newsletter</button>
+    <button md-menu-item routerLink="/thing/7">Help</button>
+     <button md-menu-item *ngIf="logedInUserId" (click)="logout()">Logout</button> 
+  </md-menu>
+</nav>

@@ -40,6 +40,7 @@ import {
   MdTabsModule
 } from '@angular/material';
 import { ThingUserDetailsComponent } from './thing-user-details/thing-user-details.component';
+import { ThingNavComponent } from './thing-nav/thing-nav.component';
 
 @NgModule({
   imports: [
@@ -92,7 +93,8 @@ import { ThingUserDetailsComponent } from './thing-user-details/thing-user-detai
     PaymentDialogComponent,
     RootPublicThingDialogComponent,
     ShareOptionsDialogComponent,
-    ThingUserDetailsComponent
+    ThingUserDetailsComponent,
+    ThingNavComponent
   ],
   providers: [
     PaymentController,
