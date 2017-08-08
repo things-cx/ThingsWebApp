@@ -21,7 +21,7 @@
   <md-card-content>
     <div [innerHTML]="postModel.post.content" (click)="preventDefault($event)"></div>
     <br>
-    <md-card-subtitle>{{postModel.post.dateTimeCreated | date}}</md-card-subtitle>
+    <md-card-subtitle>{{postModel.post.dateTimeCreated | date:'yMMMdjms'}}</md-card-subtitle>
   </md-card-content>
 
   <md-card-footer>

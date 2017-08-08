@@ -2,16 +2,16 @@
     <div style="float: left;">
         <div><span *ngFor="let hierarchyItem of activityItem?.parentHierarchy">@{{hierarchyItem}}</span></div>
         <div *ngIf="activityItem?.parentHierarchy === null">@{{activityItem.thingTitle}}</div>
-        <div class="date-last-activity">{{activityItem.dateTimeLastActivity | date}}</div>
+        <div class="date-last-activity">{{activityItem.dateTimeLastActivity | date:'yMMMdjms'}}</div>
     </div>
-    <div class="unread-count">{{activityItem.unreadCount}}</div>
+    <div class="unread-count" *ngIf="activityItem?.unreadCount > 0">{{activityItem.unreadCount}}</div>
     <div style="clear: both;"></div>
 </md-card>
 
 <md-card *ngIf="activityList?.length <= 0 && !isProcessing" class="card-item">
     <md-card-content>
         <md-icon>do_not_disturb</md-icon>
-        <span>no unread</span>
+        <span>please follow some Things</span>
     </md-card-content>
 </md-card>
 
