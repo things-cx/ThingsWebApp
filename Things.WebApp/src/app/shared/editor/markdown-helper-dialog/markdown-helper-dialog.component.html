@@ -6,14 +6,12 @@
 
   <form [formGroup]="form">
     <div *ngIf="markdownHelperTypeEnum.image == markdownHelperType">
-      <md-select formControlName="imageHost">
-        <md-option value="http://">http://</md-option>
-        <md-option value="https://">https://</md-option>
-      </md-select>
+      <span>https://</span>
 
       <md-input-container>
         <input mdInput formControlName="imageUrl" placeholder="url">
       </md-input-container>
+      <div *ngIf="imgUrlWarning" style="color: red;">Warning: only HTTPS links are allowed</div>
 
       <br>
 
@@ -73,14 +71,12 @@
 
       <br>
 
-      <md-select formControlName="imgLinkImgHost">
-        <md-option value="http://">http://</md-option>
-        <md-option value="https://">https://</md-option>
-      </md-select>
+      <span>https://</span>
 
       <md-input-container>
         <input mdInput formControlName="imgLinkImgUrl" placeholder="image url">
       </md-input-container>
+      <div *ngIf="imgUrlWarning" style="color: red;">Warning: only HTTPS links are allowed</div>
     </div>
 
     <div *ngIf="markdownHelperTypeEnum.mailto == markdownHelperType">

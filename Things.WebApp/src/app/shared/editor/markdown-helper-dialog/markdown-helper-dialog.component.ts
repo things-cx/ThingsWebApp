@@ -16,6 +16,8 @@ export class MarkdownHelperDialogComponent implements OnInit {
   http = 'http://';
   https = 'https://';
 
+  imgUrlWarning: boolean;
+
   constructor(public dialogRef: MdDialogRef<MarkdownHelperDialogComponent>,
     private fb: FormBuilder) { }
 
@@ -34,7 +36,6 @@ export class MarkdownHelperDialogComponent implements OnInit {
     }
 
     this.form = this.fb.group({
-      imageHost: defaultHost,
       imageUrl: this.input,
       imageAltText: '',
 
@@ -51,14 +52,22 @@ export class MarkdownHelperDialogComponent implements OnInit {
       imgLinkAltText: '',
       imgLinkHost: defaultHost,
       imgLinkUrl: this.input,
-      imgLinkImgHost: defaultHost,
       imgLinkImgUrl: ''
     });
 
-    this.form.get('imageUrl').valueChanges.subscribe(value => this.autoSelectHttpHost(value, 'imageUrl', 'imageHost'));
+    this.form.get('imageUrl').valueChanges.subscribe(value => this.preventHttpImage(value, 'imageUrl'));
     this.form.get('linkUrl').valueChanges.subscribe(value => this.autoSelectHttpHost(value, 'linkUrl', 'linkHost'));
     this.form.get('imgLinkUrl').valueChanges.subscribe(value => this.autoSelectHttpHost(value, 'imgLinkUrl', 'imgLinkHost'));
-    this.form.get('imgLinkImgUrl').valueChanges.subscribe(value => this.autoSelectHttpHost(value, 'imgLinkImgUrl', 'imgLinkImgHost'));
+    this.form.get('imgLinkImgUrl').valueChanges.subscribe(value => this.preventHttpImage(value, 'imgLinkImgUrl'));
+  }
+
+  preventHttpImage(value: string, urlFieldName: string) {
+    if (value.startsWith(this.http)) {
+      this.imgUrlWarning = true;
+      this.form.get(urlFieldName).setValue('', { emitEvent: false });
+    } else {
+      this.imgUrlWarning = false;
+    }
   }
 
   autoSelectHttpHost(value: string, urlFieldName: string, hostFieldName: string) {
@@ -76,12 +85,12 @@ export class MarkdownHelperDialogComponent implements OnInit {
     switch (this.markdownHelperType) {
       case MarkdownHelperType.image:
         const defaultimageAltText = this.form.get('imageAltText').value === '' ? 'Image' : this.form.get('imageAltText').value;
-        this.dialogRef.close(`![${defaultimageAltText}](${this.form.get('imageHost').value + this.form.get('imageUrl').value})`);
+        this.dialogRef.close(`\n![${defaultimageAltText}](https://${this.form.get('imageUrl').value})`);
         break;
       case MarkdownHelperType.youtube:
         // tslint:disable-next-line:max-line-length
         const defaultYoutTubeAltText = this.form.get('youtubeAltText').value === '' ? 'YouTube video' : this.form.get('youtubeAltText').value;
-        this.dialogRef.close(`[![${defaultYoutTubeAltText}](https://img.youtube.com/vi/${this.form.get('youtubeId').value}/0.jpg)](https://www.youtube.com/watch?v=${this.form.get('youtubeId').value})`);
+        this.dialogRef.close(`\n[![${defaultYoutTubeAltText}](https://img.youtube.com/vi/${this.form.get('youtubeId').value}/0.jpg)](https://www.youtube.com/watch?v=${this.form.get('youtubeId').value})`);
         break;
       case MarkdownHelperType.link:
         this.dialogRef.close(`[${this.form.get('linkName').value}](${this.form.get('linkHost').value + this.form.get('linkUrl').value})`);
@@ -92,7 +101,7 @@ export class MarkdownHelperDialogComponent implements OnInit {
       case MarkdownHelperType.imgLink:
         // tslint:disable-next-line:max-line-length
         const defaultImgLinkAltText = this.form.get('imgLinkAltText').value === '' ? 'Image' : this.form.get('imgLinkAltText').value;
-        this.dialogRef.close(`[![${defaultImgLinkAltText}](${this.form.get('imgLinkImgHost').value + this.form.get('imgLinkImgUrl').value})](${this.form.get('imgLinkImgHost').value + this.form.get('imgLinkUrl').value})`);
+        this.dialogRef.close(`\n[![${defaultImgLinkAltText}](https://${this.form.get('imgLinkImgUrl').value})](${this.form.get('imgLinkHost').value + this.form.get('imgLinkUrl').value})`);
         break;
 
       default:

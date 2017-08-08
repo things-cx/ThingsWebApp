@@ -78,6 +78,7 @@ export class EditorComponent implements OnInit, OnChanges {
 
   save(textArea: HTMLTextAreaElement) {
     this.onSave.emit(textArea.value);
+    // TODO: show if there are any error on post response like invalid urls
   }
 
   viewPreview(textArea: HTMLTextAreaElement) {
@@ -192,18 +193,18 @@ export class EditorComponent implements OnInit, OnChanges {
         switch (markdownHelperType) {
           case MarkdownHelperType.image:
             textArea.value = `${textArea.value.substring(0, startPos)}${result}${textArea.value.substring(endPos, textArea.value.length)}`;
-            startPos = startPos + 2;
-            endPos = endPos + 2;
+            startPos = startPos + 3;
+            endPos = endPos + 3;
             break;
           case MarkdownHelperType.youtube: case MarkdownHelperType.imgLink:
             textArea.value = `${textArea.value.substring(0, startPos)}${result}${textArea.value.substring(endPos, textArea.value.length)}`;
-            startPos = startPos + 3;
-            endPos = endPos + 3;
+            startPos = startPos + 4;
+            endPos = endPos + 4;
             break;
           case MarkdownHelperType.link: case MarkdownHelperType.mailto:
             textArea.value = `${textArea.value.substring(0, startPos)}${result}${textArea.value.substring(endPos, textArea.value.length)}`;
             startPos++;
-            endPos++
+            endPos++;
             break;
 
           default:

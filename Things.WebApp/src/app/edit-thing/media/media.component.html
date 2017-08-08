@@ -19,8 +19,11 @@
         <md-input-container>
             <input mdInput #manualUrlInput placeholder="youtube, vimeo, image, etc">
         </md-input-container>
-        <button md-raised-button (click)="onAdd(manualUrlInput.value)">Add</button>
-
+        <button md-raised-button (click)="onCustomAdd(manualUrlInput.value)">Add</button>
+        <div *ngIf="hasHttpWarning" style="color: red;">
+            Warning: HTTP links are not allowed. Only HTTPS is allowed
+        </div>
+        
         <hr>
 
         <h3>Upload</h3>

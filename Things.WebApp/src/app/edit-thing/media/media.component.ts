@@ -17,6 +17,7 @@ export class MediaComponent implements OnInit {
   isLoading = true;
   mediaItems: string[] = [];
   editedMediaItems = false;
+  hasHttpWarning: boolean;
 
   constructor(private thingsController: ThingsController,
     private route: ActivatedRoute,
@@ -43,6 +44,15 @@ export class MediaComponent implements OnInit {
       });
     } else {
       this.isLoading = false;
+    }
+  }
+
+  onCustomAdd(url: string) {
+    if (url.startsWith('http://')) {
+      this.hasHttpWarning = true;
+    } else {
+      this.hasHttpWarning = false;
+      this.onAdd(url);
     }
   }
 
