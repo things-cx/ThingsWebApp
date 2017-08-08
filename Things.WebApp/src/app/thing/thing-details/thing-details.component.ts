@@ -107,25 +107,25 @@ export class ThingDetailsComponent implements OnInit {
 
   onTabSelectChange(event: MdTabChangeEvent) {
     let tabIndex = 0;
-    if (this.viewedSubTab === false && event.index === tabIndex) {
+    if (!this.viewedSubTab && event.index === tabIndex) {
       this.viewedSubTab = true;
     }
     if (this.thingModel.parentHierarchy === null) {
       tabIndex++;
-      if (this.viewedUserDetailsTab === false && event.index === tabIndex) {
+      if (!this.viewedUserDetailsTab && event.index === tabIndex) {
         this.viewedUserDetailsTab = true;
       }
     }
     tabIndex++;
-    if (this.viewedRelatedTab === false && event.index === tabIndex) {
+    if (!this.viewedRelatedTab && event.index === tabIndex) {
       this.viewedRelatedTab = true;
     }
     tabIndex++;
-    if (this.viewedPostsTab === false && event.index === tabIndex) {
+    if (!this.viewedPostsTab && event.index === tabIndex) {
       this.viewedPostsTab = true;
     }
     tabIndex++;
-    if (this.viewedGallery === false && event.index === tabIndex) {
+    if (!this.viewedGallery && event.index === tabIndex) {
       this.viewedGallery = true;
     }
   }

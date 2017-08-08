@@ -66,7 +66,7 @@ export class GifSearchComponent implements OnInit {
     dialogRef.componentInstance.url = gif.images.fixed_height.url;
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
+      if (result) {
         this.onGifSelect.emit(gif.images.fixed_height.url);
       }
     });

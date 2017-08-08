@@ -60,7 +60,7 @@ export class GoogleCustomSearchComponent {
     dialogRef.componentInstance.url = image.link;
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
+      if (result) {
         this.onImageSelected.emit(image.link);
       }
     });

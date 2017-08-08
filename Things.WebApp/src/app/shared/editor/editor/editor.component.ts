@@ -233,7 +233,7 @@ export class EditorComponent implements OnInit, OnChanges {
   }
 
   onKeydown(event: KeyboardEvent, textArea: HTMLTextAreaElement) {
-    if (event.keyCode === 50 && event.shiftKey === true) {
+    if (event.keyCode === 50 && event.shiftKey) {
       event.preventDefault();
       this.openMentionDialog(textArea);
     }

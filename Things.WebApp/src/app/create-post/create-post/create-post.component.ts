@@ -148,7 +148,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   onKeydown(event: KeyboardEvent, content: HTMLDivElement) {
-    if (event.keyCode === 50 && event.shiftKey === true) {
+    if (event.keyCode === 50 && event.shiftKey) {
       event.preventDefault();
       this.openMentionDialog(content);
     }

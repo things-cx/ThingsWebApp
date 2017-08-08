@@ -22,10 +22,10 @@ export class ThingMediaComponent {
     private router: Router) { }
 
   onTabSelectChange(event: MdTabChangeEvent) {
-    if (this.viewedAllPosts === false && event.index === 0) {
+    if (!this.viewedAllPosts && event.index === 0) {
       this.viewedAllPosts = true;
     }
-    if (this.viewedOfficialPosts === false && event.index === 1) {
+    if (!this.viewedOfficialPosts && event.index === 1) {
       this.viewedOfficialPosts = true;
     }
   }
