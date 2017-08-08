@@ -6,15 +6,15 @@
   </div>
 
   <div *ngIf="mediaTypeEnum.YouTube == mediaType">
-    <div *ngIf="thumbnail">
-      <img [class.thumbnail]="thumbnail" [src]="safeUrl" alt="Thing image" class="img">
+    <div *ngIf="thumbnail" class="thumbnail-container">
+      <img class="img thumbnail" [src]="safeUrl" alt="Thing image">
     </div>
     <div *ngIf="!thumbnail">
-      <iframe [class.thumbnail]="thumbnail" [src]="safeUrl" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+      <iframe [src]="safeUrl" width="560" height="315" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div *ngIf="mediaTypeEnum.Vimeo == mediaType">
+  <div *ngIf="mediaTypeEnum.Vimeo == mediaType" [class.thumbnail-container]="thumbnail">
     <iframe [class.thumbnail]="thumbnail" [src]="safeUrl" width="560" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen
       allowfullscreen></iframe>
   </div>
