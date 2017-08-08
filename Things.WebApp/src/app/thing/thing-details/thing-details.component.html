@@ -1,5 +1,5 @@
-<app-thing-nav [thingId]="thingModel.thing.id" [logedInUserId]="logedInUserId" [showAuthorizedMenuItems]="showAuthorizedMenuItems"
-  [showPublicThingAuthorizeMenuItem]="showPublicThingAuthorizeMenuItem" [parentHierarchy]="thingModel.parentHierarchy" (onAuthorizePublicThing)="goToAuthorizePublicThing()"></app-thing-nav>
+<app-thing-nav [thingId]="thingModel?.thing?.id" [logedInUserId]="logedInUserId" [showAuthorizedMenuItems]="showAuthorizedMenuItems"
+  [showPublicThingAuthorizeMenuItem]="showPublicThingAuthorizeMenuItem" [parentHierarchy]="thingModel?.parentHierarchy" (onAuthorizePublicThing)="goToAuthorizePublicThing()"></app-thing-nav>
 <div *ngIf="thingModel">
 
   <button md-raised-button color="warn" *ngIf="version !== null && version !== thingModel.latestVersion" [routerLink]="['/thing', thingModel.thing.id]"
