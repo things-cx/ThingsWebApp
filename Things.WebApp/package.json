@@ -8,7 +8,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "i18n": "./node_modules/.bin/ng-xi18n --i18nFormat xlf",
+    "build:en": "ng build --prod --aot --locale en --i18n-format xlf --i18n-file src/locale/messages.en.xlf --output-path ../../ThingsWebApp.NET/Things.WebApp/Things.WebApp/wwwroot/en",
+    "build:af": "ng build --prod --aot --locale af-ZA --i18n-format xlf --i18n-file src/locale/messages.af-ZA.xlf --output-path ../../ThingsWebApp.NET/Things.WebApp/Things.WebApp/wwwroot/af",
+    "build-i18n": "npm run build:en && npm run build:af"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +26,7 @@
     "@angular/material": "^2.0.0-beta.8",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/platform-server": "^4.3.3",
     "@angular/router": "^4.0.0",
     "@types/marked": "0.0.28",
     "@types/stripe-checkout": "0.0.28",
@@ -34,7 +39,7 @@
   },
   "devDependencies": {
     "@angular/cli": "1.2.0",
-    "@angular/compiler-cli": "^4.0.0",
+    "@angular/compiler-cli": "^4.3.3",
     "@angular/language-service": "^4.0.0",
     "@types/google.analytics": "0.0.34",
     "@types/jasmine": "~2.5.53",
