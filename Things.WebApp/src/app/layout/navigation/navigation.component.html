@@ -3,11 +3,12 @@
   <nav md-tab-nav-bar>
     <img src="assets/logo.png" alt="logo" class="logo">
 
-     <a md-tab-link *ngIf="logedInUserId" routerLink="/activity" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive"
+    <a md-tab-link *ngIf="logedInUserId" routerLink="/activity" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive"
       [routerLinkActiveOptions]="{exact: true}">
       <md-icon>home</md-icon> Home
-    </a> 
-    <a md-tab-link routerLink="/" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive" [routerLinkActiveOptions]="{exact: true}" (click)="onLogoClick()">
+    </a>
+    <a md-tab-link routerLink="/" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive" [routerLinkActiveOptions]="{exact: true}"
+      (click)="onLogoClick()">
       <md-icon>search</md-icon> <span i18n="site navigation item">Discover</span>
     </a>
     <a md-tab-link *ngIf="!logedInUserId" routerLink="/login" routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive"
@@ -34,10 +35,10 @@
 
     <md-menu #menu="mdMenu">
       <div *ngIf="logedInUserId">
-        <button md-menu-item routerLink="/settings">Settings</button>
         <button md-menu-item routerLink="/create/public">Create anonymous Thing</button>
         <hr>
       </div>
+      <button md-menu-item routerLink="/settings">Settings</button>
       <button md-menu-item routerLink="/feedback">Feedback</button>
       <button md-menu-item routerLink="/newsletter">Newsletter</button>
       <button md-menu-item routerLink="/thing/7">Help</button>

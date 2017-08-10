@@ -5,14 +5,17 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { PaymentsComponent } from './payments/payments.component';
 import { WebhooksComponent } from './webhooks/webhooks.component';
 import { SettingsRoutingModule } from 'app/settings/settings-routing.module';
-import { MdButtonModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdRadioModule } from '@angular/material';
+import { LanguageComponent } from './language/language.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SettingsRoutingModule,
-    MdButtonModule
+    MdButtonModule,
+    MdCardModule,
+    MdRadioModule
   ],
-  declarations: [SettingsComponent, NotificationsComponent, PaymentsComponent, WebhooksComponent]
+  declarations: [SettingsComponent, NotificationsComponent, PaymentsComponent, WebhooksComponent, LanguageComponent]
 })
 export class SettingsModule { }

@@ -5,6 +5,7 @@ import { SettingsComponent } from 'app/settings/settings/settings.component';
 import { NotificationsComponent } from 'app/settings/notifications/notifications.component';
 import { PaymentsComponent } from 'app/settings/payments/payments.component';
 import { WebhooksComponent } from 'app/settings/webhooks/webhooks.component';
+import { LanguageComponent } from 'app/settings/language/language.component';
 
 @NgModule({
     imports: [
@@ -12,6 +13,7 @@ import { WebhooksComponent } from 'app/settings/webhooks/webhooks.component';
             { path: 'notifications', component: NotificationsComponent, data: { title: 'Notifications', nav: Navigation.Back } },
             { path: 'payments', component: PaymentsComponent, data: { title: 'Payments', nav: Navigation.Back } },
             { path: 'webhooks', component: WebhooksComponent, data: { title: 'Webhooks', nav: Navigation.Back } },
+            { path: 'language', component: LanguageComponent, data: { title: 'Language', nav: Navigation.Back } },
             { path: '', component: SettingsComponent, data: { title: 'Settings', nav: Navigation.Back } },
         ])
     ],

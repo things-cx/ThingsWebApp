@@ -27,13 +27,13 @@
     <button md-menu-item (click)="openReportDialog()">Report</button>
     <div *ngIf="logedInUserId">
       <hr>
-      <button md-menu-item routerLink="/settings">Settings</button>
       <button md-menu-item routerLink="/create/public">Create anonymous Thing</button>
       <hr>
     </div>
+    <button md-menu-item routerLink="/settings">Settings</button>
     <button md-menu-item routerLink="/feedback">Feedback</button>
     <button md-menu-item routerLink="/newsletter">Newsletter</button>
     <button md-menu-item routerLink="/thing/7">Help</button>
-     <button md-menu-item *ngIf="logedInUserId" (click)="logout()">Logout</button> 
+    <button md-menu-item *ngIf="logedInUserId" (click)="logout()">Logout</button>
   </md-menu>
 </nav>

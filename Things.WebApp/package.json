@@ -10,8 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "i18n": "./node_modules/.bin/ng-xi18n --i18nFormat xlf",
-    "build:en": "ng build --prod --aot --locale en --i18n-format xlf --i18n-file src/locale/messages.en.xlf --output-path ../../ThingsWebApp.NET/Things.WebApp/Things.WebApp/wwwroot/en",
-    "build:af": "ng build --prod --aot --locale af-ZA --i18n-format xlf --i18n-file src/locale/messages.af-ZA.xlf --output-path ../../ThingsWebApp.NET/Things.WebApp/Things.WebApp/wwwroot/af",
+    "build:en": "ng build --prod --aot --locale en-US --i18n-format xlf --i18n-file src/locale/messages.en-US.xlf --output-path ../../ThingsWebApp.NET/Things.WebApp/Things.WebApp/wwwroot/en-US",
+    "build:af": "ng build --prod --aot --locale af-ZA --i18n-format xlf --i18n-file src/locale/messages.af-ZA.xlf --output-path ../../ThingsWebApp.NET/Things.WebApp/Things.WebApp/wwwroot/af-ZA",
     "build-i18n": "npm run build:en && npm run build:af"
   },
   "private": true,
