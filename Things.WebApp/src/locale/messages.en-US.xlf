@@ -2,14 +2,138 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="411ca58f59b00246e15b161e07409df55b5eb6db" datatype="html">
-        <source>Discover</source>
-        <target>Discover</target>
+      <trans-unit id="layoutNavigationHeaderLink1" datatype="html">
+        <source>Home</source>
+        <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">8</context>
         </context-group>
-        <note priority="1" from="description">site navigation item</note>
+        <note priority="1" from="description">Link to the home page</note>
+        <note priority="1" from="meaning">site navigation header</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink2" datatype="html">
+        <source>Discover</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">Link to the discover page</note>
+        <note priority="1" from="meaning">site navigation header</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink3" datatype="html">
+        <source>Login</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">Link to the login page</note>
+        <note priority="1" from="meaning">site navigation header</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink4" datatype="html">
+        <source>Thing</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">Link to a Thing&apos;s page</note>
+        <note priority="1" from="meaning">site navigation header</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink5" datatype="html">
+        <source>Profile</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <note priority="1" from="description">Link to the user&apos;s profile page</note>
+        <note priority="1" from="meaning">site navigation header</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink6" datatype="html">
+        <source>Post</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">Link to the post page</note>
+        <note priority="1" from="meaning">site navigation header</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink7" datatype="html">
+        <source>Create anonymous Thing</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <note priority="1" from="description">Link to the create anonymous Thing page</note>
+        <note priority="1" from="meaning">top right context menu</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink8" datatype="html">
+        <source>Settings</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <note priority="1" from="description">Link to the settings page</note>
+        <note priority="1" from="meaning">top right context menu</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink9" datatype="html">
+        <source>Feedback</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <note priority="1" from="description">Link to the feedback page</note>
+        <note priority="1" from="meaning">top right context menu</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink10" datatype="html">
+        <source>Newsletter</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <note priority="1" from="description">Link to the newsletter signup page</note>
+        <note priority="1" from="meaning">top right context menu</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink11" datatype="html">
+        <source>Help</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <note priority="1" from="description">Link to the help Thing page</note>
+        <note priority="1" from="meaning">top right context menu</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink12" datatype="html">
+        <source>Logout</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">Link to logout</note>
+        <note priority="1" from="meaning">top right context menu</note>
+      </trans-unit>
+      <trans-unit id="layoutNavigationHeaderLink13" datatype="html">
+        <source>
+    Console Logs
+    <x id="START_TAG_MD-ICON" ctype="x-md-icon"/>close<x id="CLOSE_TAG_MD-ICON" ctype="x-md-icon"/>
+  </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <note priority="1" from="description">Heading for the Javascript console logs output</note>
+        <note priority="1" from="meaning">hidden logs for admins</note>
       </trans-unit>
     </body>
   </file>
