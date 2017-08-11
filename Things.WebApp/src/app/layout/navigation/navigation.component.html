@@ -5,27 +5,27 @@
 
     <a md-tab-link *ngIf="logedInUserId" routerLink="/activity" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive"
       [routerLinkActiveOptions]="{exact: true}">
-      <md-icon>home</md-icon> Home
+      <md-icon>home</md-icon> <span i18n="site navigation header|Link to the home page@@layoutNavigationHeaderLink1">Home</span>
     </a>
     <a md-tab-link routerLink="/" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive" [routerLinkActiveOptions]="{exact: true}"
       (click)="onLogoClick()">
-      <md-icon>search</md-icon> <span i18n="site navigation item">Discover</span>
+      <md-icon>search</md-icon> <span i18n="site navigation header|Link to the discover page@@layoutNavigationHeaderLink2">Discover</span>
     </a>
     <a md-tab-link *ngIf="!logedInUserId" routerLink="/login" routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive"
       [routerLinkActiveOptions]="{exact: true}">
-      <md-icon>lock</md-icon> Login
+      <md-icon>lock</md-icon> <span i18n="site navigation header|Link to the login page@@layoutNavigationHeaderLink3">Login</span>
     </a>
     <a md-tab-link *ngIf="!logedInUserId" routerLink="/create/public" routerLinkActive #rla4="routerLinkActive" [active]="rla4.isActive"
       [routerLinkActiveOptions]="{exact: true}">
-      <md-icon>title</md-icon> Thing
+      <md-icon>title</md-icon> <span i18n="site navigation header|Link to a Thing's page@@layoutNavigationHeaderLink4">Thing</span>
     </a>
     <a md-tab-link *ngIf="logedInUserId" routerLink="/thing/{{logedInUserId}}" routerLinkActive #rla6="routerLinkActive" [active]="rla6.isActive"
       [routerLinkActiveOptions]="{exact: true}">
-      <md-icon>account_circle</md-icon> Profile
+      <md-icon>account_circle</md-icon> <span i18n="site navigation header|Link to the user's profile page@@layoutNavigationHeaderLink5">Profile</span>
     </a>
     <a md-tab-link *ngIf="logedInUserId" routerLink="/create-post" routerLinkActive #rla5="routerLinkActive" [active]="rla5.isActive"
       [routerLinkActiveOptions]="{exact: true}">
-      <md-icon>menu</md-icon> Post
+      <md-icon>menu</md-icon> <span i18n="site navigation header|Link to the post page@@layoutNavigationHeaderLink6">Post</span>
     </a>
 
     <!--<span class="example-spacer"></span>-->
@@ -35,14 +35,14 @@
 
     <md-menu #menu="mdMenu">
       <div *ngIf="logedInUserId">
-        <button md-menu-item routerLink="/create/public">Create anonymous Thing</button>
+        <button md-menu-item routerLink="/create/public" i18n="top right context menu|Link to the create anonymous Thing page@@layoutNavigationHeaderLink7">Create anonymous Thing</button>
         <hr>
       </div>
-      <button md-menu-item routerLink="/settings">Settings</button>
-      <button md-menu-item routerLink="/feedback">Feedback</button>
-      <button md-menu-item routerLink="/newsletter">Newsletter</button>
-      <button md-menu-item routerLink="/thing/7">Help</button>
-      <button md-menu-item *ngIf="logedInUserId" (click)="logout()">Logout</button>
+      <button md-menu-item routerLink="/settings" i18n="top right context menu|Link to the settings page@@layoutNavigationHeaderLink8">Settings</button>
+      <button md-menu-item routerLink="/feedback" i18n="top right context menu|Link to the feedback page@@layoutNavigationHeaderLink9">Feedback</button>
+      <button md-menu-item routerLink="/newsletter" i18n="top right context menu|Link to the newsletter signup page@@layoutNavigationHeaderLink10">Newsletter</button>
+      <button md-menu-item routerLink="/thing/7" i18n="top right context menu|Link to the help Thing page@@layoutNavigationHeaderLink11">Help</button>
+      <button md-menu-item *ngIf="logedInUserId" (click)="logout()" i18n="top right context menu|Link to logout@@layoutNavigationHeaderLink12">Logout</button>
       <!--TODO: impliment interests-->
       <!--<button md-menu-item routerLink="/interests">Interests</button>-->
     </md-menu>
@@ -62,7 +62,8 @@
 </div>
 
 <div *ngIf="showConsoleLogs" class="console-logs">
-  <h3>Console Logs
+  <h3 i18n="hidden logs for admins|Heading for the Javascript console logs output@@layoutNavigationHeaderLink13">
+    Console Logs
     <md-icon (click)="showConsoleLogs = !showConsoleLogs" class="close-button">close</md-icon>
   </h3>
   <div *ngFor="let log of consoleLogs">

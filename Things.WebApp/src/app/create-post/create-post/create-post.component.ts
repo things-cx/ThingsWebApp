@@ -177,6 +177,7 @@ export class CreatePostComponent implements OnInit {
     (<any>emojione).ascii = true;
     const output = emojione.toImage(this.content.nativeElement.innerHTML);
     this.content.nativeElement.innerHTML = output;
+    // TODO: cursor loses its index. FIX
   }
 
   onSaveSelection() {
@@ -184,6 +185,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   onKeydown(event: KeyboardEvent, content: HTMLDivElement) {
+    // TODO: automatically convert to emoji image when user types shortname or unicodes (remember to cater for copy/paste)
     if (event.keyCode === 50 && event.shiftKey) {
       event.preventDefault();
       this.openMentionDialog(content);
