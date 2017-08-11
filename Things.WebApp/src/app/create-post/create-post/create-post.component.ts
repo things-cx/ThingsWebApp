@@ -57,10 +57,21 @@ export class CreatePostComponent implements OnInit {
 
     const viewModel = new Things.Api.ViewModels.Post.Create.CreatePostViewModel;
     viewModel.replyToPostUId = this.replyToPostUId;
-    viewModel.content = element.textContent;
     viewModel.media = this.mediaUrl;
     viewModel.htmlContent = element.innerHTML;
 
+    // Convert emojis back to shortnames to save
+    const emojis = this.content.nativeElement.getElementsByClassName('emojione');
+    for (let i = 0; i < emojis.length; i++) {
+      const img = emojis.item(i) as HTMLImageElement;
+      const shortname = document.createTextNode(img.title);
+      img.appendChild(shortname);
+    }
+
+    // Add content
+    viewModel.content = element.textContent;
+
+    // Send to server
     this.postController.createPost(viewModel).subscribe(data => {
       const link = ['/post/post', data.uId];
       this.router.navigate(link, { queryParams: { didcreate: true } });
@@ -135,6 +146,17 @@ export class CreatePostComponent implements OnInit {
     range.collapse(false);
   }
 
+  insertEmoji(name: string) {
+    const range = this.getRange();
+    const element = document.createTextNode(name);
+    range.insertNode(element);
+
+    // range.collapse(false);
+    // const textNode = document.createTextNode('\u00A0');
+    // range.insertNode(textNode);
+    range.collapse(false);
+  }
+
   openMentionDialog(content: HTMLDivElement) {
     content.focus();
     this.saveSelection();
@@ -150,10 +172,15 @@ export class CreatePostComponent implements OnInit {
   }
 
   onEmojiInset(emojiShortname: string) {
-    console.log(this.content);
+    this.restoreSelection();
+    this.insertEmoji(emojiShortname);
     (<any>emojione).ascii = true;
-    const output = emojione.toImage(this.content.nativeElement.innerHTML + emojiShortname);
+    const output = emojione.toImage(this.content.nativeElement.innerHTML);
     this.content.nativeElement.innerHTML = output;
+  }
+
+  onSaveSelection() {
+    this.saveSelection();
   }
 
   onKeydown(event: KeyboardEvent, content: HTMLDivElement) {

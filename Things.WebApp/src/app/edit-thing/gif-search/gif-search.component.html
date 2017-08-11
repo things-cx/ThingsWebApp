@@ -1,22 +1,28 @@
-<form [formGroup]="form">
+<button md-icon-button (click)="myPanel.expanded = !myPanel.expanded">
+    <md-icon>gif</md-icon>
+  </button>
 
-  <md-input-container>
-    <input mdInput formControlName="searchTerm" placeholder="Search gif">
-  </md-input-container>
-  <div *ngIf="formErrors?.searchTerm" class="validation-message">{{ formErrors.searchTerm }}</div>
+<md-expansion-panel #myPanel class="panel">
+  <form [formGroup]="form">
 
-  <button md-raised-button type="button" (click)="onSearch()">Search</button><br>
+    <md-input-container>
+      <input mdInput formControlName="searchTerm" placeholder="Search gif">
+    </md-input-container>
+    <div *ngIf="formErrors?.searchTerm" class="validation-message">{{ formErrors.searchTerm }}</div>
 
-  <div>powered by Giphy</div>
+    <button md-raised-button type="button" (click)="onSearch()">Search</button><br>
 
-  <div style="overflow: auto; white-space: nowrap;">
-    <span *ngFor="let gif of searchResults?.data">
-      <img [src]="gif.images.fixed_height_small.url" alt="gif" (click)="previewGif(gif)">
-    </span>
-  </div>
+    <div>powered by Giphy</div>
 
-  <!--<button md-raised-button color="primary" (click)="onSave()">Choose</button>-->
+    <div style="overflow: auto; white-space: nowrap;">
+      <span *ngFor="let gif of searchResults?.data">
+        <img [src]="gif.images.fixed_height_small.url" alt="gif" (click)="previewGif(gif)">
+      </span>
+    </div>
 
-  <md-spinner *ngIf="isSearching"></md-spinner>
+    <!--<button md-raised-button color="primary" (click)="onSave()">Choose</button>-->
 
-</form>
+    <md-spinner *ngIf="isSearching"></md-spinner>
+
+  </form>
+</md-expansion-panel>

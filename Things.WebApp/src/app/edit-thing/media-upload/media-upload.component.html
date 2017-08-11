@@ -1,3 +1,7 @@
-<input type="file" (change)="onThingImageChange($event)" accept="image/*">
+<button md-icon-button (click)="openUpload()" mdTooltip="Upload">
+    <md-icon>attachment</md-icon>
+</button>
+
+<input style="display: none;" #fileInput type="file" (change)="onThingImageChange($event)" accept="image/*">
 
 <md-spinner *ngIf="isImageUploading"></md-spinner>

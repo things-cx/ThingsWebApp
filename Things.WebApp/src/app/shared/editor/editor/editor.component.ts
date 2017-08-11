@@ -1,10 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges, ElementRef, ViewChild } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
 import { Things } from 'api-typings/bundle';
 import * as marked from 'marked';
 import { environment } from 'environments/environment';
 import { Router } from '@angular/router';
+import * as emojione from 'emojione';
 import {
   MarkdownHelperDialogComponent,
   MarkdownHelperType
@@ -26,6 +27,7 @@ export class EditorComponent implements OnInit, OnChanges {
   textAreaKeyupTimeout: any;
   localStorageBackupKey = 'description_backup_';
   markdownHelperTypeEnum = MarkdownHelperType;
+  @ViewChild('content') content: ElementRef;
 
   constructor(public dialog: MdDialog,
     private router: Router) { }
@@ -82,7 +84,12 @@ export class EditorComponent implements OnInit, OnChanges {
   }
 
   viewPreview(textArea: HTMLTextAreaElement) {
+    // Render markdown
     this.previewHTML = marked(textArea.value);
+    // Render emojis
+    (<any>emojione).ascii = true;
+    this.previewHTML = emojione.toImage(this.previewHTML);
+
     this.viewPreviewScreen = true;
   }
 
@@ -238,5 +245,9 @@ export class EditorComponent implements OnInit, OnChanges {
       event.preventDefault();
       this.openMentionDialog(textArea);
     }
+  }
+
+  onEmojiInset(emojiShortname: string) {
+    this.insert(this.content.nativeElement, emojiShortname);
   }
 }

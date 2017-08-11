@@ -28,6 +28,10 @@
 
 .description ::ng-deep img {
     width: 100%;
+
+    &.emojione {
+        width: initial;
+    }
 }
 
 .fade-out:before {

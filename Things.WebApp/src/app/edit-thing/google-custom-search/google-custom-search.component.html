@@ -1,19 +1,23 @@
-<md-input-container>
-  <input mdInput #searchInput placeholder="Search images">
-</md-input-container>
+<button md-icon-button (click)="myPanel.expanded = !myPanel.expanded">
+    <md-icon>image</md-icon>
+  </button>
 
-<button md-raised-button type="button" (click)="onSearch(searchInput)">Search</button><br>
+<md-expansion-panel #myPanel class="panel">
+  <md-input-container>
+    <input mdInput #searchInput placeholder="Search images">
+  </md-input-container>
 
-<div>powered by Google</div>
+  <button md-raised-button type="button" (click)="onSearch(searchInput)">Search</button><br>
 
-<md-spinner *ngIf="isSearching"></md-spinner>
+  <div>powered by Google</div>
 
-<div style="overflow: auto; white-space: nowrap;">
-  <span *ngFor="let image of imageResults">
-    <img [src]="image.link" (click)="selectImage(image)" alt="google image" class="google-image-result" />
-  </span>
-</div>
+  <md-spinner *ngIf="isSearching"></md-spinner>
 
-<button md-raised-button class="center" type="button" *ngIf="imageResults?.length > 0" (click)="getMore()">Load more</button>
+  <div style="overflow: auto; white-space: nowrap;">
+    <span *ngFor="let image of imageResults">
+      <img [src]="image.link" (click)="selectImage(image)" alt="google image" class="google-image-result" />
+    </span>
+  </div>
 
-<br>
+  <button md-raised-button class="center" type="button" *ngIf="imageResults?.length > 0" (click)="getMore()">Load more</button>
+</md-expansion-panel>

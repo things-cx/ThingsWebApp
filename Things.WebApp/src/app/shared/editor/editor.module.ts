@@ -17,6 +17,7 @@ import {
   MdSelectModule
 } from '@angular/material';
 import { MarkdownHelperDialogComponent } from './markdown-helper-dialog/markdown-helper-dialog.component';
+import { EmojiModule } from "app/shared/emoji/emoji.module";
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { MarkdownHelperDialogComponent } from './markdown-helper-dialog/markdown
     MediaTypeModule,
     MdMenuModule,
     MdTooltipModule,
-    MdSelectModule
+    MdSelectModule,
+    EmojiModule
   ],
   declarations: [
     EditorComponent,

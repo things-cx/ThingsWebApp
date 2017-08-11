@@ -70,6 +70,8 @@
                 <!-- <button md-menu-item (click)="markdownHelper(content, markdownHelperTypeEnum.vimeo)">Vimeo</button> -->
             </md-menu>
         </div>
+        <app-emoji-panel (onInserted)="onEmojiInset($event)" mdTooltip="Emoji"></app-emoji-panel>
+        
         <div style="clear: both;"></div>
 
         <textarea id="content" #content (keyup)="saveChanges(content)" (keydown)="onKeydown($event, content)" placeholder="describe your Thing" [value]="thingModel?.description?.content"></textarea>

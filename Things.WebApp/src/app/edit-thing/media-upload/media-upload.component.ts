@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { MediaUploaderService } from 'app/shared/media-uploader.service';
 import { Things } from 'api-typings/bundle';
 
@@ -11,8 +11,13 @@ export class MediaUploadComponent {
 
   isImageUploading = false;
   @Output() onImageUploaded: EventEmitter<string> = new EventEmitter();
+  @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private mediaUploaderService: MediaUploaderService) { }
+
+  openUpload() {
+    (<HTMLInputElement>this.fileInput.nativeElement).click();
+  }
 
   onThingImageChange(event: Event) {
     this.isImageUploading = true;

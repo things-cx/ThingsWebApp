@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditThingRoutingModule } from './edit-thing-routing.module';
 import { MediaUploaderService } from 'app/shared/media-uploader.service';
-import { MdButtonModule, MdInputModule, MdAutocompleteModule, MdProgressSpinnerModule, MdCardModule, MdIconModule, MdSnackBarModule, MdListModule, MdDialogModule } from '@angular/material';
 import { TagsComponent } from './tags/tags.component';
 import { DescriptionComponent } from './description/description.component';
 import { MediaComponent } from './media/media.component';
@@ -19,7 +18,19 @@ import { PreviewMediaDialogComponent } from './preview-media-dialog/preview-medi
 import { EditorModule } from 'app/shared/editor/editor.module';
 import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
 import { AmazonComponent } from './amazon/amazon.component';
-import { AmazonController } from "api-typings/bundle";
+import { AmazonController } from 'api-typings/bundle';
+import {
+  MdButtonModule,
+  MdInputModule,
+  MdAutocompleteModule,
+  MdProgressSpinnerModule,
+  MdCardModule,
+  MdIconModule,
+  MdSnackBarModule,
+  MdListModule,
+  MdDialogModule,
+  MdExpansionModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -38,7 +49,8 @@ import { AmazonController } from "api-typings/bundle";
     // TODO: not sure where to put this. Don't want to export out of module and navigation breaks when addind it to multiple modules
     ThingModule,
     EditorModule,
-    MediaTypeModule
+    MediaTypeModule,
+    MdExpansionModule
   ],
   declarations: [
     TagsComponent,

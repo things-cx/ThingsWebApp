@@ -13,6 +13,7 @@ import { PaymentDialogComponent } from 'app/thing/payment-dialog/payment-dialog.
 import { RootPublicThingDialogComponent } from 'app/thing/root-public-thing-dialog/root-public-thing-dialog.component';
 import { ShareOptionsDialogComponent } from 'app/thing/share-options-dialog/share-options-dialog.component';
 import * as marked from 'marked';
+import * as emojione from 'emojione';
 
 @Component({
   selector: 'app-thing-details',
@@ -98,7 +99,11 @@ export class ThingDetailsComponent implements OnInit {
 
         // tslint:disable-next-line:max-line-length
         if (this.thingModel.description !== null && this.thingModel.description.content !== null && this.thingModel.description.content !== '') {
+          // Render markdown
           this.thingModel.description.content = marked(this.thingModel.description.content);
+          // Render emoji
+          (<any>emojione).ascii = true;
+          this.thingModel.description.content = emojione.toImage(this.thingModel.description.content);
         }
       }, error => {
         this.isProcessing = false;
