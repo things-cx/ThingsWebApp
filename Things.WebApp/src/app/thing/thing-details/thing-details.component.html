@@ -76,7 +76,7 @@
     <md-card-content [innerHTML]="thingModel.description.content"></md-card-content>
   </md-card>
 
-  <md-tab-group (selectChange)="onTabSelectChange($event)">
+  <md-tab-group class="tabs" (selectChange)="onTabSelectChange($event)">
     <md-tab>
       <ng-template md-tab-label>
         <md-icon>subdirectory_arrow_right</md-icon> Sub

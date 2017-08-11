@@ -135,14 +135,14 @@ export class ThingDetailsComponent implements OnInit {
     }
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: Event) {
-    const target = event.target as HTMLAnchorElement;
-    if (target.className === 'thing-ref') {
-      this.router.navigate([target.pathname]);
-      return false;
-    }
-  }
+  // @HostListener('click', ['$event'])
+  // onClick(event: Event) {
+  //   const target = event.target as HTMLAnchorElement;
+  //   if (target.className === 'thing-ref') {
+  //     this.router.navigate([target.pathname]);
+  //     return false;
+  //   }
+  // }
 
   openShareDialog() {
     const dialogRef = this.dialog.open(ShareOptionsDialogComponent);
