@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="layoutNavigationHeaderLink1" datatype="html">
         <source>Home</source>
-        <target/>
+        <target>Home</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">8</context>
@@ -14,7 +14,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink2" datatype="html">
         <source>Discover</source>
-        <target/>
+        <target>Discover</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">12</context>
@@ -24,7 +24,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink3" datatype="html">
         <source>Login</source>
-        <target/>
+        <target>Login</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">16</context>
@@ -34,7 +34,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink4" datatype="html">
         <source>Thing</source>
-        <target/>
+        <target>Thing</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">20</context>
@@ -44,7 +44,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink5" datatype="html">
         <source>Profile</source>
-        <target/>
+        <target>Profile</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">24</context>
@@ -54,7 +54,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink6" datatype="html">
         <source>Post</source>
-        <target/>
+        <target>Post</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">28</context>
@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink7" datatype="html">
         <source>Create anonymous Thing</source>
-        <target/>
+        <target>Create anonymous Thing</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">38</context>
@@ -74,7 +74,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink8" datatype="html">
         <source>Settings</source>
-        <target/>
+        <target>Settings</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">41</context>
@@ -84,7 +84,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink9" datatype="html">
         <source>Feedback</source>
-        <target/>
+        <target>Feedback</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">42</context>
@@ -94,7 +94,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink10" datatype="html">
         <source>Newsletter</source>
-        <target/>
+        <target>Newsletter</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">43</context>
@@ -104,7 +104,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink11" datatype="html">
         <source>Help</source>
-        <target/>
+        <target>Help</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">44</context>
@@ -114,7 +114,7 @@
       </trans-unit>
       <trans-unit id="layoutNavigationHeaderLink12" datatype="html">
         <source>Logout</source>
-        <target/>
+        <target>Logout</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">45</context>
@@ -127,7 +127,7 @@
     Console Logs
     <x id="START_TAG_MD-ICON" ctype="x-md-icon"/>close<x id="CLOSE_TAG_MD-ICON" ctype="x-md-icon"/>
   </source>
-        <target/>
+        <target>Console Logs</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src\app\layout\navigation\navigation.component.ts</context>
           <context context-type="linenumber">65</context>
