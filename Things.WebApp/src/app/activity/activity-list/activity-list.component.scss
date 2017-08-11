@@ -13,3 +13,7 @@
     height: 18px;
     text-align: center;
 }
+
+.tab-group ::ng-deep .mat-tab-label {
+    min-width: 50% !important;
+}

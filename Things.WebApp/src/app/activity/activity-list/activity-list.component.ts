@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Things, PostController } from 'api-typings/bundle';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MdTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-activity-list',
@@ -9,10 +10,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ActivityListComponent implements OnInit {
 
-  activityList: Things.Api.ViewModels.Post.ThingActivityListViewModel[];
-  skip = 0;
-  isProcessing = true;
   officialPosts = true;
+
+  viewedPostsTab = true;
+  viewedThingsTab = false;
 
   constructor(private postController: PostController,
     private route: ActivatedRoute,
@@ -24,36 +25,15 @@ export class ActivityListComponent implements OnInit {
       if (queryParams.has('unofficial')) {
         this.officialPosts = !(queryParams.get('unofficial') === 'true');
       }
-      this.activityList = [];
-      this.skip = 0;
-      this.getActivityList();
     });
   }
 
-  getActivityList() {
-    this.isProcessing = true;
-
-    const viewModel = new Things.Api.ViewModels.Post.GetThingActivityListViewModel;
-    viewModel.getOfficial = this.officialPosts;
-    viewModel.skip = this.skip;
-
-    this.postController.getThingActivityList(viewModel).subscribe(data => {
-      this.isProcessing = false;
-      this.activityList = data;
-    });
-  }
-
-  loadMore() {
-    this.isProcessing = true;
-
-    this.skip += 10;
-    const viewModel = new Things.Api.ViewModels.Post.GetThingActivityListViewModel;
-    viewModel.getOfficial = this.officialPosts;
-    viewModel.skip = this.skip;
-
-    this.postController.getThingActivityList(viewModel).subscribe(data => {
-      this.isProcessing = false;
-      this.activityList = data;
-    });
+  onTabSelectChange(event: MdTabChangeEvent) {
+    if (!this.viewedPostsTab && event.index === 0) {
+      this.viewedPostsTab = true;
+    }
+    if (!this.viewedThingsTab && event.index === 1) {
+      this.viewedThingsTab = true;
+    }
   }
 }
