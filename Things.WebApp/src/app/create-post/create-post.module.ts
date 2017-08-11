@@ -7,6 +7,7 @@ import { EditThingModule } from 'app/edit-thing/edit-thing.module';
 import { EditorModule } from 'app/shared/editor/editor.module';
 import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
 import { PostModule } from 'app/post/post.module';
+import { EmojiModule } from 'app/shared/emoji/emoji.module';
 import {
   MdButtonModule,
   MdInputModule,
@@ -14,7 +15,8 @@ import {
   MdProgressSpinnerModule,
   MdCardModule,
   MdIconModule,
-  MdDialogModule
+  MdDialogModule,
+  MdTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -33,7 +35,9 @@ import {
     // TODO: Rather put these compoents in a shared place
     EditThingModule,
     EditorModule,
-    PostModule
+    PostModule,
+    EmojiModule,
+    MdTooltipModule
   ],
   declarations: [
     CreatePostComponent

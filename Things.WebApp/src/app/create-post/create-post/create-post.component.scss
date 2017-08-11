@@ -4,17 +4,21 @@
     padding: 10px;
     outline: none;
     line-height: 22px;
+
+    ::ng-deep .mention {
+        color: #673ab7;
+        background-color: lightgray;
+        padding: 5px;
+        border-radius: 4px;
+    }
+    
+    ::ng-deep .emojione {
+        width: 20px;
+    }
 }
 
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
   display: block;
   opacity: 0.5;
-}
-
-::ng-deep .mention {
-    color: #673ab7;
-    background-color: lightgray;
-    padding: 5px;
-    border-radius: 4px;
 }

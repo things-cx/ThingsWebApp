@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Things, ThingsController, PostController } from 'api-typings/bundle';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormService } from 'app/shared/form.service';
@@ -6,6 +6,7 @@ import { MdDialog } from '@angular/material';
 import { PreviewMediaDialogComponent } from 'app/edit-thing/preview-media-dialog/preview-media-dialog.component';
 import { TutorialService, TutorialArea } from 'app/tutorial/tutorial.service';
 import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
+import * as emojione from 'emojione';
 
 @Component({
   selector: 'app-create-post',
@@ -21,6 +22,7 @@ export class CreatePostComponent implements OnInit {
   isLoadingReplyPost = false;
   post: Things.Api.Models.Post.PostModel;
   replyToPostUId: string;
+  @ViewChild('content') content: ElementRef;
 
   constructor(private thingsController: ThingsController,
     private postController: PostController,
@@ -36,7 +38,7 @@ export class CreatePostComponent implements OnInit {
     }
 
     // TODO: don't do this!
-    document.getElementById('box').focus();
+    this.content.nativeElement.focus();
     this.saveSelection();
 
     this.route.queryParamMap.subscribe(queryParams => {
@@ -145,6 +147,13 @@ export class CreatePostComponent implements OnInit {
         this.insertMention(hierarchy);
       }
     });
+  }
+
+  onEmojiInset(emojiShortname: string) {
+    console.log(this.content);
+    (<any>emojione).ascii = true;
+    const output = emojione.toImage(this.content.nativeElement.innerHTML + emojiShortname);
+    this.content.nativeElement.innerHTML = output;
   }
 
   onKeydown(event: KeyboardEvent, content: HTMLDivElement) {
