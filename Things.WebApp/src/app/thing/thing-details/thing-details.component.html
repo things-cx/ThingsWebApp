@@ -7,73 +7,77 @@
     There is a more up to date version available
   </button>
 
-  <md-card>
-    <app-media-viewer [media]="thingModel?.thing?.media" style="display: block; float: left;"></app-media-viewer>
-    <h3 style="float: left; margin-left: 20px;">
-      {{thingModel.thing.title}}
-      <md-icon *ngIf="thingModel.thing.isVerified" class="example-icon">verified_user</md-icon>
-      <button md-icon-button *ngIf="isRootPublicThing" (click)="openRootPublicThingAppendDialog()">
+  <md-card class="thing-content">
+    <md-card-content>
+      <app-media-viewer [media]="thingModel?.thing?.media" style="display: block; float: left;"></app-media-viewer>
+      <h3 style="float: left; margin-left: 20px;">
+        {{thingModel.thing.title}}
+        <md-icon *ngIf="thingModel.thing.isVerified" class="example-icon">verified_user</md-icon>
+        <button md-icon-button *ngIf="isRootPublicThing" (click)="openRootPublicThingAppendDialog()">
         <md-icon>info_outline</md-icon>
       </button>
-    </h3>
-    <div style="clear: both;"></div>
+      </h3>
+      <div style="clear: both;"></div>
 
-    <!--TODO: warning. I think this the tag and even the item could easily be replaced by browser extensions. make it more difficult to change-->
-    <!--TODO: rather create details page with product info to keep user on the Things platform-->
-    <button md-raised-button style="width: 100%;" color="primary" *ngIf="thingModel.thing.id === 1" (click)="donateToThings()">Donate</button>
-    <a md-raised-button class="amazon-button" rel="noopener noreferrer" target="_blank" *ngIf="thingModel.thing.amazonProductId"
-      href="https://www.amazon.com/dp/{{thingModel.thing.amazonProductId}}/?tag=things0b9-20">Amazon item</a>
+      <!--TODO: warning. I think this the tag and even the item could easily be replaced by browser extensions. make it more difficult to change-->
+      <!--TODO: rather create details page with product info to keep user on the Things platform-->
+      <button md-raised-button style="width: 100%;" color="primary" *ngIf="thingModel.thing.id === 1" (click)="donateToThings()">Donate</button>
+      <a md-raised-button class="amazon-button" rel="noopener noreferrer" target="_blank" *ngIf="thingModel.thing.amazonProductId"
+        href="https://www.amazon.com/dp/{{thingModel.thing.amazonProductId}}/?tag=things0b9-20">Amazon item</a>
 
-    <div style="float: left;">
-      <button md-button [routerLink]="['/followers', thingModel.thing.id]">
+      <div style="float: left;">
+        <button md-button [routerLink]="['/followers', thingModel.thing.id]">
         <span *ngIf="thingModel.thing.followers === 1">{{thingModel.thing.followers}} follower</span>
         <span *ngIf="thingModel.thing.followers !== 1">{{thingModel.thing.followers}} followers</span>
       </button>
-      <br>
-      <button md-raised-button [disabled]="isProcessingFollow || thingModel.parentThingFollowId !== null" *ngIf="logedInUserId && !thingModel.followed && thingModel.parentThingFollowId === null"
-        (click)="follow()">
+        <br>
+        <button md-raised-button [disabled]="isProcessingFollow || thingModel.parentThingFollowId !== null" *ngIf="logedInUserId && !thingModel.followed && thingModel.parentThingFollowId === null"
+          (click)="follow()">
         <md-icon style="color: #aab8c2;">person_add</md-icon> follow
         <md-spinner *ngIf="isProcessingFollow" class="inline-preloader"></md-spinner>
       </button>
-      <button md-raised-button [disabled]="isProcessingFollow || thingModel.parentThingFollowId !== null" *ngIf="logedInUserId && (thingModel.followed || thingModel.parentThingFollowId !== null)"
-        (click)="unfollow()">
+        <button md-raised-button [disabled]="isProcessingFollow || thingModel.parentThingFollowId !== null" *ngIf="logedInUserId && (thingModel.followed || thingModel.parentThingFollowId !== null)"
+          (click)="unfollow()">
         <md-icon style="color: green;">person</md-icon> unfollow
         <md-spinner *ngIf="isProcessingFollow" class="inline-preloader"></md-spinner>
       </button>
-    </div>
+      </div>
 
-    <div style="float: left;">
-      <button md-button [routerLink]="['/likes', thingModel.thing.id]">
+      <div style="float: left;">
+        <button md-button [routerLink]="['/likes', thingModel.thing.id]">
         <span *ngIf="thingModel.thing.likes === 1">{{thingModel.thing.likes}} like</span>
         <span *ngIf="thingModel.thing.likes !== 1">{{thingModel.thing.likes}} likes</span>
       </button>
-      <br>
-      <button md-raised-button [disabled]="isProcessingLike" *ngIf="logedInUserId && !thingModel.liked" (click)="like()">
+        <br>
+        <button md-raised-button [disabled]="isProcessingLike" *ngIf="logedInUserId && !thingModel.liked" (click)="like()">
         <md-icon style="color: #aab8c2;">favorite</md-icon> like
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
       </button>
-      <button md-raised-button [disabled]="isProcessingLike" *ngIf="logedInUserId && thingModel.liked" (click)="unlike()">
+        <button md-raised-button [disabled]="isProcessingLike" *ngIf="logedInUserId && thingModel.liked" (click)="unlike()">
         <md-icon style="color: #f44336;">favorite</md-icon> unlike
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
       </button>
-    </div>
+      </div>
 
-    <div style="float: left;">
-      <button md-raised-button (click)="openShareDialog()" [class.share-button]="logedInUserId">
+      <div style="float: left;">
+        <button md-raised-button (click)="openShareDialog()" [class.share-button]="logedInUserId">
         <md-icon style="color: #aab8c2;">share</md-icon> share
       </button>
-    </div>
-    <div style="clear: both;"></div>
+      </div>
+      <div style="clear: both;"></div>
 
-    <div class="chips-nowrap" *ngIf="thingModel?.tags?.length > 0">
-      <md-chip-list>
-        <md-chip *ngFor="let tag of thingModel.tags" [routerLink]="['/tag', tag]" style="cursor: pointer;">#{{tag}}</md-chip>
-      </md-chip-list>
-    </div>
-  </md-card>
+      <div class="chips-nowrap" *ngIf="thingModel?.tags?.length > 0">
+        <md-chip-list>
+          <md-chip *ngFor="let tag of thingModel.tags" [routerLink]="['/tag', tag]" style="cursor: pointer;">#{{tag}}</md-chip>
+        </md-chip-list>
+      </div>
 
-  <md-card class="description fade-out" *ngIf="thingModel?.description?.content" [routerLink]="['/thing/description', thingModel.thing.id]">
-    <md-card-content [innerHTML]="thingModel.description.content"></md-card-content>
+      <div [routerLink]="['/thing/description', thingModel.thing.id]" *ngIf="thingModel?.description?.content" class="description"
+        [innerHTML]="thingModel.description.content"></div>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button [routerLink]="['/thing/description', thingModel.thing.id]" *ngIf="thingModel?.description?.content" md-raised-button>See more</button>
+    </md-card-actions>
   </md-card>
 
   <md-tab-group class="tabs" (selectChange)="onTabSelectChange($event)">

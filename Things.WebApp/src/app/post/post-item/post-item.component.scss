@@ -6,7 +6,13 @@
     display: block;
 }
 
-.post-content ::ng-deep .thing-ref {
-    color: #673ab7;
-    text-decoration: none;
+.post-content {
+    ::ng-deep .emojione {
+        width: 1rem;
+    }
+
+    ::ng-deep .thing-ref {
+        color: #673ab7;
+        text-decoration: none;
+    }
 }

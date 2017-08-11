@@ -15,16 +15,16 @@
 }
 
 .description {
-    margin-top: 10px; 
-    max-height: 50px; 
+    max-height: 52px; 
     overflow: hidden;
     cursor: pointer;
+    outline: none;
 
     ::ng-deep img {
         width: 100%;
     
         &.emojione {
-            width: initial;
+            width: 1rem;
         }
     }
 }
@@ -66,4 +66,8 @@
 
 .share-button {
     margin-top: 36px;
+}
+
+.thing-content ::ng-deep .mat-card-content {
+    margin-bottom: 0;
 }
