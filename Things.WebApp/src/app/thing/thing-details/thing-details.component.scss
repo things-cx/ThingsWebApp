@@ -57,6 +57,10 @@
     padding: 0px 2px;
 }
 
+.tabs ::ng-deep .mat-tab-label {
+    min-width: 110px;
+}
+
 //This button is in the Edit section as well
 .amazon-button {
     background-color: #ff9900; 

@@ -2,3 +2,7 @@
     float: left;
     cursor: pointer;
 }
+
+.panel ::ng-deep .mat-tab-label {
+    min-width: 55px;
+}
