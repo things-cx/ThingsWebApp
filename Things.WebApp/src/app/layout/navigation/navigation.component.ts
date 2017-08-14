@@ -6,6 +6,7 @@ import { AuthService } from 'app/shared/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { Title } from '@angular/platform-browser';
 import { TutorialService, TutorialArea } from 'app/tutorial/tutorial.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-navigation',
@@ -31,7 +32,10 @@ export class NavigationComponent implements OnInit {
     private titleService: Title,
     private location: Location,
     private tutorial: TutorialService) {
-    this.trackConsoleLogger();
+
+    if (environment.production) {
+      this.trackConsoleLogger();
+    }
   }
 
   trackConsoleLogger() {

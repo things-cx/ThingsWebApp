@@ -62,8 +62,8 @@
 </div>
 
 <div *ngIf="showConsoleLogs" class="console-logs">
-  <h3 i18n="hidden logs for admins|Heading for the Javascript console logs output@@layoutNavigationHeaderLink13">
-    Console Logs
+  <h3>
+    <span i18n="hidden logs for admins|Heading for the Javascript console logs output@@layoutNavigationHeaderLink13">Console Logs</span>
     <md-icon (click)="showConsoleLogs = !showConsoleLogs" class="close-button">close</md-icon>
   </h3>
   <div *ngFor="let log of consoleLogs">
