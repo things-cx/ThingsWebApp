@@ -15,7 +15,7 @@
 }
 
 .description {
-    max-height: 52px; 
+    max-height: 33px; 
     overflow: hidden;
     cursor: pointer;
     outline: none;
@@ -57,7 +57,13 @@
     padding: 0px 2px;
 }
 
-.tabs ::ng-deep .mat-tab-label {
+.tabs ::ng-deep .mat-tab-label:first-child:nth-last-child(4),
+.tabs ::ng-deep .mat-tab-label:first-child:nth-last-child(4) ~ * {
+    min-width: 137px;
+}
+
+.tabs ::ng-deep .mat-tab-label:first-child:nth-last-child(5),
+.tabs ::ng-deep .mat-tab-label:first-child:nth-last-child(5) ~ * {
     min-width: 110px;
 }
 
