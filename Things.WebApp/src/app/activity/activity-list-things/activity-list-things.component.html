@@ -1,4 +1,6 @@
 <md-card *ngFor="let activityItem of activityList" [routerLink]="['/activity/things', activityItem.thingId]" class="card-item">
+  <app-media-type style="float: left;" md-card-avatar [url]="activityItem?.thingMedia ? activityItem?.thingMedia[0] : ''" [thumbnail]="true"></app-media-type>
+  
   <div style="float: left;">
       <div><span *ngFor="let hierarchyItem of activityItem?.parentHierarchy">@{{hierarchyItem}}</span></div>
       <div *ngIf="activityItem?.parentHierarchy === null">@{{activityItem.thingTitle}}</div>

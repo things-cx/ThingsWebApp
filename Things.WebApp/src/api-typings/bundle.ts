@@ -2033,6 +2033,7 @@ export namespace Things.Api.ViewModels.Thing {
     export class GetThingThingsActivity {
         thingId: number;
         thingTitle: string;
+        thingMedia: string[];
         dateTimeCreated: number;
         version: number;
         hasDescription: boolean;
@@ -2534,6 +2535,7 @@ export namespace Things.Api.ViewModels.Post {
     export class ThingActivityListViewModel {
         thingId: number;
         thingTitle: string;
+        thingMedia: string[];
         unreadCount: number;
         dateTimeLastActivity: number;
         parentHierarchy: string[];

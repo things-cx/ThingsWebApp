@@ -1,21 +1,31 @@
 <div *ngFor="let activityItem of activities" class="activity-item">
   <md-card *ngIf="!activityItem.hasDescription" routerLink="/thing/{{activityItem.thingId}}">
-    <div><span *ngFor="let hierarchyItem of activityItem?.parentHierarchy">@{{hierarchyItem}}</span></div>
-    <div *ngIf="activityItem?.parentHierarchy === null">@{{activityItem.thingTitle}}</div>
-    <div class="date-time-created">{{activityItem.dateTimeCreated | date:'yMMMdjms'}}</div>
-    <div>
-      <md-icon>fiber_new</md-icon>
-      <span>Thing created</span>
+    <app-media-type style="float: left;" md-card-avatar [url]="activityItem?.thingMedia ? activityItem?.thingMedia[0] : ''" [thumbnail]="true"></app-media-type>
+
+    <div style="float: left;">
+      <div><span *ngFor="let hierarchyItem of activityItem?.parentHierarchy">@{{hierarchyItem}}</span></div>
+      <div *ngIf="activityItem?.parentHierarchy === null">@{{activityItem.thingTitle}}</div>
+      <div class="date-time-created">{{activityItem.dateTimeCreated | date:'yMMMdjms'}}</div>
+      <div>
+        <md-icon>fiber_new</md-icon>
+        <span>Thing created</span>
+      </div>
     </div>
+    <div style="clear: both;"></div>
   </md-card>
   <md-card *ngIf="activityItem.hasDescription" routerLink="/thing/description/{{activityItem.thingId}}/{{activityItem.version}}">
-    <div><span *ngFor="let hierarchyItem of activityItem?.parentHierarchy">@{{hierarchyItem}}</span></div>
-    <div *ngIf="activityItem?.parentHierarchy === null">@{{activityItem.thingTitle}}</div>
-    <div class="date-time-created">{{activityItem.dateTimeCreated | date:'yMMMdjms'}}</div>
-    <div>
-      <md-icon>update</md-icon>
-      <span>description update</span>
+    <app-media-type style="float: left;" md-card-avatar [url]="activityItem?.thingMedia ? activityItem?.thingMedia[0] : ''" [thumbnail]="true"></app-media-type>
+
+    <div style="float: left;">
+      <div><span *ngFor="let hierarchyItem of activityItem?.parentHierarchy">@{{hierarchyItem}}</span></div>
+      <div *ngIf="activityItem?.parentHierarchy === null">@{{activityItem.thingTitle}}</div>
+      <div class="date-time-created">{{activityItem.dateTimeCreated | date:'yMMMdjms'}}</div>
+      <div>
+        <md-icon>update</md-icon>
+        <span>description update</span>
+      </div>
     </div>
+    <div style="clear: both;"></div>
   </md-card>
 </div>
 
