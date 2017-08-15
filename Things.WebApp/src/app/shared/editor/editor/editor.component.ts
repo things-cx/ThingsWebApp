@@ -20,6 +20,7 @@ export class EditorComponent implements OnInit, OnChanges {
 
   @Input() thingModel: Things.Api.Models.ThingModel;
   @Output() onSave: EventEmitter<string> = new EventEmitter();
+  textAreaContent: string;
   viewPreviewScreen = false;
   hasLocalBackup = false;
   previewHTML = '';
@@ -38,6 +39,11 @@ export class EditorComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === 'thingModel') {
+        if (this.thingModel !== null && this.thingModel.description.content !== null) {
+          this.textAreaContent = this.thingModel.description.content;
+        } else {
+          this.textAreaContent = '';
+        }
         this.getLocalBackup();
       }
     }

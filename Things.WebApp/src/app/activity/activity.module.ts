@@ -7,6 +7,7 @@ import { ActivityListComponent } from './activity-list/activity-list.component';
 import { PostModule } from 'app/post/post.module';
 import { ActivityListPostsComponent } from './activity-list-posts/activity-list-posts.component';
 import { ActivityListThingsComponent } from './activity-list-things/activity-list-things.component';
+import { ThingsActivityComponent } from './things-activity/things-activity.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ActivityListThingsComponent } from './activity-list-things/activity-lis
     ActivityComponent,
     ActivityListComponent,
     ActivityListPostsComponent,
-    ActivityListThingsComponent
+    ActivityListThingsComponent,
+    ThingsActivityComponent
   ]
 })
 export class ActivityModule { }

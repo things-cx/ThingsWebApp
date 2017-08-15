@@ -1,0 +1,14 @@
+.date-time-created {
+    font-size: 0.9rem;
+    color: lightgray;
+}
+
+.activity-item {
+    margin-top: 10px;
+    cursor: pointer;
+    outline: none;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}

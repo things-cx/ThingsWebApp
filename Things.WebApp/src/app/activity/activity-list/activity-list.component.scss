@@ -1,19 +1,7 @@
-.date-last-activity {
-    font-size: 0.9rem;
-    color: lightgray;
-}
-
-.unread-count {
-    float: right;
-    background-color: #ffd740;
-    padding: 5px;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    text-align: center;
-}
-
 .tab-group ::ng-deep .mat-tab-label {
     min-width: 50% !important;
+}
+
+.tab-group ::ng-deep .mat-tab-body-content {
+    padding: 0px 2px;
 }

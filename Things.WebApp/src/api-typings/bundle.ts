@@ -536,6 +536,27 @@ export class ThingsController {
         };
         /**
         *
+        * TODO: Observable<null>
+        */
+        public readThingDescription(id: number, version?: number):
+        Observable<Things.Api.Models.ThingModel> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/readThingDescription/${id}/${version}`,
+                method: `get`,
+                body: null,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
         * TODO: Observable<viewModel>
         */
         public readThingChildren(id: number, viewModel: Things.Api.ViewModels.Thing.GetThingChildrenViewModel):
@@ -1248,6 +1269,48 @@ export class ThingsController {
                 .map((res) => this.httpService.extractData(res))
                 .catch((err) => this.httpService.handleError(err));
         };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public getThingActivityList(viewModel: Things.Api.ViewModels.SkipViewModel):
+        Observable<Things.Api.ViewModels.Post.ThingActivityListViewModel[]> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/getThingActivityList`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public getThingThingsActivity(id: number, viewModel: Things.Api.ViewModels.SkipViewModel):
+        Observable<Things.Api.ViewModels.Thing.GetThingThingsActivity[]> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/getThingThingsActivity/${id}`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
 }
 
 @Injectable()
@@ -1647,6 +1710,7 @@ export namespace Things.Api.Models {
         uId: string;
         thingType: Things.Api.Models.ThingType;
         title: string;
+        views: number;
         dateTimeCreated: number;
     }
 }
@@ -1962,6 +2026,17 @@ export namespace Things.Api.ViewModels.Thing {
 export namespace Things.Api.ViewModels.Post {
     export class GetThingPostsViewModel {
         skip: number;
+    }
+}
+
+export namespace Things.Api.ViewModels.Thing {
+    export class GetThingThingsActivity {
+        thingId: number;
+        thingTitle: string;
+        dateTimeCreated: number;
+        version: number;
+        hasDescription: boolean;
+        parentHierarchy: string[];
     }
 }
 
@@ -2315,6 +2390,7 @@ export namespace Things.Api.Models.Post {
         dateTimeCreated: number;
         likes: number;
         replies: number;
+        views: number;
     }
 }
 
@@ -2415,6 +2491,12 @@ export namespace AmazonProductAdvertising.Api.Model {
     }
 }
 
+export namespace Things.Api.ViewModels {
+    export class SkipViewModel {
+        skip: number;
+    }
+}
+
 export namespace Things.Api.Models.Payment {
     export class StripeChargeModel {
         status: string;
@@ -2484,6 +2566,7 @@ export namespace Things.Api.ViewModels.Thing {
 export namespace Things.Api.Models {
     export class ThingDescription {
         content: string;
+        views: number;
         dateTimeCreated: number;
     }
 }

@@ -1,3 +1,5 @@
 <md-card class="description" *ngIf="thingModel?.description?.content">
   <md-card-content [innerHTML]="thingModel.description.content"></md-card-content>
 </md-card>
+
+<md-spinner *ngIf="isProcessing"></md-spinner>

@@ -1,3 +1,23 @@
-<p>
-  Comming soon!
-</p>
+<md-card *ngFor="let activityItem of activityList" [routerLink]="['/activity/things', activityItem.thingId]" class="card-item">
+  <div style="float: left;">
+      <div><span *ngFor="let hierarchyItem of activityItem?.parentHierarchy">@{{hierarchyItem}}</span></div>
+      <div *ngIf="activityItem?.parentHierarchy === null">@{{activityItem.thingTitle}}</div>
+      <div class="date-last-activity">{{activityItem.dateTimeLastActivity | date:'yMMMdjms'}}</div>
+  </div>
+  <div class="unread-count" *ngIf="activityItem?.unreadCount > 0">{{activityItem.unreadCount}}</div>
+  <div style="clear: both;"></div>
+</md-card>
+
+<md-card *ngIf="activityList?.length <= 0 && !isProcessing" class="card-item">
+  <md-card-content>
+      <md-icon>do_not_disturb</md-icon>
+      <span>none of your followers have made any Things</span>
+  </md-card-content>
+</md-card>
+
+<br>
+
+<md-spinner *ngIf="isProcessing"></md-spinner>
+
+<!--Default should be hidden-->
+<button md-raised-button class="center" *ngIf="activityList?.length > 0 && activityList?.length % 10 == 0" (click)="loadMore()">Load more</button>

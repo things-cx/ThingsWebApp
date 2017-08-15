@@ -10,6 +10,7 @@ import { DescriptionComponent } from 'app/thing/description/description.componen
         RouterModule.forChild([
             { path: ':id', component: ThingDetailsComponent, data: { title: 'Thing' } },
             { path: 'description/:id', component: DescriptionComponent, data: { title: 'Description', nav: Navigation.Back } },
+            { path: 'description/:id/:version', component: DescriptionComponent, data: { title: 'Description', nav: Navigation.Back } },
             { path: ':id/:version', component: ThingDetailsComponent, data: { title: 'Thing' } },
         ])
     ],

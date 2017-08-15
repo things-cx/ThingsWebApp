@@ -16,29 +16,41 @@ export class DescriptionComponent implements OnInit {
 
   thingModel: Things.Api.Models.ThingModel;
   thingId: number;
-  isLoading = true;
+  version: number;
+  isProcessing = true;
 
   constructor(private thingsController: ThingsController,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.thingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id') && params.has('version')) {
+        this.version = +params.get('version');
+        this.thingId = +params.get('id');
 
-    // TODO: This should actually be onRouterParamChange and check other places as well
+      } else if (params.has('id')) {
+        this.version = null;
+        this.thingId = +params.get('id');
+      }
+
+      this.getThing();
+    });
+  }
+
+  getThing() {
+    window.scrollTo(0, 0);
+
+    // TODO: potentially allow for hierarchy to be passed into id param
     // TODO: catch error from server if any
-    if (this.thingModel == null) {
-      this.thingsController.readThing(this.thingId).subscribe(data => {
-        this.thingModel = data;
-        // Render markdown
-        this.thingModel.description.content = marked(this.thingModel.description.content);
-        // Render emoji
-        (<any>emojione).ascii = true;
-        this.thingModel.description.content = emojione.toImage(this.thingModel.description.content);
+    this.thingsController.readThingDescription(this.thingId, this.version).subscribe(data => {
+      this.thingModel = data;
+      // Render markdown
+      this.thingModel.description.content = marked(this.thingModel.description.content);
+      // Render emoji
+      (<any>emojione).ascii = true;
+      this.thingModel.description.content = emojione.toImage(this.thingModel.description.content);
 
-        this.isLoading = false;
-      });
-    } else {
-      this.isLoading = false;
-    }
+      this.isProcessing = false;
+    });
   }
 }
