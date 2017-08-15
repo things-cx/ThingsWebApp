@@ -70,7 +70,7 @@ export class AuthService implements CanActivate {
     public removeToken() {
         sessionStorage.clear();
         this.updateLogedInUserId(null);
-        this.router.navigate(['login']);
+        this.router.navigate(['login'], { queryParams: { returnUrl: this.router.url }});
     }
 
     public checkLogin(): boolean {

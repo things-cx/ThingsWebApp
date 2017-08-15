@@ -43,8 +43,8 @@ export class HttpService {
 
       } else if (statusCode === 401) { // Unauthorized
 
+        // This will redirect to the login page
         this.authService.removeToken();
-        this.router.navigate(['login']);
 
       } else if (statusCode === 403) { // Forbidden
       } else if (statusCode === 404) { // Not Found
