@@ -37,7 +37,7 @@
             <br><br>
         </div>
     </md-card-content>
-    <md-card-actions>
+    <md-card-actions align="end">
         <button md-raised-button *ngIf="!wasSignUp" color="primary" (click)="doneEditing()">Done</button>
 
         <button md-raised-button *ngIf="wasSignUp" color="accent" (click)="wasSignUp = !wasSignUp">Edit information</button>
