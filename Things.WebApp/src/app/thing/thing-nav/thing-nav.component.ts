@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { MdDialog } from '@angular/material';
 import { ReportDialogComponent } from 'app/thing/report-dialog/report-dialog.component';
 import { AuthService } from 'app/shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-thing-nav',
@@ -21,12 +22,21 @@ export class ThingNavComponent implements OnInit {
 
   constructor(private location: Location,
     public dialog: MdDialog,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() { }
 
   back() {
     this.location.back();
+  }
+
+  home() {
+    if (this.logedInUserId) {
+      this.router.navigate(['/activity']);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   goToAuthorizePublicThing() {
