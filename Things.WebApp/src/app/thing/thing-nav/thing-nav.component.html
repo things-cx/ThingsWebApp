@@ -7,15 +7,10 @@
     <button md-icon-button><md-icon>arrow_back</md-icon></button>
   </div>
 
+  <!--Hierarchy -->
   <div class="hierarchy-container">
     <div *ngFor="let item of parentHierarchy" [routerLink]="['/thing', item[0]]" class="hierarchy-item">{{item[1]}}</div>
   </div>
-  <!--Hierarchy -->
-  <!-- <div class="chips-nowrap" *ngIf="parentHierarchy != null">
-    <md-chip-list>
-      <md-chip *ngFor="let item of parentHierarchy" [routerLink]="['/thing', item[0]]" style="cursor: pointer;">{{item[1]}}</md-chip>
-    </md-chip-list>
-  </div> -->
 
   <button md-icon-button [mdMenuTriggerFor]="menu" style="position: absolute; right: 0; top: 0;">
     <md-icon>more_vert</md-icon>
