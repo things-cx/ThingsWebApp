@@ -1,33 +1,38 @@
-<app-post-item [postModel]="post" [clickable]="false"></app-post-item>
-
-<div *ngIf="post">
-    <span style="font-size: 20px;">reply to</span>
-    <md-icon>arrow_upward</md-icon>
-    <br><br>
-</div>
-
-<md-card>
+<md-card *ngIf="!isProcessing">
     <md-card-content>
+
+        <app-post-item [postModel]="post" [clickable]="false"></app-post-item>
+
+        <div *ngIf="post">
+            <span style="font-size: 20px;">reply to</span>
+            <md-icon>arrow_upward</md-icon>
+            <br><br>
+        </div>
+
         <md-spinner *ngIf="isLoadingReplyPost"></md-spinner>
 
         <img [src]="mediaUrl" *ngIf="mediaUrl !== null && mediaUrl !== ''" alt="post image" style="max-height: 150px; max-width: 150px;">
         <div *ngIf="formErrors?.media" class="validation-message">{{ formErrors.media }}</div>
 
-        <div #content contenteditable="true" (keydown)="onKeydown($event, content)" (keyup)="onSaveSelection()" (click)="onSaveSelection()" placeholder="Type a message..." id="box"></div>
+        <div #content contenteditable="true" (keydown)="onKeydown($event, content)" (keyup)="onSaveSelection()" (click)="onSaveSelection()"
+            placeholder="Type a message..." id="box"></div>
         <div *ngIf="formErrors?.content" class="validation-message">{{ formErrors.content }}</div>
         <button md-icon-button (click)="openMentionDialog(content);" mdTooltip="Mention">@</button>
         <app-emoji-panel (onInserted)="onEmojiInset($event)" mdTooltip="Emoji"></app-emoji-panel>
 
-        <span  *ngIf="mediaUrl === null || mediaUrl === ''">
+        <span *ngIf="mediaUrl === null || mediaUrl === ''">
             <app-media-upload (onImageUploaded)="onUrlSave($event)" mdTooltip="Upload"></app-media-upload>
             <app-gif-search (onGifSelect)="onUrlSave($event)" mdTooltip="Gif"></app-gif-search>            
         </span>
-
-        <md-spinner *ngIf="isProcessing"></md-spinner>
-
     </md-card-content>
     <md-card-actions>
         <button md-raised-button *ngIf="mediaUrl !== null && mediaUrl !== ''" color="warn" (click)="removeMedia()">Remove media</button>
         <button md-raised-button color="primary" type="button" (click)="createPost(content)">Post</button>
     </md-card-actions>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
 </md-card>

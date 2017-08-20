@@ -6,16 +6,17 @@
     </md-card-header>
 </md-card>
 
-<md-card *ngIf="things?.length <= 0 && !isProcessing" class="card-item">
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
+</md-card>
+
+<button md-raised-button class="center" *ngIf="things?.length > 0 && things?.length % 10 == 0" (click)="loadMore()">Load more</button>
+
+<md-card *ngIf="things?.length <= 0 && !isProcessing">
     <md-card-content>
         <md-icon>do_not_disturb</md-icon>
         <span>no Things found for tag "{{tag}}"</span>
     </md-card-content>
 </md-card>
-
-<br>
-
-<md-spinner *ngIf="isProcessing"></md-spinner>
-
-<!--Default should be hidden-->
-<button md-raised-button class="center" *ngIf="things?.length > 0 && things?.length % 10 == 0" (click)="loadMore()">Load more</button>

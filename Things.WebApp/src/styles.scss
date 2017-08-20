@@ -2,6 +2,11 @@
 @import url('~https://fonts.googleapis.com/icon?family=Material+Icons');
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+body {
+    margin: 0;
+    background-color: #f1f1f1;
+}
+
 .validation-message {
     color: red;
 }
@@ -12,11 +17,26 @@
 }
 
 .card-item {
-    margin-top: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
     outline: none;
 
-    &:first-child {
-        margin-top: 0;
+    // &:first-child {
+    //     margin-top: 0;
+    // }
+}
+
+.radio-group-vertical {
+    display: inline-flex;
+    flex-direction: column;
+
+    .radio-button-vertical {
+        margin: 5px;
     }
+}
+
+.preloader {
+    margin: 0 auto;
+    max-width: 25px;
+    max-height: 25px;
 }

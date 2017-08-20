@@ -14,7 +14,7 @@ export class MediaComponent implements OnInit {
 
   thing: Things.Api.Models.ThingModel;
   thingId: number;
-  isLoading = true;
+  isProcessing = true;
   mediaItems: string[] = [];
   editedMediaItems = false;
   hasHttpWarning: boolean;
@@ -31,20 +31,22 @@ export class MediaComponent implements OnInit {
       this.router.navigate(['/tutorial', TutorialArea.editThingMedia]);
     }
 
-    this.thingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.thingId = +params.get('id');
+        this.getThing();
+      }
+    });
+  }
 
-    // TODO: This should actually be onRouterParamChange and check other places as well
-    if (this.thing == null) {
-      this.thingsController.readThing(this.thingId).subscribe(data => {
-        this.thing = data;
-        this.isLoading = false;
-        if (this.thing.thing.media != null) {
-          this.mediaItems = this.thing.thing.media;
-        }
-      });
-    } else {
-      this.isLoading = false;
-    }
+  getThing() {
+    this.thingsController.readThing(this.thingId).subscribe(data => {
+      this.thing = data;
+      this.isProcessing = false;
+      if (this.thing.thing.media != null) {
+        this.mediaItems = this.thing.thing.media;
+      }
+    });
   }
 
   onCustomAdd(url: string) {

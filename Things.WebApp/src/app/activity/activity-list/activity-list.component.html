@@ -1,18 +1,24 @@
-<md-tab-group class="tab-group" (selectChange)="onTabSelectChange($event)">
-    <md-tab>
-        <ng-template md-tab-label>
-            <md-icon>menu</md-icon> Posts
-        </ng-template>
+<md-card style="padding-top: 0;">
+    <md-card-content>
 
-        <app-activity-list-posts *ngIf="viewedPostsTab" [officialPosts]="officialPosts"></app-activity-list-posts>
+        <md-tab-group class="tab-group" (selectChange)="onTabSelectChange($event)">
+            <md-tab>
+                <ng-template md-tab-label>
+                    <md-icon>menu</md-icon> Posts
+                </ng-template>
 
-    </md-tab>
-    <md-tab>
-        <ng-template md-tab-label>
-            <md-icon>title</md-icon> Things
-        </ng-template>
+                <app-activity-list-posts *ngIf="viewedPostsTab" [officialPosts]="officialPosts"></app-activity-list-posts>
 
-        <app-activity-list-things *ngIf="viewedThingsTab"></app-activity-list-things>
+            </md-tab>
+            <md-tab>
+                <ng-template md-tab-label>
+                    <md-icon>title</md-icon> Things
+                </ng-template>
 
-    </md-tab>
-</md-tab-group>
+                <app-activity-list-things *ngIf="viewedThingsTab"></app-activity-list-things>
+
+            </md-tab>
+        </md-tab-group>
+
+    </md-card-content>
+</md-card>

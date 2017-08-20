@@ -1,4 +1,4 @@
-<md-card>
+<md-card *ngIf="!isProcessing">
   <md-card-subtitle>
     Email us some constructive feedback
   </md-card-subtitle>
@@ -6,10 +6,14 @@
     <md-input-container style="display: block;">
       <textarea mdInput #inputArea rows="10" placeholder="type here..." style="width: 100%;"></textarea>
     </md-input-container>
-
-     <md-spinner *ngIf="isProcessing"></md-spinner> 
   </md-card-content>
   <md-card-actions>
     <button md-raised-button (click)="send(inputArea.value)">Send</button>
   </md-card-actions>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+  <md-card-content>
+    <md-spinner class="preloader"></md-spinner>
+  </md-card-content>
 </md-card>

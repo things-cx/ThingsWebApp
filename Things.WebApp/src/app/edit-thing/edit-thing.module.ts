@@ -19,6 +19,7 @@ import { EditorModule } from 'app/shared/editor/editor.module';
 import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
 import { AmazonComponent } from './amazon/amazon.component';
 import { AmazonController } from 'api-typings/bundle';
+import { ButtonsComponent } from './buttons/buttons.component';
 import {
   MdButtonModule,
   MdInputModule,
@@ -29,7 +30,8 @@ import {
   MdSnackBarModule,
   MdListModule,
   MdDialogModule,
-  MdExpansionModule
+  MdExpansionModule,
+  MdRadioModule
 } from '@angular/material';
 
 @NgModule({
@@ -50,7 +52,8 @@ import {
     ThingModule,
     EditorModule,
     MediaTypeModule,
-    MdExpansionModule
+    MdExpansionModule,
+    MdRadioModule
   ],
   declarations: [
     TagsComponent,
@@ -63,7 +66,8 @@ import {
     DeleteComponent,
     GifSearchComponent,
     PreviewMediaDialogComponent,
-    AmazonComponent
+    AmazonComponent,
+    ButtonsComponent
   ],
   providers: [
     MediaUploaderService,

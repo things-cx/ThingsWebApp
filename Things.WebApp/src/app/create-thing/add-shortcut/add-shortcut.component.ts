@@ -40,7 +40,11 @@ export class AddShortcutComponent implements OnInit {
       this.router.navigate(['/tutorial', TutorialArea.createShortcutThing]);
     }
 
-    this.shortcutThingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.shortcutThingId = +params.get('id');
+      }
+    });
 
     this.authService.logedInUserId$.subscribe(id => {
       this.logedInUserId = id;

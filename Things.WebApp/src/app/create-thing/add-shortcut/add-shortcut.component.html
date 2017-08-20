@@ -1,4 +1,4 @@
-<md-card>
+<md-card *ngIf="!isProcessing">
     <md-card-content>
         <form [formGroup]="form">
 
@@ -6,7 +6,6 @@
                 <p>Warning: For now you can only add a shortcut when you are logged in sort of</p>
                 <button md-raised-button color="warn" type="button" routerLink="/login">Login</button>
             </div>
-
 
             <br>
 
@@ -32,12 +31,15 @@
                 <md-option *ngFor="let thing of searchResults" [value]="thing.id">{{ thing.title }}</md-option>
             </md-select>
             <div *ngIf="formErrors?.parentThingId" class="validation-message">{{ formErrors.parentThingId }}</div>
-
-            <md-spinner *ngIf="isProcessing"></md-spinner>
-
         </form>
     </md-card-content>
     <md-card-actions>
         <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Proceed</button>
     </md-card-actions>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
 </md-card>

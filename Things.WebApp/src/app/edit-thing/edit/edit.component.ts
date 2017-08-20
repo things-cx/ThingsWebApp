@@ -15,7 +15,11 @@ export class EditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.thingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.thingId = +params.get('id');
+      }
+    });
 
     // TODO: don't think we are using this anymore
     this.route.queryParamMap.subscribe(queryParams => {

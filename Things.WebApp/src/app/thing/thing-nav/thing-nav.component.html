@@ -1,21 +1,18 @@
-<nav style="position: relative;">
-  <div (click)="home()" style="float: left; cursor: pointer;">
-    <button md-icon-button><md-icon>home</md-icon></button>
-  </div>
+<md-toolbar>
+  <button md-icon-button (click)="home()"><md-icon>home</md-icon></button>
 
-  <div (click)="back()" style="float: left; cursor: pointer;">
-    <button md-icon-button><md-icon>arrow_back</md-icon></button>
-  </div>
+  <button md-icon-button (click)="back()"><md-icon>arrow_back</md-icon></button>
 
   <!--Hierarchy -->
   <div class="hierarchy-container">
-    <div *ngFor="let item of parentHierarchy" [routerLink]="['/thing', item[0]]" class="hierarchy-item">{{item[1]}}</div>
+    <span *ngFor="let item of parentHierarchy" [routerLink]="['/thing', item[0]]" class="hierarchy-item">{{item[1]}}</span>
   </div>
 
-  <button md-icon-button [mdMenuTriggerFor]="menu" style="position: absolute; right: 0; top: 0;">
+  <span class="spacer"></span>
+
+  <button md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon>more_vert</md-icon>
   </button>
-  <div style="clear: both;"></div>
 
   <!--TODO: this menu should be in a seperate module. Don't need to load and execute code if not needed!-->
   <md-menu #menu="mdMenu">
@@ -37,4 +34,4 @@
     <button md-menu-item routerLink="/thing/7">Help</button>
     <button md-menu-item *ngIf="logedInUserId" (click)="logout()">Logout</button>
   </md-menu>
-</nav>
+</md-toolbar>

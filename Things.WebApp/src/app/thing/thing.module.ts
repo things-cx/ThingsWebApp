@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ClipboardModule } from 'ngx-clipboard';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ThingDetailsComponent } from './thing-details/thing-details.component';
 import { ThingChildrenComponent } from './thing-children/thing-children.component';
 import { ThingRoutingModule } from './thing-routing.module';
 import { ThingRelatedComponent } from './thing-related/thing-related.component';
 import { ShareDialogComponent } from './share-dialog/share-dialog.component';
-import { ClipboardModule } from 'ngx-clipboard';
 import { SearchUnderneathComponent } from './search-underneath/search-underneath.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ReportDialogComponent } from './report-dialog/report-dialog.component';
 import { ThingPostsComponent } from './thing-posts/thing-posts.component';
 import { PostModule } from 'app/post/post.module';
@@ -26,6 +26,8 @@ import { MediaViewerComponent } from './media-viewer/media-viewer.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 import { RootPublicThingDialogComponent } from './root-public-thing-dialog/root-public-thing-dialog.component';
 import { ShareOptionsDialogComponent } from './share-options-dialog/share-options-dialog.component';
+import { ThingUserDetailsComponent } from './thing-user-details/thing-user-details.component';
+import { ThingNavComponent } from './thing-nav/thing-nav.component';
 import {
   MdButtonModule,
   MdCardModule,
@@ -37,10 +39,9 @@ import {
   MdInputModule,
   MdAutocompleteModule,
   MdProgressSpinnerModule,
-  MdTabsModule
+  MdTabsModule,
+  MdToolbarModule
 } from '@angular/material';
-import { ThingUserDetailsComponent } from './thing-user-details/thing-user-details.component';
-import { ThingNavComponent } from './thing-nav/thing-nav.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { ThingNavComponent } from './thing-nav/thing-nav.component';
     MdProgressSpinnerModule,
     MdTabsModule,
     PostModule,
-    MediaTypeModule
+    MediaTypeModule,
+    MdToolbarModule
   ],
   entryComponents: [
     ShareDialogComponent,

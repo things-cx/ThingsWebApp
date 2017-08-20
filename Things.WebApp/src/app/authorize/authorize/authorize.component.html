@@ -1,4 +1,4 @@
-<md-card>
+<md-card *ngIf="!isProcessing">
     <md-card-content>
         <form [formGroup]="form">
 
@@ -6,12 +6,15 @@
                 <input mdInput formControlName="password" type="password" placeholder="password" required>
             </md-input-container>
             <div *ngIf="formErrors?.password" class="validation-message">{{ formErrors.password }}</div>
-
-            <br>
-
-            <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Unlock</button>
-            <md-spinner *ngIf="isProcessing"></md-spinner>
-
         </form>
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Unlock</button>
+    </md-card-actions>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
     </md-card-content>
 </md-card>

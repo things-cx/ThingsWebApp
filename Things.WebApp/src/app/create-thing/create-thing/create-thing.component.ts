@@ -36,7 +36,12 @@ export class CreateThingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.parentThingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.parentThingId = +params.get('id');
+      }
+    });
+
     this.route.queryParamMap.subscribe(params => {
       if (params.has('shortcut')) {
         this.isShortcutThing = params.get('shortcut') === 'true';

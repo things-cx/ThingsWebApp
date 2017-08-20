@@ -1,12 +1,8 @@
-<md-card>
+<md-card *ngIf="!isProcessing">
     <md-card-subtitle>
         Add one or more media items<br> Has to be <strong>square</strong> and <strong>120x120</strong>
     </md-card-subtitle>
     <md-card-content>
-        <md-spinner *ngIf="isLoading"></md-spinner>
-
-        <br>
-
         <span *ngFor="let item of mediaItems" style="display: inline-block;">
             <app-media-type [url]="item" [thumbnail]="false"></app-media-type>
             <button md-raised-button color="warn" (click)="onRemove(item)">Remove Image</button>
@@ -39,4 +35,10 @@
     <md-card-actions>
         <button md-raised-button color="primary" *ngIf="editedMediaItems" (click)="onSave()">Save</button>
     </md-card-actions>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
 </md-card>

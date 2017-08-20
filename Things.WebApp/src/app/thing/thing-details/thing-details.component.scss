@@ -29,28 +29,8 @@
     }
 }
 
-.fade-out:before {
-    content: '';
-    width: 100%;
-    height: 100%;    
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 24px;
-    background: -webkit-linear-gradient(transparent 35px, white);
-    background: -moz-linear-gradient(transparent 35px, white);
-    background: -o-linear-gradient(transparent 35px, white);
-    background: linear-gradient(transparent 35px, white);
-}
-
-.fade-out:after {
-    content: '';
-    width: 100%;
-    height: 24px;    
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: white;
+.tabs ::ng-deep .mat-tab-header {
+    border-top: 1px solid rgba(0,0,0,.12);
 }
 
 .tabs ::ng-deep .mat-tab-body-content {
@@ -59,12 +39,12 @@
 
 .tabs ::ng-deep .mat-tab-label:first-child:nth-last-child(4),
 .tabs ::ng-deep .mat-tab-label:first-child:nth-last-child(4) ~ * {
-    min-width: 137px;
+    min-width: 150px;
 }
 
 .tabs ::ng-deep .mat-tab-label:first-child:nth-last-child(5),
 .tabs ::ng-deep .mat-tab-label:first-child:nth-last-child(5) ~ * {
-    min-width: 110px;
+    min-width: 120px;
 }
 
 //This button is in the Edit section as well
@@ -76,8 +56,4 @@
 
 .share-button {
     margin-top: 36px;
-}
-
-.thing-content ::ng-deep .mat-card-content {
-    margin-bottom: 0;
 }

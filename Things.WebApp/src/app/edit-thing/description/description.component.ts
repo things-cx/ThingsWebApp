@@ -14,7 +14,7 @@ export class DescriptionComponent implements OnInit {
 
   thing: Things.Api.Models.ThingModel;
   thingId: number;
-  isLoading = true;
+  isProcessing = true;
   localStorageBackupKey = 'description_backup_';
 
   constructor(private thingsController: ThingsController,
@@ -29,18 +29,19 @@ export class DescriptionComponent implements OnInit {
       this.router.navigate(['/tutorial', TutorialArea.editThingDescription]);
     }
 
-    this.thingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.thingId = +params.get('id');
+        this.getThing();
+      }
+    });
+  }
 
-    // TODO: This should actually be onRouterParamChange and check other places as well
-    // TODO: catch error from server if any
-    if (this.thing == null) {
-      this.thingsController.readThing(this.thingId).subscribe(data => {
-        this.thing = data;
-        this.isLoading = false;
-      });
-    } else {
-      this.isLoading = false;
-    }
+  getThing() {
+    this.thingsController.readThing(this.thingId).subscribe(data => {
+      this.thing = data;
+      this.isProcessing = false;
+    });
   }
 
   onEditorSave(content: string) {

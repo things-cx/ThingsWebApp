@@ -1,13 +1,16 @@
-<md-card>
+<md-card *ngIf="!isProcessing">
     <md-card-subtitle>
-        Are you sure? <br>
-        All the sub Things underneath this Thing will also be deleted
+        Are you sure? <br> All the sub Things underneath this Thing will also be deleted
     </md-card-subtitle>
-
-    <md-spinner *ngIf="isLoading"></md-spinner>
 
     <md-card-actions>
         <button md-raised-button [routerLink]="['/edit', thingModel?.thing?.id]">No</button>
         <button md-raised-button color="warn" (click)="onDelete()">Yes</button>
     </md-card-actions>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
 </md-card>

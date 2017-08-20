@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ThingsController, Things } from 'api-typings/bundle';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-discover',
@@ -10,6 +11,7 @@ import { ThingsController, Things } from 'api-typings/bundle';
 export class DiscoverComponent implements OnInit {
 
   isProcessing = true;
+  error = false;
   model: Things.Api.ViewModels.Home.DiscoverViewModel;
   skip = 0;
 
@@ -24,6 +26,7 @@ export class DiscoverComponent implements OnInit {
       this.isProcessing = false;
     }, error => {
       this.isProcessing = false;
+      this.error = true;
     });
   }
 
@@ -38,5 +41,9 @@ export class DiscoverComponent implements OnInit {
       this.model.things = this.model.things.concat(data.things);
       this.isProcessing = false;
     });
+  }
+
+  reload() {
+    location.reload();
   }
 }

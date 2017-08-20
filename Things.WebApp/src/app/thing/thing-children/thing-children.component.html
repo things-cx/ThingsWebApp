@@ -30,6 +30,14 @@
     </md-card-content>
 </md-card>
 
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
+</md-card>
+
+<button md-raised-button class="center" *ngIf="things?.length > 0 && things?.length % 10 == 0" (click)="loadMore()">Load more</button>
+
 <md-card *ngIf="things?.length <= 0 && !isProcessing" class="card-item" (click)="openNoContentDialog()">
     <md-card-content>
         <md-icon>do_not_disturb</md-icon>
@@ -37,10 +45,3 @@
         <md-icon style="float: right;">info_outline</md-icon>
     </md-card-content>
 </md-card>
-
-<br>
-
-<md-spinner *ngIf="isProcessing"></md-spinner>
-
-<!--Default should be hidden-->
-<button md-raised-button class="center" *ngIf="things?.length > 0 && things?.length % 10 == 0" (click)="loadMore()">Load more</button>

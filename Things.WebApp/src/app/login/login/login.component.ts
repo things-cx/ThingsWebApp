@@ -33,7 +33,11 @@ export class LoginComponent implements OnInit {
 
     this.buildForm();
 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.route.queryParamMap.subscribe(params => {
+      if (params.has('returnUrl')) {
+        this.returnUrl = params.get('returnUrl') || '/';
+      }
+    });
   }
 
   buildForm() {

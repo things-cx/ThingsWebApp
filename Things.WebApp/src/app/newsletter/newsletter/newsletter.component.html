@@ -1,4 +1,4 @@
-<md-card>
+<md-card *ngIf="!isProcessing">
   <md-card-subtitle *ngIf="!removingEmail">
     Sign up for our newsletter
   </md-card-subtitle>
@@ -10,7 +10,6 @@
       <input mdInput #input type="text" placeholder="email" required>
     </md-input-container>
 
-    <md-spinner *ngIf="isProcessing"></md-spinner>
     <div *ngIf="message && !removingEmail" style="color: green;">We added you</div>
     <div *ngIf="message && removingEmail" style="color: red;">We removed you</div>
   </md-card-content>
@@ -18,4 +17,10 @@
     <button md-raised-button *ngIf="!removingEmail" (click)="add(input.value)">Add</button>
     <button md-raised-button color="warn" *ngIf="removingEmail" (click)="remove(input.value)">Remove</button>
   </md-card-actions>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+  <md-card-content>
+    <md-spinner class="preloader"></md-spinner>
+  </md-card-content>
 </md-card>

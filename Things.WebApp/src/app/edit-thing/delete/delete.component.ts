@@ -11,28 +11,32 @@ export class DeleteComponent implements OnInit {
 
   thingModel: Things.Api.Models.ThingModel;
   thingId: number;
-  isLoading = true;
+  isProcessing = true;
 
   constructor(private thingsController: ThingsController,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
-    this.thingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.thingId = +params.get('id');
+        this.getThing();
+      }
+    });
+  }
 
-    // TODO: This should actually be onRouterParamChange and check other places as well
-    if (this.thingModel == null) {
-      this.thingsController.readThing(this.thingId).subscribe(
-        data => {
-          this.thingModel = data;
-          this.isLoading = false;
-        });
-    } else {
-      this.isLoading = false;
-    }
+  getThing() {
+    this.thingsController.readThing(this.thingId).subscribe(
+      data => {
+        this.thingModel = data;
+        this.isProcessing = false;
+      });
   }
 
   onDelete() {
+    this.isProcessing = true;
+
     this.thingsController.deleteThing(this.thingId).subscribe(
       data => {
         if (data.id != null) {

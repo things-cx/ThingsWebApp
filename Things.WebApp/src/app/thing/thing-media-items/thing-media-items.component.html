@@ -1,15 +1,17 @@
 <img *ngFor="let post of posts" [src]="post.media" (click)="goToPost(post)" alt="post image" class="post-media-image">
 
-<md-card *ngIf="posts?.length <= 0 && !isProcessing" style="margin-top: 10px;" (click)="openNoContentDialog()">
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
+</md-card>
+
+<button md-raised-button class="center" *ngIf="posts?.length > 0 && posts?.length % 10 == 0" (click)="loadMore()">Load more</button>
+
+<md-card *ngIf="posts?.length <= 0 && !isProcessing" (click)="openNoContentDialog()" class="card-item">
     <md-card-content>
         <md-icon>do_not_disturb</md-icon>
         <span>no media found in posts</span>
         <md-icon style="float: right;">info_outline</md-icon>
     </md-card-content>
 </md-card>
-
-<br>
-
-<md-spinner *ngIf="isProcessing"></md-spinner>
-
-<button md-raised-button class="center" *ngIf="posts?.length > 0 && posts?.length % 10 == 0" (click)="loadMore()">Load more</button>

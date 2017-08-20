@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Things, ThingsController } from 'api-typings/bundle';
@@ -28,7 +27,11 @@ export class AuthorizeComponent implements OnInit {
 
   ngOnInit() {
     // This id has to be a root public thing ID
-    this.thingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.thingId = +params.get('id');
+      }
+    });
 
     this.buildForm();
   }

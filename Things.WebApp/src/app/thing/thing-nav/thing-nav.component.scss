@@ -1,22 +1,16 @@
-.chips-nowrap {
-    overflow: auto; 
-    white-space: nowrap;
-    float: left;
+.spacer {
+    flex: 1 1 auto;
 }
 
 .hierarchy-container {
-    overflow: auto; 
-    overflow-y: hidden;
-    padding: 10px;
-    margin-right: 40px;
+    overflow: hidden;
+    overflow-x: auto;
     
     .hierarchy-item {
         cursor: pointer;
-        background-color: #e0e0e0;
-        color: rgba(0,0,0,.87);
-        padding: 10px;
-        border-radius: 20px;
-        margin-right: 3px;
-        display: inline;
+        background-color: #fff;
+        padding: 8px;
+        border-radius: 24px;
+        margin-right: 5px;
     }
 }

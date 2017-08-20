@@ -40,7 +40,12 @@ export class CreatePublicThingComponent implements OnInit {
       this.router.navigate(['/tutorial', TutorialArea.createPublicThing]);
     }
 
-    this.parentThingId = +this.route.snapshot.params['id'] || null;
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.parentThingId = +params.get('id') || null;
+      }
+    });
+
     this.route.queryParamMap.subscribe(params => {
       if (params.has('shortcut')) {
         this.isShortcutThing = params.get('shortcut') === 'true';

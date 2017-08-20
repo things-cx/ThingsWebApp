@@ -38,24 +38,27 @@ export class AmazonComponent implements OnInit {
       this.router.navigate(['/tutorial', TutorialArea.editAmazon]);
     }
 
-    this.thingId = +this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.thingId = +params.get('id');
+        this.buildForm();
+        this.getThing();
+      }
+    });
+  }
 
-    this.buildForm();
+  getThing() {
+    this.thingsController.readThing(this.thingId).subscribe(data => {
+      this.thing = data;
 
-    // TODO: This should actually be onRouterParamChange and check other places as well
-    if (this.thing == null) {
-      this.thingsController.readThing(this.thingId).subscribe(data => {
-        this.thing = data;
+      if (this.thing.thing.amazonProductId != null) {
+        this.getCurrentAmazonProduct();
+      }
 
-        if (this.thing.thing.amazonProductId != null) {
-          this.getCurrentAmazonProduct();
-        }
-
-        // Initial search with Thing title
-        this.form.get('searchTerm').setValue(this.thing.thing.title);
-        this.search();
-      });
-    }
+      // Initial search with Thing title
+      this.form.get('searchTerm').setValue(this.thing.thing.title);
+      this.search();
+    });
   }
 
   buildForm() {

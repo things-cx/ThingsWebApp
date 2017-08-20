@@ -16,9 +16,14 @@
 </div>
 
 <h4 *ngIf="searchResults?.length > 0">Search results</h4>
-<md-spinner *ngIf="isProcessing"></md-spinner>
 
-<md-card *ngFor="let thing of searchResults" routerLink="/thing/{{thing.id}}" class="thing-item">
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
+</md-card>
+
+<md-card *ngFor="let thing of searchResults" routerLink="/thing/{{thing.id}}" class="card-item">
     <md-card-header>
         <app-media-type md-card-avatar [url]="thing?.media ? thing?.media[0] : ''" [thumbnail]="true"></app-media-type>
         <md-card-title>{{thing.title}}</md-card-title>
