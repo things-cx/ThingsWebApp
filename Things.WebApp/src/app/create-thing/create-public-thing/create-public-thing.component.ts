@@ -18,7 +18,7 @@ import 'rxjs/add/operator/map';
 })
 export class CreatePublicThingComponent implements OnInit {
 
-  parentThingId: number;
+  parentThingId: number = null;
   form: FormGroup;
   formErrors;
   isProcessing = false;
