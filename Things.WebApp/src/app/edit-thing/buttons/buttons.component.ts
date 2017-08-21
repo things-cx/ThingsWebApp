@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ThingsController, Things } from "api-typings/bundle";
 
 @Component({
   selector: 'app-buttons',
@@ -18,7 +19,8 @@ export class ButtonsComponent implements OnInit {
     'Website'
   ];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    private thingsController: ThingsController) { }
 
   ngOnInit() {
     // if (!this.tutorial.hasDoneTutorial(TutorialArea.editAmazon)) {
@@ -32,9 +34,33 @@ export class ButtonsComponent implements OnInit {
     });
   }
 
-  addButton() {
-    this.buttonType = null;
-    this.isAddingButton = false;
+  addLinkButton() {
+    const viewModel = new Things.Api.Models.Button.ButtonModel;
+    const button = new Things.Api.Models.Button.LinkButtonModel;
+    button.linkTitleType = null;
+    button.linkUrl = '';
+    viewModel.linkButtonModel = button;
+
+    this.addButton(viewModel);
+  }
+
+  addAppButton() {
+    const viewModel = new Things.Api.Models.Button.ButtonModel;
+    const button = new Things.Api.Models.Button.AppButtonModel;
+    button.appId = '';
+    viewModel.appButtonModel = button;
+
+    this.addButton(viewModel);
+  }
+
+  addButton(viewModel: Things.Api.Models.Button.ButtonModel) {
+    this.isProcessing = true;
+
+    this.thingsController.editThingButtons(this.thingId, viewModel).subscribe(data => {
+      this.buttonType = null;
+      this.isAddingButton = false;
+      this.isProcessing = false;
+    });
   }
 }
 

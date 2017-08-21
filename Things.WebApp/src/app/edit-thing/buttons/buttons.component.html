@@ -1,4 +1,4 @@
-<md-card>
+<md-card *ngIf="!isProcessing">
   <md-card-content>
     <div *ngIf="!isAddingButton">
       <h3>Buttons</h3>
@@ -57,7 +57,9 @@
     <button md-raised-button color="primary" *ngIf="!isAddingButton" (click)="isAddingButton = !isAddingButton">Add</button>
 
     <button md-raised-button *ngIf="buttonType" (click)="buttonType = null">Back</button>
-    <button md-raised-button color="primary" *ngIf="buttonType" (click)="addButton()">Done</button>
+
+    <button md-raised-button color="primary" *ngIf="buttonTypeEnum.link == buttonType" (click)="addLinkButton()">Done</button>
+    <button md-raised-button color="primary" *ngIf="buttonTypeEnum.app == buttonType" (click)="addAppButton()">Done</button>
   </md-card-actions>
 </md-card>
 

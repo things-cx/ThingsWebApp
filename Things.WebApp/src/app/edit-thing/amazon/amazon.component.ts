@@ -51,9 +51,9 @@ export class AmazonComponent implements OnInit {
     this.thingsController.readThing(this.thingId).subscribe(data => {
       this.thing = data;
 
-      if (this.thing.thing.amazonProductId != null) {
-        this.getCurrentAmazonProduct();
-      }
+      // if (this.thing.thing.amazonProductId != null) {
+      //   this.getCurrentAmazonProduct();
+      // }
 
       // Initial search with Thing title
       this.form.get('searchTerm').setValue(this.thing.thing.title);
@@ -72,7 +72,7 @@ export class AmazonComponent implements OnInit {
     this.isGettingCurrentProduct = true;
 
     const viewModel = new Things.Api.ViewModels.Amazon.AmazonSearchViewModel;
-    viewModel.term = this.thing.thing.amazonProductId;
+    // viewModel.term = this.thing.thing.amazonProductId;
     this.amazonController.itemLookup(viewModel).subscribe(
       data => {
         this.isGettingCurrentProduct = false;

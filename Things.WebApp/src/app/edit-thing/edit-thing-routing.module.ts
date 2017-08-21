@@ -18,7 +18,7 @@ import { ButtonsComponent } from 'app/edit-thing/buttons/buttons.component';
             { path: 'media/:id', component: MediaComponent, data: { title: 'Edit media', nav: Navigation.Back } },
             { path: 'delete/:id', component: DeleteComponent, data: { title: 'Delete Thing', nav: Navigation.Back } },
             { path: 'amazon/:id', component: AmazonComponent, data: { title: 'Edit amazon link', nav: Navigation.Back } },
-            { path: 'buttons/:id', component: ButtonsComponent, data: { title: 'Buttons', nav: Navigation.Back } }
+            { path: 'buttons/:id', component: ButtonsComponent, data: { title: 'Thing Buttons', nav: Navigation.Back } }
         ])
     ],
     exports: [RouterModule]

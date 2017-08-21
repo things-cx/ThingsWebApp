@@ -811,6 +811,48 @@ export class ThingsController {
         *
         * TODO: Observable<viewModel>
         */
+        public editThingButtons(id: number, viewModel: Things.Api.Models.Button.ButtonModel):
+        Observable<Things.Api.Models.Thing> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/editThingButtons/${id}`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public editPublicThingButtons(id: number, token: string, viewModel: Things.Api.Models.Button.ButtonModel):
+        Observable<Things.Api.Models.Thing> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/editPublicThingButtons/${id}?token=${encodeURIComponent(token)}`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
         public getPublicThingAuthToken(id: number, viewModel: Things.Api.ViewModels.Thing.ThingAuthTokenViewModel):
         Observable<Things.Api.ViewModels.Thing.AuthToken> {
 
@@ -1534,6 +1576,18 @@ export namespace Things.Api.ViewModels.Activity {
         descriptionChange = 3,
     }
 }
+export namespace Things.Api.Models.Button {
+    export class BaseButtonModel {
+        buttonType: Things.Api.Models.Button.ButtonType;
+        dateTimeCreated: number;
+    }
+}
+export namespace Things.Api.Models.Button {
+    export class AmazonButtonModel extends BaseButtonModel {
+        amazonProductId: string;
+    }
+}
+
 export namespace AmazonProductAdvertising.Api.Model {
     export class AmazonCartItem {
         asin: string;
@@ -1680,6 +1734,12 @@ export namespace AmazonProductAdvertising.Api.Model {
     }
 }
 
+export namespace Things.Api.Models.Button {
+    export class AppButtonModel extends BaseButtonModel {
+        appId: string;
+    }
+}
+
 export namespace AmazonProductAdvertising.Api.Model {
     export class Argument {
         name: string;
@@ -1703,6 +1763,8 @@ export namespace AmazonProductAdvertising.Api.Model {
         browseNodeLookupRequest: AmazonProductAdvertising.Api.Model.BrowseNodeLookupRequest;
     }
 }
+
+
 
 export namespace Things.Api.Models {
     export class BaseThing {
@@ -1760,6 +1822,28 @@ export namespace AmazonProductAdvertising.Api.Model {
     }
 }
 
+export namespace Things.Api.Models.Button {
+    export class ButtonModel {
+        linkButtonModel: Things.Api.Models.Button.LinkButtonModel;
+        appButtonModel: Things.Api.Models.Button.AppButtonModel;
+        amazonButtonModel: Things.Api.Models.Button.AmazonButtonModel;
+        donateButtonModel: Things.Api.Models.Button.DonateButtonModel;
+    }
+}
+
+export namespace Things.Api.Models.Button {
+    export enum ButtonType {
+        link = 1,
+        app = 2,
+        download = 3,
+        amazon = 4,
+        donate = 5,
+        addToCart = 6,
+        buy = 7,
+        viewJob = 8,
+        hireMe = 9,
+    }
+}
 export namespace AmazonProductAdvertising.Api.Model {
     export class Cart {
         request: AmazonProductAdvertising.Api.Model.Request;
@@ -1902,6 +1986,11 @@ export namespace Things.Api.ViewModels.Home {
     export class DiscoverViewModel {
         things: Things.Api.Models.ThingWithParents[];
         tags: Things.Api.Models.TagModel[];
+    }
+}
+
+export namespace Things.Api.Models.Button {
+    export class DonateButtonModel extends BaseButtonModel {
     }
 }
 
@@ -2270,6 +2359,19 @@ export namespace AmazonProductAdvertising.Api.Model {
     }
 }
 
+export namespace Things.Api.Models.Button {
+    export class LinkButtonModel extends BaseButtonModel {
+        linkTitleType: Things.Api.Models.Button.LinkTitleType;
+        linkUrl: string;
+    }
+}
+
+export namespace Things.Api.Models.Button {
+    export enum LinkTitleType {
+        contactUs = 1,
+        website = 2,
+    }
+}
 export namespace Things.Api.Models {
     export enum LogLevel {
         trace = 0,
@@ -2527,7 +2629,6 @@ export namespace Things.Api.Models {
         isVerified: boolean;
         likes: number;
         followers: number;
-        amazonProductId: string;
     }
 }
 
