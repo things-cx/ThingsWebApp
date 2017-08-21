@@ -1,3 +1,11 @@
+md-toolbar {
+    background-color: #673ab7;
+
+    md-icon {
+        color: white;
+    }
+}
+
 .spacer {
     flex: 1 1 auto;
 }
@@ -9,8 +17,8 @@
     .hierarchy-item {
         cursor: pointer;
         background-color: #fff;
-        padding: 8px;
-        border-radius: 24px;
+        padding: 5px;
+        border-radius: 16px;
         margin-right: 5px;
     }
 }
