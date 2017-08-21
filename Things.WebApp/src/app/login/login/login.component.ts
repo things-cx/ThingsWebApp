@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   formErrors;
   isProcessing = false;
-  returnUrl: string;
+  returnUrl = '/activity';
 
   constructor(private fb: FormBuilder,
     private userController: UserController,
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.route.queryParamMap.subscribe(params => {
       if (params.has('returnUrl')) {
-        this.returnUrl = params.get('returnUrl') || '/';
+        this.returnUrl = params.get('returnUrl') || '/activity';
       }
     });
   }

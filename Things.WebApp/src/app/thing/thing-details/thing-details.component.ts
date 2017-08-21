@@ -76,11 +76,11 @@ export class ThingDetailsComponent implements OnInit {
       this.thingsController.readThingForHierarchy(idParam).subscribe(
         data => {
           this.thingId = data;
-          this.loadThing()
+          this.loadThing();
         });
     } else {
       this.thingId = +idParam;
-      this.loadThing()
+      this.loadThing();
     }
   }
 
