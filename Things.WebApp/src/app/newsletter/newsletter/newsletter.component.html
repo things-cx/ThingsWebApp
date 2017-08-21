@@ -14,7 +14,7 @@
     <div *ngIf="message && removingEmail" style="color: red;">We removed you</div>
   </md-card-content>
   <md-card-actions>
-    <button md-raised-button *ngIf="!removingEmail" (click)="add(input.value)">Add</button>
+    <button md-raised-button color="primary" *ngIf="!removingEmail" (click)="add(input.value)">Join</button>
     <button md-raised-button color="warn" *ngIf="removingEmail" (click)="remove(input.value)">Remove</button>
   </md-card-actions>
 </md-card>
