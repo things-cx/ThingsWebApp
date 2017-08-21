@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { DiscoverComponent } from './discover/discover.component';
-import { SearchComponent } from './search/search.component';
 import { SearchRoutingModule } from './search-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
 import {
   MdInputModule,
@@ -32,8 +31,7 @@ import {
   ],
   declarations: [
     SearchBarComponent,
-    DiscoverComponent,
-    SearchComponent
+    DiscoverComponent
   ]
 })
 export class SearchModule { }
