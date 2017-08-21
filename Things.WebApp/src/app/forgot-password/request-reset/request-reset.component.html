@@ -1,17 +1,16 @@
-<md-card *ngIf="!isProcessing">
-  <md-card-content>
-    <form [formGroup]="form">
-
+<form [formGroup]="form">
+  <md-card *ngIf="!isProcessing">
+    <md-card-content>
       <md-input-container>
         <input mdInput formControlName="email" type="text" placeholder="email" required>
       </md-input-container>
       <div *ngIf="formErrors?.email" class="validation-message">{{ formErrors.email }}</div>
-    </form>
-    <md-card-actions>
-      <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Send</button>
-    </md-card-actions>
-  </md-card-content>
-</md-card>
+      <md-card-actions>
+        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Send</button>
+      </md-card-actions>
+    </md-card-content>
+  </md-card>
+</form>
 
 <md-card *ngIf="isProcessing">
   <md-card-content>

@@ -1,7 +1,9 @@
-<md-card *ngIf="!isProcessing">
-    <md-card-content>
-        Don't have an account please <button md-raised-button color="accent" type="button" routerLink="/create-user">Sign up</button>
-        <form [formGroup]="form">
+<form [formGroup]="form">
+    <md-card *ngIf="!isProcessing">
+        <md-card-content>
+            Don't have an account please <button md-raised-button color="accent" type="button" routerLink="/create-user">Sign up</button>
+
+            <br>
 
             <md-input-container>
                 <input mdInput formControlName="emailOrUserThingName" type="text" placeholder="email or user Thing name" required>
@@ -15,13 +17,14 @@
             </md-input-container>
             <div *ngIf="formErrors?.password" class="validation-message">{{ formErrors.password }}</div>
 
-        </form>
-    </md-card-content>
-    <md-card-actions>
-        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Log in</button>
-        <button md-raised-button type="button" routerLink="/forgot-password">Forgot password</button>
-    </md-card-actions>
-</md-card>
+
+        </md-card-content>
+        <md-card-actions>
+            <button md-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">Log in</button>
+            <button md-raised-button type="button" routerLink="/forgot-password">Forgot password</button>
+        </md-card-actions>
+    </md-card>
+</form>
 
 <md-card *ngIf="isProcessing">
     <md-card-content>
