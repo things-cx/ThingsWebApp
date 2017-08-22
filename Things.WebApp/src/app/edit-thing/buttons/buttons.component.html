@@ -1,67 +1,73 @@
-<md-card *ngIf="!isProcessing">
-  <md-card-content>
-    <div *ngIf="!isAddingButton">
-      <h3>Buttons</h3>
-    </div>
-
-    <div *ngIf="isAddingButton">
-      <div *ngIf="!buttonType">
-        <p>Navigate to any page with a url</p>
-        <button md-raised-button (click)="buttonType = buttonTypeEnum.link">Link</button>
-
-        <p>Navigate to App in app store</p>
-        <button md-raised-button (click)="buttonType = buttonTypeEnum.app">App</button>
-
-        <p>Start downloading file when clicked</p>
-        <button md-raised-button (click)="buttonType = buttonTypeEnum.download">Download</button>
-
-        <p>Link an Amazon item to open when clicked</p>
-        <button md-raised-button routerLink="/edit/amazon/{{thingId}}">Amazon</button>
-
-        <p>Donate or fund money when clicked</p>
-        <button md-raised-button (click)="buttonType = buttonTypeEnum.donate">Donate/Fund</button>
-
-        <p>Comming soon</p>
-        <button md-raised-button disabled>Add to cart</button>
-        <button md-raised-button disabled>Buy</button>
-        <button md-raised-button disabled>View job</button>
-        <button md-raised-button disabled>Hire me</button>
+<form [formGroup]="form">
+  <md-card *ngIf="!isProcessing">
+    <md-card-content>
+      <div *ngIf="!isAddingButton">
+        <h3>Buttons</h3>
       </div>
 
-      <div *ngIf="buttonTypeEnum.link == buttonType">
-        <h3>Link</h3>
-        <h4>Choose button text</h4>
-        <md-radio-group class="radio-group-vertical">
-          <md-radio-button class="radio-button-vertical" *ngFor="let title of linkButtonTitles" [value]="title">{{title}}</md-radio-button>
-        </md-radio-group>
-        <h4>Provide url to open</h4>
-        <md-input-container>
-          <input mdInput placeholder="link url">
-        </md-input-container>
+      <div *ngIf="isAddingButton">
+        <div *ngIf="!buttonType">
+          <p>Navigate to any page with a url</p>
+          <button md-raised-button (click)="buttonType = buttonTypeEnum.link">Link</button>
+
+          <p>Navigate to App in app store</p>
+          <button md-raised-button (click)="buttonType = buttonTypeEnum.app">App</button>
+
+          <p>Start downloading file when clicked</p>
+          <button md-raised-button (click)="buttonType = buttonTypeEnum.download">Download</button>
+
+          <p>Link an Amazon item to open when clicked</p>
+          <button md-raised-button routerLink="/edit/amazon/{{thingId}}">Amazon</button>
+
+          <p>Donate or fund money when clicked</p>
+          <button md-raised-button (click)="buttonType = buttonTypeEnum.donate">Donate/Fund</button>
+
+          <p>Comming soon</p>
+          <button md-raised-button disabled>Add to cart</button>
+          <button md-raised-button disabled>Buy</button>
+          <button md-raised-button disabled>View job</button>
+          <button md-raised-button disabled>Hire me</button>
+        </div>
+
+        <div *ngIf="buttonTypeEnum.link == buttonType">
+          <h3>Link</h3>
+          <h4>Choose button text</h4>
+          <md-radio-group class="radio-group-vertical"  formControlName="linkTitleType">
+            <md-radio-button class="radio-button-vertical" *ngFor="let title of linkButtonTitles" [value]="title.value">{{title.title}}</md-radio-button>
+          </md-radio-group>
+          <h4>Provide url to open</h4>
+          <md-input-container>
+            <input mdInput formControlName="linkUrl" placeholder="http://example.com">
+          </md-input-container>
+        </div>
+
+        <div *ngIf="buttonTypeEnum.app == buttonType">
+          <h4>App</h4>
+          <h4>Provide unique app ID</h4>
+          <md-input-container>
+            <input mdInput formControlName="appId" placeholder="app ID">
+          </md-input-container>
+        </div>
+
+        <div *ngIf="buttonTypeEnum.download == buttonType">
+          <h4>Download</h4>
+        </div>
+
+        <div *ngIf="buttonTypeEnum.donate == buttonType">
+          <h4>Donate/Fund</h4>
+        </div>
       </div>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-raised-button color="primary" *ngIf="!isAddingButton" (click)="isAddingButton = !isAddingButton">Add</button>
 
-      <div *ngIf="buttonTypeEnum.app == buttonType">
-        <h4>App</h4>
-      </div>
+      <button md-raised-button *ngIf="buttonType" (click)="buttonType = null">Back</button>
 
-      <div *ngIf="buttonTypeEnum.download == buttonType">
-        <h4>Download</h4>
-      </div>
-
-      <div *ngIf="buttonTypeEnum.donate == buttonType">
-        <h4>Donate/Fund</h4>
-      </div>
-    </div>
-  </md-card-content>
-  <md-card-actions align="end">
-    <button md-raised-button color="primary" *ngIf="!isAddingButton" (click)="isAddingButton = !isAddingButton">Add</button>
-
-    <button md-raised-button *ngIf="buttonType" (click)="buttonType = null">Back</button>
-
-    <button md-raised-button color="primary" *ngIf="buttonTypeEnum.link == buttonType" (click)="addLinkButton()">Done</button>
-    <button md-raised-button color="primary" *ngIf="buttonTypeEnum.app == buttonType" (click)="addAppButton()">Done</button>
-  </md-card-actions>
-</md-card>
+      <button md-raised-button color="primary" *ngIf="buttonTypeEnum.link == buttonType" (click)="addLinkButton()">Done</button>
+      <button md-raised-button color="primary" *ngIf="buttonTypeEnum.app == buttonType" (click)="addAppButton()">Done</button>
+    </md-card-actions>
+  </md-card>
+</form>
 
 <md-card *ngIf="isProcessing">
   <md-card-content>

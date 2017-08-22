@@ -120,21 +120,23 @@ export class AmazonComponent implements OnInit {
   }
 
   onChoose(item: AmazonProductAdvertising.Api.Model.Item) {
-    const viewModel = new Things.Api.ViewModels.Thing.Edit.EditThingAmazonLinkViewModel;
-    viewModel.amazonProductId = item.asin;
+    const viewModel = new Things.Api.Models.Button.ButtonModel;
+    const button = new Things.Api.Models.Button.AmazonButtonModel;
+    button.amazonProductId = item.asin;
+    viewModel.amazonButtonModel = button;
 
     // TODO: thing could be null. Fix in all edit pages
     const rootPublicThingId = this.publicThingService.getRootThingIdFromThing(this.thing.parentHierarchy, this.thing.thing.id);
     if (rootPublicThingId === null) {
-      this.thingsController.editThingAmazonLink(this.thingId, viewModel).subscribe(data => {
-        const link = ['/edit', this.thingId];
+      this.thingsController.editThingButtons(this.thingId, viewModel).subscribe(data => {
+        const link = ['/buttons', this.thingId];
         this.router.navigate(link);
       });
     } else {
       const token = this.publicThingService.getPublicThingValue(rootPublicThingId);
       if (token !== null) {
-        this.thingsController.editPublicThingAmazonLink(this.thingId, token, viewModel).subscribe(data => {
-          const link = ['/edit', this.thingId];
+        this.thingsController.editPublicThingButtons(this.thingId, token, viewModel).subscribe(data => {
+          const link = ['/buttons', this.thingId];
           this.router.navigate(link);
         });
       } else {
