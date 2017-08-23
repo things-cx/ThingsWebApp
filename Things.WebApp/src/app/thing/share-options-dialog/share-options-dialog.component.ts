@@ -13,6 +13,7 @@ export class ShareOptionsDialogComponent {
 
   @Input() thingId: number;
   @Input() thingTitle: string;
+  @Input() logedInUserId: number;
 
   constructor(private dialog: MdDialog,
     private router: Router) { }

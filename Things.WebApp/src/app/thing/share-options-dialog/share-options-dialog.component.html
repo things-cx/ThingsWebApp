@@ -7,8 +7,10 @@
 
   <div style="clear: both;"></div>
 
-  <button md-raised-button (click)="openCreatePost()">Write post</button>
-  <br><br>
+  <div *ngIf="logedInUserId">
+    <button md-raised-button (click)="openCreatePost()">Write post</button>
+    <br><br>
+  </div>
   <button md-raised-button (click)="openShareDialog()">Copy link</button>
   <br><br>
 </md-dialog-content>

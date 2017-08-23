@@ -148,6 +148,7 @@ export class ThingDetailsComponent implements OnInit {
     const dialogRef = this.dialog.open(ShareOptionsDialogComponent);
     dialogRef.componentInstance.thingTitle = this.thingModel.thing.title;
     dialogRef.componentInstance.thingId = this.thingModel.thing.id;
+    dialogRef.componentInstance.logedInUserId = this.logedInUserId;
   }
 
   openReportDialog() {
