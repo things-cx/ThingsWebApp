@@ -9,27 +9,29 @@
     </button>
 
     <app-media-viewer [media]="thingModel?.thing?.media" style="display: block; float: left;"></app-media-viewer>
-    <h3 style="float: left; margin-left: 20px;">
+    <h2 style="float: left; margin-left: 20px;">
       {{thingModel.thing.title}}
       <md-icon *ngIf="thingModel.thing.isVerified" class="example-icon">verified_user</md-icon>
       <button md-icon-button *ngIf="isRootPublicThing" (click)="openRootPublicThingAppendDialog()">
         <md-icon>info_outline</md-icon>
       </button>
-    </h3>
+    </h2>
     <div style="clear: both;"></div>
 
-    <!--TODO: warning. I think this the tag and even the item could easily be replaced by browser extensions. make it more difficult to change-->
-    <!--TODO: rather create details page with product info to keep user on the Things platform-->
-    <button md-raised-button style="width: 100%;" color="primary" *ngIf="thingModel.thing.id === 1" (click)="donateToThings()">Donate</button>
-    <a md-raised-button class="amazon-button" rel="noopener noreferrer" target="_blank" *ngIf="thingModel.thing.amazonProductId"
-      href="https://www.amazon.com/dp/{{thingModel.thing.amazonProductId}}/?tag=things0b9-20">Amazon item</a>
+    <app-thing-buttons [buttons]="thingModel.buttons"></app-thing-buttons>
 
-    <div style="float: left;">
+    <span style="float: left; margin-top: 10px;">
       <button md-button [routerLink]="['/followers', thingModel.thing.id]">
         <span *ngIf="thingModel.thing.followers === 1">{{thingModel.thing.followers}} follower</span>
-        <span *ngIf="thingModel.thing.followers !== 1">{{thingModel.thing.followers}} followers</span>
+    <span *ngIf="thingModel.thing.followers !== 1">{{thingModel.thing.followers}} followers</span>
+    </button>
+    <button md-button [routerLink]="['/likes', thingModel.thing.id]">
+        <span *ngIf="thingModel.thing.likes === 1">{{thingModel.thing.likes}} like</span>
+        <span *ngIf="thingModel.thing.likes !== 1">{{thingModel.thing.likes}} likes</span>
       </button>
-      <br>
+    </span>
+
+    <span style="float: right; margin-top: 10px; margin-right: 1%;">
       <button md-raised-button [disabled]="isProcessingFollow || thingModel.parentThingFollowId !== null" *ngIf="logedInUserId && !thingModel.followed && thingModel.parentThingFollowId === null"
         (click)="follow()">
         <md-icon style="color: #aab8c2;">person_add</md-icon> follow
@@ -40,14 +42,7 @@
         <md-icon style="color: green;">person</md-icon> unfollow
         <md-spinner *ngIf="isProcessingFollow" class="inline-preloader"></md-spinner>
       </button>
-    </div>
 
-    <div style="float: left;">
-      <button md-button [routerLink]="['/likes', thingModel.thing.id]">
-        <span *ngIf="thingModel.thing.likes === 1">{{thingModel.thing.likes}} like</span>
-        <span *ngIf="thingModel.thing.likes !== 1">{{thingModel.thing.likes}} likes</span>
-      </button>
-      <br>
       <button md-raised-button [disabled]="isProcessingLike" *ngIf="logedInUserId && !thingModel.liked" (click)="like()">
         <md-icon style="color: #aab8c2;">favorite</md-icon> like
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
@@ -56,13 +51,11 @@
         <md-icon style="color: #f44336;">favorite</md-icon> unlike
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
       </button>
-    </div>
 
-    <div style="float: left;">
-      <button md-raised-button (click)="openShareDialog()" [class.share-button]="logedInUserId">
+      <button md-raised-button (click)="openShareDialog()">
         <md-icon style="color: #aab8c2;">share</md-icon> share
       </button>
-    </div>
+    </span>
     <div style="clear: both;"></div>
 
     <div class="chips-nowrap" *ngIf="thingModel?.tags?.length > 0">
@@ -74,9 +67,8 @@
     <div [routerLink]="['/thing/description', thingModel.thing.id]" *ngIf="thingModel?.description?.content" class="description"
       [innerHTML]="thingModel.description.content"></div>
 
-    <button [routerLink]="['/thing/description', thingModel.thing.id]" *ngIf="thingModel?.description?.content" md-raised-button>See more</button>
-
-    <br>
+    <button class="center" [routerLink]="['/thing/description', thingModel.thing.id]" *ngIf="thingModel?.description?.content"
+      md-raised-button>See more</button>
 
     <md-tab-group class="tabs" (selectChange)="onTabSelectChange($event)">
       <md-tab>
@@ -88,13 +80,13 @@
 
           <div *ngIf="showAuthorizedMenuItems">
             <button md-raised-button (click)="goToCreateThing()" style="width: 49%;">
-                  <md-icon>add</md-icon>
-                  Create sub Thing
-                </button>
+              <md-icon>add</md-icon>
+              Create sub Thing
+            </button>
             <button md-raised-button *ngIf="thingModel.thing.id != 2" (click)="goToCreateShortcutThing()" style="width: 49%;">
-                  <md-icon>insert_link</md-icon>
-                  Create shortcut
-                </button>
+              <md-icon>insert_link</md-icon>
+              Create shortcut
+            </button>
           </div>
 
           <app-search-underneath [thingId]="thingModel.thing.id"></app-search-underneath>
