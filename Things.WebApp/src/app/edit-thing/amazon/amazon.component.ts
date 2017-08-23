@@ -120,7 +120,7 @@ export class AmazonComponent implements OnInit {
   }
 
   onChoose(item: AmazonProductAdvertising.Api.Model.Item) {
-    const viewModel = new Things.Api.Models.Button.ButtonModel;
+    const viewModel = new Things.Api.ViewModels.Thing.Edit.EditThingButtonsViewModel;
     const button = new Things.Api.Models.Button.AmazonButtonModel;
     button.amazonProductId = item.asin;
     viewModel.amazonButtonModel = button;
@@ -129,14 +129,14 @@ export class AmazonComponent implements OnInit {
     const rootPublicThingId = this.publicThingService.getRootThingIdFromThing(this.thing.parentHierarchy, this.thing.thing.id);
     if (rootPublicThingId === null) {
       this.thingsController.editThingButtons(this.thingId, viewModel).subscribe(data => {
-        const link = ['/buttons', this.thingId];
+        const link = ['edit/buttons', this.thingId];
         this.router.navigate(link);
       });
     } else {
       const token = this.publicThingService.getPublicThingValue(rootPublicThingId);
       if (token !== null) {
         this.thingsController.editPublicThingButtons(this.thingId, token, viewModel).subscribe(data => {
-          const link = ['/buttons', this.thingId];
+          const link = ['edit/buttons', this.thingId];
           this.router.navigate(link);
         });
       } else {

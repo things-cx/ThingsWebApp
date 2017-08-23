@@ -40,3 +40,8 @@ body {
     max-width: 25px;
     max-height: 25px;
 }
+
+//Overide md-card styles
+md-card[hidden] { 
+    display: none; 
+}

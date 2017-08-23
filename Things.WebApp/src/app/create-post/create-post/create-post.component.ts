@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Things, ThingsController, PostController } from 'api-typings/bundle';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormService } from 'app/shared/form.service';
@@ -37,7 +37,6 @@ export class CreatePostComponent implements OnInit {
       this.router.navigate(['/tutorial', TutorialArea.createPost]);
     }
 
-    // TODO: don't do this!
     this.content.nativeElement.focus();
     this.saveSelection();
 

@@ -2,27 +2,28 @@
   <md-card *ngIf="!isProcessing">
     <md-card-content>
       <div *ngIf="!isAddingButton">
-        <h3>Buttons</h3>
+        <div *ngIf="thing?.buttons === null || thing?.buttons?.length <= 0">
+          You don't have any buttons on this Thing. Add some.
+        </div>
+        <app-thing-buttons [buttons]="thing?.buttons"></app-thing-buttons>
       </div>
 
       <div *ngIf="isAddingButton">
         <div *ngIf="!buttonType">
           <p>Navigate to any page with a url</p>
           <button md-raised-button (click)="buttonType = buttonTypeEnum.link">Link</button>
-
-          <p>Navigate to App in app store</p>
-          <button md-raised-button (click)="buttonType = buttonTypeEnum.app">App</button>
-
-          <p>Start downloading file when clicked</p>
-          <button md-raised-button (click)="buttonType = buttonTypeEnum.download">Download</button>
+          <button color="warn" *ngIf="isRemovingButton && showRemoveButton(buttonTypeEnum.link)" md-raised-button (click)="removeButton(buttonTypeEnum.link)">Remove</button>
+          
+          <p>Donate or fund money when clicked</p>
+          <button md-raised-button (click)="buttonType = buttonTypeEnum.donate">Donate/Fund</button>
+          <button color="warn" *ngIf="isRemovingButton && showRemoveButton(buttonTypeEnum.donate)" md-raised-button (click)="removeButton(buttonTypeEnum.donate)">Remove</button>
 
           <p>Link an Amazon item to open when clicked</p>
           <button md-raised-button routerLink="/edit/amazon/{{thingId}}">Amazon</button>
-
-          <p>Donate or fund money when clicked</p>
-          <button md-raised-button (click)="buttonType = buttonTypeEnum.donate">Donate/Fund</button>
+          <button color="warn" *ngIf="isRemovingButton && showRemoveButton(buttonTypeEnum.amazon)" md-raised-button (click)="removeButton(buttonTypeEnum.amazon)">Remove</button>
 
           <p>Comming soon</p>
+          <button md-raised-button disabled>Download</button>
           <button md-raised-button disabled>Add to cart</button>
           <button md-raised-button disabled>Buy</button>
           <button md-raised-button disabled>View job</button>
@@ -32,7 +33,7 @@
         <div *ngIf="buttonTypeEnum.link == buttonType">
           <h3>Link</h3>
           <h4>Choose button text</h4>
-          <md-radio-group class="radio-group-vertical"  formControlName="linkTitleType">
+          <md-radio-group class="radio-group-vertical" formControlName="linkTitleType">
             <md-radio-button class="radio-button-vertical" *ngFor="let title of linkButtonTitles" [value]="title.value">{{title.title}}</md-radio-button>
           </md-radio-group>
           <h4>Provide url to open</h4>
@@ -41,30 +42,19 @@
           </md-input-container>
         </div>
 
-        <div *ngIf="buttonTypeEnum.app == buttonType">
-          <h4>App</h4>
-          <h4>Provide unique app ID</h4>
-          <md-input-container>
-            <input mdInput formControlName="appId" placeholder="app ID">
-          </md-input-container>
-        </div>
-
-        <div *ngIf="buttonTypeEnum.download == buttonType">
-          <h4>Download</h4>
-        </div>
-
         <div *ngIf="buttonTypeEnum.donate == buttonType">
           <h4>Donate/Fund</h4>
         </div>
       </div>
     </md-card-content>
     <md-card-actions align="end">
+      <button md-raised-button color="warn" *ngIf="!isAddingButton && thing?.buttons?.length > 0" (click)="isRemovingButton = true; isAddingButton = true;">Remove</button>
       <button md-raised-button color="primary" *ngIf="!isAddingButton" (click)="isAddingButton = !isAddingButton">Add</button>
 
-      <button md-raised-button *ngIf="buttonType" (click)="buttonType = null">Back</button>
+      <button md-raised-button *ngIf="isAddingButton" (click)="buttonType = null; isAddingButton = false; isRemovingButton = false;">Back</button>
 
       <button md-raised-button color="primary" *ngIf="buttonTypeEnum.link == buttonType" (click)="addLinkButton()">Done</button>
-      <button md-raised-button color="primary" *ngIf="buttonTypeEnum.app == buttonType" (click)="addAppButton()">Done</button>
+      <button md-raised-button color="primary" *ngIf="buttonTypeEnum.donate == buttonType" (click)="addDonateButton()">Done</button>
     </md-card-actions>
   </md-card>
 </form>

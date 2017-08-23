@@ -1,0 +1,20 @@
+<!--TODO: warning. I think this the tag and even the item could easily be replaced by browser extensions. make it more difficult to change-->
+<!--TODO: rather create details page with product info to keep user on the Things platform-->
+<!-- <button md-raised-button style="width: 100%;" color="primary" *ngIf="thingModel.thing.id === 1" (click)="donateToThings()">Donate</button> -->
+
+<span class="thing-button" *ngFor="let button of buttons">
+<a rel="noopener noreferrer" [style.width]="(98 / buttons.length) + '%'" md-raised-button *ngIf="button['buttonType'] === 1" href="{{button['linkUrl']}}" target="_blank">
+<span *ngIf="button['linkTitleType'] === 1">Contact us</span>
+<span *ngIf="button['linkTitleType'] === 2">Website</span>
+<span *ngIf="button['linkTitleType'] === 3">App</span>
+<md-icon>open_in_new</md-icon>
+</a>
+<a rel="noopener noreferrer" [style.width]="(98 / buttons.length) + '%'" md-raised-button *ngIf="button['buttonType'] === 2" href="#" target="_blank">
+<span>Donate</span>
+<md-icon>open_in_new</md-icon>
+</a>
+<a rel="noopener noreferrer" [style.width]="(98 / buttons.length) + '%'" md-raised-button *ngIf="button['buttonType'] === 4" href="https://www.amazon.com/dp/{{button['amazonProductId']}}/?tag=things0b9-20" target="_blank">
+<span>Amazon</span>
+<md-icon>open_in_new</md-icon>
+</a>
+</span>

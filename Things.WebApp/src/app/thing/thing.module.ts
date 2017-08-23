@@ -28,6 +28,7 @@ import { RootPublicThingDialogComponent } from './root-public-thing-dialog/root-
 import { ShareOptionsDialogComponent } from './share-options-dialog/share-options-dialog.component';
 import { ThingUserDetailsComponent } from './thing-user-details/thing-user-details.component';
 import { ThingNavComponent } from './thing-nav/thing-nav.component';
+import { ThingButtonsModule } from 'app/shared/thing-buttons/thing-buttons.module';
 import {
   MdButtonModule,
   MdCardModule,
@@ -62,7 +63,8 @@ import {
     MdTabsModule,
     PostModule,
     MediaTypeModule,
-    MdToolbarModule
+    MdToolbarModule,
+    ThingButtonsModule
   ],
   entryComponents: [
     ShareDialogComponent,

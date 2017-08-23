@@ -811,7 +811,7 @@ export class ThingsController {
         *
         * TODO: Observable<viewModel>
         */
-        public editThingButtons(id: number, viewModel: Things.Api.Models.Button.ButtonModel):
+        public editThingButtons(id: number, viewModel: Things.Api.ViewModels.Thing.Edit.EditThingButtonsViewModel):
         Observable<Things.Api.Models.Thing> {
 
             let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -832,7 +832,7 @@ export class ThingsController {
         *
         * TODO: Observable<viewModel>
         */
-        public editPublicThingButtons(id: number, token: string, viewModel: Things.Api.Models.Button.ButtonModel):
+        public editPublicThingButtons(id: number, token: string, viewModel: Things.Api.ViewModels.Thing.Edit.EditThingButtonsViewModel):
         Observable<Things.Api.Models.Thing> {
 
             let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -1578,7 +1578,7 @@ export namespace Things.Api.ViewModels.Activity {
 }
 export namespace Things.Api.Models.Button {
     export class BaseButtonModel {
-        buttonType: Things.Api.Models.Button.ButtonType;
+        buttonType: number;
         dateTimeCreated: number;
     }
 }
@@ -1734,12 +1734,6 @@ export namespace AmazonProductAdvertising.Api.Model {
     }
 }
 
-export namespace Things.Api.Models.Button {
-    export class AppButtonModel extends BaseButtonModel {
-        appId: string;
-    }
-}
-
 export namespace AmazonProductAdvertising.Api.Model {
     export class Argument {
         name: string;
@@ -1823,25 +1817,15 @@ export namespace AmazonProductAdvertising.Api.Model {
 }
 
 export namespace Things.Api.Models.Button {
-    export class ButtonModel {
-        linkButtonModel: Things.Api.Models.Button.LinkButtonModel;
-        appButtonModel: Things.Api.Models.Button.AppButtonModel;
-        amazonButtonModel: Things.Api.Models.Button.AmazonButtonModel;
-        donateButtonModel: Things.Api.Models.Button.DonateButtonModel;
-    }
-}
-
-export namespace Things.Api.Models.Button {
     export enum ButtonType {
         link = 1,
-        app = 2,
+        donate = 2,
         download = 3,
         amazon = 4,
-        donate = 5,
-        addToCart = 6,
-        buy = 7,
-        viewJob = 8,
-        hireMe = 9,
+        addToCart = 5,
+        buy = 6,
+        viewJob = 7,
+        hireMe = 8,
     }
 }
 export namespace AmazonProductAdvertising.Api.Model {
@@ -2005,6 +1989,15 @@ export namespace AmazonProductAdvertising.Api.Model {
 export namespace Things.Api.ViewModels.Thing.Edit {
     export class EditThingAmazonLinkViewModel {
         amazonProductId: string;
+    }
+}
+
+export namespace Things.Api.ViewModels.Thing.Edit {
+    export class EditThingButtonsViewModel {
+        linkButtonModel: Things.Api.Models.Button.LinkButtonModel;
+        amazonButtonModel: Things.Api.Models.Button.AmazonButtonModel;
+        donateButtonModel: Things.Api.Models.Button.DonateButtonModel;
+        buttonTypeToDelete: number;
     }
 }
 
@@ -2361,7 +2354,7 @@ export namespace AmazonProductAdvertising.Api.Model {
 
 export namespace Things.Api.Models.Button {
     export class LinkButtonModel extends BaseButtonModel {
-        linkTitleType: Things.Api.Models.Button.LinkTitleType;
+        linkTitleType: number;
         linkUrl: string;
     }
 }
@@ -2370,6 +2363,7 @@ export namespace Things.Api.Models.Button {
     export enum LinkTitleType {
         contactUs = 1,
         website = 2,
+        app = 3,
     }
 }
 export namespace Things.Api.Models {
@@ -2704,6 +2698,7 @@ export namespace Things.Api.Models {
         liked: boolean;
         followed: boolean;
         parentThingFollowId?: number;
+        buttons: Object[];
     }
 }
 

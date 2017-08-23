@@ -1,4 +1,4 @@
-<md-card *ngIf="!isProcessing">
+<md-card [hidden]="isProcessing">
     <md-card-content>
 
         <app-post-item [postModel]="post" [clickable]="false"></app-post-item>
@@ -31,7 +31,7 @@
     </md-card-actions>
 </md-card>
 
-<md-card *ngIf="isProcessing">
+<md-card [hidden]="!isProcessing">
     <md-card-content>
         <md-spinner class="preloader"></md-spinner>
     </md-card-content>

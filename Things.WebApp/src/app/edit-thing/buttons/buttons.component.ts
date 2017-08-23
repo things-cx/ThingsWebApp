@@ -14,8 +14,9 @@ export class ButtonsComponent implements OnInit {
 
   thing: Things.Api.Models.ThingModel;
   thingId: number;
-  isProcessing = false;
+  isProcessing = true;
   isAddingButton: boolean;
+  isRemovingButton: boolean;
   buttonType: Things.Api.Models.Button.ButtonType;
   form: FormGroup;
   buttonTypeEnum = Things.Api.Models.Button.ButtonType;
@@ -23,7 +24,8 @@ export class ButtonsComponent implements OnInit {
   // TODO: this should stay in sync with Things.Api.Models.Button.LinkTitleType
   linkButtonTitles = [
     { title: 'Contact Us', value: 1 },
-    { title: 'Website', value: 2 }
+    { title: 'Website', value: 2 },
+    { title: 'App', value: 3 }
   ];
 
   constructor(private route: ActivatedRoute,
@@ -41,8 +43,8 @@ export class ButtonsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       if (params.has('id')) {
         this.thingId = +params.get('id');
-        this.buildForm();
         this.getThing();
+        this.buildForm();
       }
     });
   }
@@ -55,14 +57,26 @@ export class ButtonsComponent implements OnInit {
     });
   }
 
+  setFormValue(formField: string, buttonType: number) {
+    const value = this.thing.buttons.find(x => x['buttonType'] === buttonType);
+    if (value !== undefined) {
+      this.form.get(formField).setValue(value[formField]);
+    }
+  }
+
   getThing() {
     this.thingsController.readThing(this.thingId).subscribe(data => {
       this.thing = data;
+      this.isProcessing = false;
+
+      this.setFormValue('linkUrl', 1);
+      this.setFormValue('linkTitleType', 1);
+      this.setFormValue('appId', 2);
     });
   }
 
   addLinkButton() {
-    const viewModel = new Things.Api.Models.Button.ButtonModel;
+    const viewModel = new Things.Api.ViewModels.Thing.Edit.EditThingButtonsViewModel;
     const button = new Things.Api.Models.Button.LinkButtonModel;
     button.linkTitleType = this.form.get('linkTitleType').value;
     button.linkUrl = this.form.get('linkUrl').value;
@@ -71,16 +85,16 @@ export class ButtonsComponent implements OnInit {
     this.addButton(viewModel);
   }
 
-  addAppButton() {
-    const viewModel = new Things.Api.Models.Button.ButtonModel;
-    const button = new Things.Api.Models.Button.AppButtonModel;
-    button.appId = this.form.get('appId').value;
-    viewModel.appButtonModel = button;
+  addDonateButton() {
+    const viewModel = new Things.Api.ViewModels.Thing.Edit.EditThingButtonsViewModel;
+    const button = new Things.Api.Models.Button.DonateButtonModel;
+    // button.appId = this.form.get('appId').value;
+    viewModel.donateButtonModel = button;
 
     this.addButton(viewModel);
   }
 
-  addButton(viewModel: Things.Api.Models.Button.ButtonModel) {
+  addButton(viewModel: Things.Api.ViewModels.Thing.Edit.EditThingButtonsViewModel) {
     this.isProcessing = true;
 
     // TODO: thing could be null. Fix in all edit pages
@@ -89,7 +103,8 @@ export class ButtonsComponent implements OnInit {
       this.thingsController.editThingButtons(this.thingId, viewModel).subscribe(data => {
         this.buttonType = null;
         this.isAddingButton = false;
-        this.isProcessing = false;
+        this.isRemovingButton = false;
+        this.getThing();
       });
     } else {
       const token = this.publicThingService.getPublicThingValue(rootPublicThingId);
@@ -97,7 +112,8 @@ export class ButtonsComponent implements OnInit {
         this.thingsController.editPublicThingButtons(this.thingId, token, viewModel).subscribe(data => {
           this.buttonType = null;
           this.isAddingButton = false;
-          this.isProcessing = false;
+          this.isRemovingButton = false;
+          this.getThing();
         });
       } else {
         const snackBarRef = this.snackBar.open('Unauthorized access!', 'Authorize', {
@@ -110,6 +126,26 @@ export class ButtonsComponent implements OnInit {
           const link = ['/authorize', this.publicThingService.getRootThingIdFromThing(this.thing.parentHierarchy, this.thing.thing.id)];
           this.router.navigate(link);
         });
+      }
+    }
+  }
+
+  removeButton(buttonType: number) {
+    // TODO: this is ugly and bad code!!! damnnnnn but no time :(
+    const viewModel = new Things.Api.ViewModels.Thing.Edit.EditThingButtonsViewModel;
+    viewModel.buttonTypeToDelete = buttonType;
+
+    this.addButton(viewModel);
+  }
+
+  showRemoveButton(buttonType: number): boolean {
+    if (this.thing.buttons != null) {
+      const value = this.thing.buttons.find(x => x['buttonType'] === buttonType);
+
+      if (value !== undefined) {
+        return true;
+      } else {
+        return false;
       }
     }
   }

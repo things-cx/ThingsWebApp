@@ -20,6 +20,7 @@ import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
 import { AmazonComponent } from './amazon/amazon.component';
 import { AmazonController } from 'api-typings/bundle';
 import { ButtonsComponent } from './buttons/buttons.component';
+import { ThingButtonsModule } from 'app/shared/thing-buttons/thing-buttons.module';
 import {
   MdButtonModule,
   MdInputModule,
@@ -53,7 +54,8 @@ import {
     EditorModule,
     MediaTypeModule,
     MdExpansionModule,
-    MdRadioModule
+    MdRadioModule,
+    ThingButtonsModule
   ],
   declarations: [
     TagsComponent,
