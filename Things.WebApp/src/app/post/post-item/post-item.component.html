@@ -35,21 +35,25 @@
         <span *ngIf="postModel.post.replies === 1">{{postModel.post.replies}} reply</span>
         <span *ngIf="postModel.post.replies !== 1">{{postModel.post.replies}} replies</span>
     </button>
-        <button md-icon-button *ngIf="logedInUserId" (click)="reply($event)">
-        <md-icon style="color: #aab8c2;">reply</md-icon>
-    </button>
-
         <button md-button (click)="goToLikes($event)">
         <span *ngIf="postModel.post.likes === 1">{{postModel.post.likes}} like</span>
         <span *ngIf="postModel.post.likes !== 1">{{postModel.post.likes}} likes</span>
     </button>
-        <button md-icon-button [disabled]="isProcessingLike" *ngIf="logedInUserId && !postModel.liked" (click)="like($event)">
+        <button style="float: right;" md-raised-button [disabled]="isProcessingLike" *ngIf="logedInUserId && !postModel.liked" (click)="like($event)">
         <md-icon style="color: #aab8c2;">favorite</md-icon>
+        <span>like</span>
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
     </button>
-        <button md-icon-button [disabled]="isProcessingLike" *ngIf="logedInUserId && postModel.liked" (click)="unlike($event)">
+        <button style="float: right;" md-raised-button [disabled]="isProcessingLike" *ngIf="logedInUserId && postModel.liked" (click)="unlike($event)">
         <md-icon style="color: #f44336;">favorite</md-icon>
+        <span>unlike</span>
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
     </button>
+        <button style="float: right;" md-raised-button *ngIf="logedInUserId" (click)="reply($event)">
+        <md-icon style="color: #aab8c2;">reply</md-icon>
+        <span>reply</span>
+    </button>
+    <div style="clear: both;"></div>
+
     </md-card-footer>
 </md-card>
