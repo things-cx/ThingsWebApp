@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule, MdCardModule, MdInputModule } from '@angular/material';
+import { LoginComponent } from './login/login.component';
 import { LoginRoutingModule } from 'app/login/login-routing.module';
+import {
+  MdButtonModule,
+  MdCardModule,
+  MdInputModule,
+  MdProgressSpinnerModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -12,6 +17,7 @@ import { LoginRoutingModule } from 'app/login/login-routing.module';
     MdButtonModule,
     MdCardModule,
     MdInputModule,
+    MdProgressSpinnerModule,
     ReactiveFormsModule
   ],
   declarations: [
