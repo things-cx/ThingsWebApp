@@ -1,5 +1,5 @@
-<div *ngFor="let activityItem of activities" class="activity-item">
-  <md-card *ngIf="!activityItem.hasDescription" routerLink="/thing/{{activityItem.thingId}}">
+<div *ngFor="let activityItem of activities">
+  <md-card class="card-item" *ngIf="!activityItem.hasDescription" routerLink="/thing/{{activityItem.thingId}}">
     <app-media-type style="float: left;" md-card-avatar [url]="activityItem?.thingMedia ? activityItem?.thingMedia[0] : ''" [thumbnail]="true"></app-media-type>
 
     <div style="float: left;">
@@ -11,9 +11,10 @@
         <span>Thing created</span>
       </div>
     </div>
+    <div *ngIf="!activityItem.viewed" class="unread-bubble"></div>
     <div style="clear: both;"></div>
   </md-card>
-  <md-card *ngIf="activityItem.hasDescription" routerLink="/thing/description/{{activityItem.thingId}}/{{activityItem.version}}">
+  <md-card class="card-item" *ngIf="activityItem.hasDescription" routerLink="/thing/description/{{activityItem.thingId}}/{{activityItem.version}}">
     <app-media-type style="float: left;" md-card-avatar [url]="activityItem?.thingMedia ? activityItem?.thingMedia[0] : ''" [thumbnail]="true"></app-media-type>
 
     <div style="float: left;">
@@ -25,6 +26,7 @@
         <span>description update</span>
       </div>
     </div>
+    <div *ngIf="!activityItem.viewed" class="unread-bubble"></div>
     <div style="clear: both;"></div>
   </md-card>
 </div>

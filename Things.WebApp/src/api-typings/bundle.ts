@@ -2120,6 +2120,7 @@ export namespace Things.Api.ViewModels.Thing {
         version: number;
         hasDescription: boolean;
         parentHierarchy: string[];
+        viewed?: boolean;
     }
 }
 

@@ -3,12 +3,13 @@
     color: lightgray;
 }
 
-.activity-item {
-    margin-top: 10px;
-    cursor: pointer;
-    outline: none;
-
-    &:first-child {
-        margin-top: 0;
-    }
+.unread-bubble {
+    float: right;
+    background-color: #ffd740;
+    padding: 5px;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
 }
