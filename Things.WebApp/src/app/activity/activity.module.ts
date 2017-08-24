@@ -13,7 +13,8 @@ import {
   MdCardModule,
   MdProgressSpinnerModule,
   MdIconModule,
-  MdTabsModule
+  MdTabsModule,
+  MdTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -26,7 +27,8 @@ import {
     MdIconModule,
     PostModule,
     MdTabsModule,
-    MediaTypeModule
+    MediaTypeModule,
+    MdTooltipModule
   ],
   declarations: [
     ActivityListComponent,

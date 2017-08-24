@@ -18,7 +18,7 @@
 
 <button md-raised-button class="center" *ngIf="activityList?.length > 0 && activityList?.length % 10 == 0" (click)="loadMore()">Load more</button>
 
-<md-card *ngIf="activityList?.length <= 0 && !isProcessing">
+<md-card *ngIf="activityList?.length <= 0 && !isProcessing" class="card-item">
   <md-card-content>
     <md-icon>do_not_disturb</md-icon>
     <span>none of your followers have made any posts</span>

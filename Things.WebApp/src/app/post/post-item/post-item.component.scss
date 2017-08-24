@@ -1,3 +1,7 @@
+.post-card {
+    margin-bottom: 10px;
+}
+
 .post-image {
     max-height: 250px;
     max-width: 250px;
@@ -15,4 +19,15 @@
         color: #673ab7;
         text-decoration: none;
     }
+}
+
+.unread-bubble {
+    float: right;
+    background-color: #ffd740;
+    padding: 5px;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
 }

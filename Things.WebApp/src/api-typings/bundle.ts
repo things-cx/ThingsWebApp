@@ -2504,6 +2504,8 @@ export namespace Things.Api.Models.Post {
         liked: boolean;
         mentions: Things.Api.Models.ThingMentionModel[];
         user: Things.Api.Models.Thing;
+        viewed?: boolean;
+        repliedToPostUId: string;
     }
 }
 

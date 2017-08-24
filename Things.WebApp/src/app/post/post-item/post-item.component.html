@@ -1,51 +1,55 @@
-<md-card *ngIf="postModel" (click)="goToPost()">
-  <div>
-    <span style="font-size: 14px; color: rgba(0,0,0,.54);">@{{postModel.user.title}}</span>
-    <button md-icon-button [mdMenuTriggerFor]="menu" style="float: right;" (click)="preventDefault($event)">
+<md-card class="post-card" *ngIf="postModel" (click)="goToPost()">
+    <div>
+        <span style="font-size: 14px; color: rgba(0,0,0,.54);">@{{postModel.user.title}}</span>
+        <button md-icon-button [mdMenuTriggerFor]="menu" style="float: right;" (click)="preventDefault($event)">
         <md-icon>expand_more</md-icon>
     </button>
-    <div style="clear: both;"></div>
-  </div>
+        <div *ngIf="postModel.viewed !== null && !postModel.viewed" class="unread-bubble" mdTooltip="unread"></div>
+        <div style="clear: both;"></div>
+    </div>
 
-  <!--TODO:4 this menu should be in a seperate module. Don't need to load and execute code if not needed!-->
-  <!--TODO:1 still needs to be implimented-->
-  <md-menu #menu="mdMenu">
-    <button md-menu-item (click)="openShareDialog()">Share</button>
-    <!--TODO:5 add this but how do you know which thing to unfollow in post-->
-    <button md-menu-item (click)="openReportDialog()">Report</button>
-    <button md-menu-item disabled>Unfollow Thing</button>
-  </md-menu>
+    <div *ngIf="postModel.repliedToPostUId !== null">
+        <a md-raised-button routerLink="/post/post/{{postModel.repliedToPostUId}}">Replied to</a>
+        <br><br>
+    </div>
 
-  <img md-card-image [src]="postModel?.post.media" *ngIf="postModel?.post.media" alt="post image" class="post-image">
+    <!--TODO:4 this menu should be in a seperate module. Don't need to load and execute code if not needed!-->
+    <!--TODO:1 still needs to be implimented-->
+    <md-menu #menu="mdMenu">
+        <button md-menu-item (click)="openShareDialog()">Share</button>
+        <!--TODO:5 add this but how do you know which thing to unfollow in post-->
+        <button md-menu-item (click)="openReportDialog()">Report</button>
+        <button md-menu-item disabled>Unfollow Thing</button>
+    </md-menu>
 
-  <md-card-content>
-    <div class="post-content" [innerHTML]="postModel.post.content" (click)="preventDefault($event)"></div>
-    <br>
-    <md-card-subtitle>{{postModel.post.dateTimeCreated | date:'yMMMdjms'}}</md-card-subtitle>
-  </md-card-content>
+    <img md-card-image [src]="postModel?.post.media" *ngIf="postModel?.post.media" alt="post image" class="post-image">
 
-  <md-card-footer>
-    <button md-button>
+    <md-card-content>
+        <div class="post-content" [innerHTML]="postModel.post.content" (click)="preventDefault($event)"></div>
+        <br>
+        <md-card-subtitle>{{postModel.post.dateTimeCreated | date:'yMMMdjms'}}</md-card-subtitle>
+    </md-card-content>
+
+    <md-card-footer>
+        <button md-button>
         <span *ngIf="postModel.post.replies === 1">{{postModel.post.replies}} reply</span>
         <span *ngIf="postModel.post.replies !== 1">{{postModel.post.replies}} replies</span>
     </button>
-    <button md-icon-button *ngIf="logedInUserId" (click)="reply($event)">
+        <button md-icon-button *ngIf="logedInUserId" (click)="reply($event)">
         <md-icon style="color: #aab8c2;">reply</md-icon>
     </button>
 
-    <button md-button (click)="goToLikes($event)">
+        <button md-button (click)="goToLikes($event)">
         <span *ngIf="postModel.post.likes === 1">{{postModel.post.likes}} like</span>
         <span *ngIf="postModel.post.likes !== 1">{{postModel.post.likes}} likes</span>
     </button>
-    <button md-icon-button [disabled]="isProcessingLike" *ngIf="logedInUserId && !postModel.liked" (click)="like($event)">
+        <button md-icon-button [disabled]="isProcessingLike" *ngIf="logedInUserId && !postModel.liked" (click)="like($event)">
         <md-icon style="color: #aab8c2;">favorite</md-icon>
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
     </button>
-    <button md-icon-button [disabled]="isProcessingLike" *ngIf="logedInUserId && postModel.liked" (click)="unlike($event)">
+        <button md-icon-button [disabled]="isProcessingLike" *ngIf="logedInUserId && postModel.liked" (click)="unlike($event)">
         <md-icon style="color: #f44336;">favorite</md-icon>
         <md-spinner *ngIf="isProcessingLike" class="inline-preloader"></md-spinner>
     </button>
-  </md-card-footer>
+    </md-card-footer>
 </md-card>
-
-<br>

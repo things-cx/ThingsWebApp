@@ -11,7 +11,7 @@
         <span>Thing created</span>
       </div>
     </div>
-    <div *ngIf="!activityItem.viewed" class="unread-bubble"></div>
+    <div *ngIf="activityItem.viewed !== null && !activityItem.viewed" class="unread-bubble" mdTooltip="unread"></div>
     <div style="clear: both;"></div>
   </md-card>
   <md-card class="card-item" *ngIf="activityItem.hasDescription" routerLink="/thing/description/{{activityItem.thingId}}/{{activityItem.version}}">
@@ -26,7 +26,7 @@
         <span>description update</span>
       </div>
     </div>
-    <div *ngIf="!activityItem.viewed" class="unread-bubble"></div>
+    <div *ngIf="activityItem.viewed !== null && !activityItem.viewed" class="unread-bubble" mdTooltip="unread"></div>
     <div style="clear: both;"></div>
   </md-card>
 </div>
