@@ -1,5 +1,10 @@
+<button md-raised-button color="warn" *ngIf="version !== null && version !== thingModel?.latestVersion" [routerLink]="['/thing/description', thingModel?.thing?.id]"
+    style="width: 100%;">
+    There is a more up to date version available
+</button>
+
 <md-card class="description" *ngIf="thingModel?.description?.content && !isProcessing">
-  <md-card-content [innerHTML]="thingModel.description.content"></md-card-content>
+    <md-card-content [innerHTML]="thingModel.description.content"></md-card-content>
 </md-card>
 
 <md-card *ngIf="isProcessing">

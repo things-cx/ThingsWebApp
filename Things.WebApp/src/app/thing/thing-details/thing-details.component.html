@@ -4,7 +4,7 @@
 <md-card *ngIf="thingModel && !isProcessing">
   <md-card-content>
     <button md-raised-button color="warn" *ngIf="version !== null && version !== thingModel.latestVersion" [routerLink]="['/thing', thingModel.thing.id]"
-      style="margin-bottom: 10px;">
+      style="width: 100%;">
       There is a more up to date version available
     </button>
 
@@ -64,10 +64,10 @@
       </md-chip-list>
     </div>
 
-    <div [routerLink]="['/thing/description', thingModel.thing.id]" *ngIf="thingModel?.description?.content" class="description"
+    <div routerLink="/thing/description/{{thingModel.thing.id}}/{{version}}" *ngIf="thingModel?.description?.content" class="description"
       [innerHTML]="thingModel.description.content"></div>
 
-    <button class="center" [routerLink]="['/thing/description', thingModel.thing.id]" *ngIf="thingModel?.description?.content"
+    <button class="center" routerLink="/thing/description/{{thingModel.thing.id}}/{{version}}" *ngIf="thingModel?.description?.content"
       md-raised-button>See more</button>
 
     <md-tab-group class="tabs" (selectChange)="onTabSelectChange($event)">
