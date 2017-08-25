@@ -1,3 +1,7 @@
 .tab-group ::ng-deep .mat-tab-label {
     min-width: 50% !important;
 }
+
+.tab-group ::ng-deep .mat-tab-header {
+    border-top: none;
+}

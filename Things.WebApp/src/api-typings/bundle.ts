@@ -620,6 +620,27 @@ export class ThingsController {
         };
         /**
         *
+        * TODO: Observable<null>
+        */
+        public getRootThingIdFromThing(id: number):
+        Observable<number> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/getRootThingIdFromThing/${id}`,
+                method: `get`,
+                body: null,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
         * TODO: Observable<viewModel>
         */
         public editThing(id: number, viewModel: Things.Api.ViewModels.Thing.Edit.EditThingViewModel):
@@ -840,6 +861,48 @@ export class ThingsController {
 
             const request = new Request({
                 url: `${this.httpService.apiUrl}/api/things/editPublicThingButtons/${id}?token=${encodeURIComponent(token)}`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public editThingOfficialPoster(id: number, viewModel: Things.Api.ViewModels.Thing.Edit.EditThingOfficialPosterViewModel):
+        Observable<void> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/editThingOfficialPoster/${id}`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public editPublicThingOfficialPoster(id: number, token: string, viewModel: Things.Api.ViewModels.Thing.Edit.EditThingOfficialPosterViewModel):
+        Observable<void> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/editPublicThingOfficialPoster/${id}?token=${encodeURIComponent(token)}`,
                 method: `post`,
                 body: viewModel,
                 headers: headers
@@ -1344,6 +1407,27 @@ export class ThingsController {
 
             const request = new Request({
                 url: `${this.httpService.apiUrl}/api/things/getThingThingsActivity/${id}`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public getOfficialPosters(id: number, viewModel: Things.Api.ViewModels.SkipViewModel):
+        Observable<Things.Api.ViewModels.Thing.GetThingOfficialPostersViewModel[]> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/getOfficialPosters/${id}`,
                 method: `post`,
                 body: viewModel,
                 headers: headers
@@ -2014,6 +2098,13 @@ export namespace Things.Api.ViewModels.Thing.Edit {
 }
 
 export namespace Things.Api.ViewModels.Thing.Edit {
+    export class EditThingOfficialPosterViewModel {
+        userId: number;
+        shouldDelete: boolean;
+    }
+}
+
+export namespace Things.Api.ViewModels.Thing.Edit {
     export class EditThingTagsViewModel {
         tags: string[];
     }
@@ -2102,6 +2193,16 @@ export namespace Things.Api.ViewModels.Thing {
 export namespace Things.Api.ViewModels.Thing {
     export class GetThingLikesViewModel {
         skip: number;
+    }
+}
+
+export namespace Things.Api.ViewModels.Thing {
+    export class GetThingOfficialPostersViewModel {
+        user: Things.Api.Models.Thing;
+        officialPosterThing: string;
+        parentHierarchy: string[];
+        postCount: number;
+        dateTimeCreated: number;
     }
 }
 

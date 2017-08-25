@@ -41,7 +41,8 @@ import {
   MdAutocompleteModule,
   MdProgressSpinnerModule,
   MdTabsModule,
-  MdToolbarModule
+  MdToolbarModule,
+  MdTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -64,7 +65,8 @@ import {
     PostModule,
     MediaTypeModule,
     MdToolbarModule,
-    ThingButtonsModule
+    ThingButtonsModule,
+    MdTooltipModule
   ],
   entryComponents: [
     ShareDialogComponent,

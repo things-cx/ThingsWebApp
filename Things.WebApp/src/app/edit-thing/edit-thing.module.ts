@@ -34,6 +34,7 @@ import {
   MdExpansionModule,
   MdRadioModule
 } from '@angular/material';
+import { OfficialPostersComponent } from './official-posters/official-posters.component';
 
 @NgModule({
   imports: [
@@ -69,7 +70,8 @@ import {
     GifSearchComponent,
     PreviewMediaDialogComponent,
     AmazonComponent,
-    ButtonsComponent
+    ButtonsComponent,
+    OfficialPostersComponent
   ],
   providers: [
     MediaUploaderService,

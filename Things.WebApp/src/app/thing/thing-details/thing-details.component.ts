@@ -240,7 +240,7 @@ export class ThingDetailsComponent implements OnInit {
       !this.publicThingService.hasPublicThingToken(+this.thingModel.parentHierarchy[2][0])) {
       // Public thing hierarchy (children) access
       if (shouldNavigateToPublicAuth) {
-        this.router.navigate(['/authorize', +this.thingModel.parentHierarchy[2][0]]);
+        this.router.navigate(['/authorize', +this.thingModel.parentHierarchy[2][0]], { queryParams: { returnUrl: this.router.url }});
       }
       this.showPublicThingAuthorizeMenuItem = true;
     } else if (this.thingModel.parentHierarchy !== null && this.thingModel.parentHierarchy.length === 2 &&
@@ -248,7 +248,7 @@ export class ThingDetailsComponent implements OnInit {
       !this.publicThingService.hasPublicThingToken(this.thingModel.thing.id)) {
       // Root public thing
       if (shouldNavigateToPublicAuth) {
-        this.router.navigate(['/authorize', this.thingModel.thing.id]);
+        this.router.navigate(['/authorize', this.thingModel.thing.id], { queryParams: { returnUrl: this.router.url }});
       }
       this.showPublicThingAuthorizeMenuItem = true;
     } else {

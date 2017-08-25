@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
-import { Things, PostController } from 'api-typings/bundle';
+import { Things, PostController, ThingsController } from 'api-typings/bundle';
 import { Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { NoContentPostsDialogComponent } from 'app/thing/no-content-posts-dialog/no-content-posts-dialog.component';
@@ -15,15 +15,23 @@ export class ThingPostsItemsComponent implements OnInit, OnChanges {
   @Input() thingId: number;
   @Input() isOfficial: boolean;
   posts: Things.Api.Models.Post.PostModel[] = [];
+  officialPosters: Things.Api.ViewModels.Thing.GetThingOfficialPostersViewModel[];
   skip = 0;
   isProcessing = true;
+  isProcessingOfficialPosters = true;
 
   constructor(private postController: PostController,
+    private thingsController: ThingsController,
     private router: Router,
     public dialog: MdDialog) { }
 
   ngOnInit() {
     this.getThingPosts();
+
+    if (this.isOfficial) {
+      // TODO: this could be made more efficient by combining the requests
+      this.getOfficialPosters();
+    }
   }
 
   // Check @Input() thingId for changes to update posts (actually all input changes should be tracked)
@@ -35,6 +43,11 @@ export class ThingPostsItemsComponent implements OnInit, OnChanges {
         this.skip = 0;
         this.posts = [];
         this.getThingPosts();
+
+        if (this.isOfficial) {
+          this.officialPosters = [];
+          this.getOfficialPosters();
+        }
       }
     }
   }
@@ -81,5 +94,18 @@ export class ThingPostsItemsComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(NoContentPostsDialogComponent);
     dialogRef.componentInstance.thingHierarchy = this.thingHierarchy;
     dialogRef.componentInstance.thingUser = this.thingHierarchy.split('@')[1];
+  }
+
+  getOfficialPosters() {
+    this.isProcessingOfficialPosters = true;
+
+    const viewModel = new Things.Api.ViewModels.Thing.GetThingFollowersViewModel;
+    viewModel.skip = 0;
+
+    this.thingsController.getOfficialPosters(this.thingId, viewModel).subscribe(
+      data => {
+        this.officialPosters = data;
+        this.isProcessingOfficialPosters = false;
+      });
   }
 }

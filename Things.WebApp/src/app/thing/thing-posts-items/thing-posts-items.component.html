@@ -1,3 +1,14 @@
+<div *ngFor="let poster of officialPosters" mdTooltip="official poster ({{poster.postCount}})" routerLink="/official-posters/{{thingId}}" class="official-poster-item">
+    <app-media-type md-card-avatar [url]="poster?.user?.media ? poster?.user?.media[0] : ''" [thumbnail]="true"></app-media-type>
+</div>
+<div style="clear: both;"></div>
+
+<md-card *ngIf="isProcessingOfficialPosters && isOfficial">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
+</md-card>
+
 <app-post-item *ngFor="let post of posts" [postModel]="post" [clickable]="true"></app-post-item>
 
 <md-card *ngIf="isProcessing">

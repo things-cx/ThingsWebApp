@@ -1,0 +1,25 @@
+<md-card *ngFor="let poster of officialPosters" [routerLink]="['/thing', poster.user.id]" class="card-item">
+    <md-card-header>
+        <app-media-type md-card-avatar [url]="poster.user?.media ? poster.user?.media[0] : ''" [thumbnail]="true"></app-media-type>
+        <md-card-title>
+            {{poster.user.title}}
+        </md-card-title>
+        <md-card-subtitle *ngIf="poster.postCount === 1">{{poster.postCount}} post</md-card-subtitle>
+        <md-card-subtitle *ngIf="poster.postCount !== 1">{{poster.postCount}} posts</md-card-subtitle>
+    </md-card-header>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+    <md-card-content>
+        <md-spinner class="preloader"></md-spinner>
+    </md-card-content>
+</md-card>
+
+<button md-raised-button class="center" *ngIf="officialPosters?.length > 0 && officialPosters?.length % 10 == 0" (click)="loadMore()">Load more</button>
+
+<md-card *ngIf="officialPosters?.length <= 0 && !isProcessing">
+    <md-card-content>
+        <md-icon>do_not_disturb</md-icon>
+        <span>no official posters</span>
+    </md-card-content>
+</md-card>

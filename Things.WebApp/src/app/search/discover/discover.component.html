@@ -1,14 +1,10 @@
-<div *ngIf="!error">
-    <md-card>
-        <app-search-bar></app-search-bar>
+<md-card *ngIf="!error">
+    <app-search-bar></app-search-bar>
 
-        <md-chip-list>
-            <md-chip *ngFor="let tag of model?.tags" [routerLink]="['/tag', tag.name]" style="cursor: pointer;" class="mat-h2">#{{tag.name}}</md-chip>
-        </md-chip-list>
-    </md-card>
-
-    <br>
-</div>
+    <md-chip-list>
+        <md-chip *ngFor="let tag of model?.tags" [routerLink]="['/tag', tag.name]" style="cursor: pointer;" class="mat-h2">#{{tag.name}}</md-chip>
+    </md-chip-list>
+</md-card>
 
 <md-card *ngFor="let thing of model?.things" routerLink="/thing/{{thing.thing.id}}" class="card-item">
     <md-card-header>

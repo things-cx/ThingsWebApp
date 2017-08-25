@@ -8,6 +8,7 @@ import { DeleteComponent } from 'app/edit-thing/delete/delete.component';
 import { Navigation } from 'app/layout/navigation/navigation.component';
 import { AmazonComponent } from 'app/edit-thing/amazon/amazon.component';
 import { ButtonsComponent } from 'app/edit-thing/buttons/buttons.component';
+import { OfficialPostersComponent } from 'app/edit-thing/official-posters/official-posters.component';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { ButtonsComponent } from 'app/edit-thing/buttons/buttons.component';
             { path: 'media/:id', component: MediaComponent, data: { title: 'Edit media', nav: Navigation.Back } },
             { path: 'delete/:id', component: DeleteComponent, data: { title: 'Delete Thing', nav: Navigation.Back } },
             { path: 'amazon/:id', component: AmazonComponent, data: { title: 'Edit amazon link', nav: Navigation.Back } },
-            { path: 'buttons/:id', component: ButtonsComponent, data: { title: 'Thing Buttons', nav: Navigation.Back } }
+            { path: 'buttons/:id', component: ButtonsComponent, data: { title: 'Thing Buttons', nav: Navigation.Back } },
+            { path: 'official-posters/:id', component: OfficialPostersComponent, data: { title: 'Thing Official Posters', nav: Navigation.Back } }
         ])
     ],
     exports: [RouterModule]

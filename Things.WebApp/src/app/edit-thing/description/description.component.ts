@@ -76,7 +76,7 @@ export class DescriptionComponent implements OnInit {
           snackBarRef.onAction().subscribe(() => {
             // The id from the public thing service could potentially not be a root public thing ID
             link = ['/authorize', this.publicThingService.getRootThingIdFromThing(this.thing.parentHierarchy, this.thing.thing.id)];
-            this.router.navigate(link);
+            this.router.navigate(link, { queryParams: { returnUrl: this.router.url }});
           });
         }
       }

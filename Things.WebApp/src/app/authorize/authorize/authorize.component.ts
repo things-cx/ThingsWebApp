@@ -16,6 +16,7 @@ export class AuthorizeComponent implements OnInit {
   form: FormGroup;
   formErrors;
   isProcessing = false;
+  returnUrl: string;
 
   constructor(private fb: FormBuilder,
     private thingsController: ThingsController,
@@ -34,6 +35,12 @@ export class AuthorizeComponent implements OnInit {
     });
 
     this.buildForm();
+
+    this.route.queryParamMap.subscribe(params => {
+      if (params.has('returnUrl')) {
+        this.returnUrl = params.get('returnUrl') || `/thing${this.thingId}`;
+      }
+    });
   }
 
   buildForm() {
@@ -56,8 +63,7 @@ export class AuthorizeComponent implements OnInit {
 
       this.publicThingService.addToken(this.thingId, data.token);
 
-      const link = ['/thing', this.thingId];
-      this.router.navigate(link);
+      this.router.navigateByUrl(this.returnUrl);
     }, error => {
       this.formErrors = this.formService.showServerErrors(error);
 

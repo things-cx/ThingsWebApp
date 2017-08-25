@@ -16,14 +16,13 @@ body {
     display: block !important;
 }
 
-.card-item {
+md-card {
     margin-bottom: 10px;
+}
+
+.card-item {
     cursor: pointer;
     outline: none;
-
-    // &:first-child {
-    //     margin-top: 0;
-    // }
 }
 
 .radio-group-vertical {

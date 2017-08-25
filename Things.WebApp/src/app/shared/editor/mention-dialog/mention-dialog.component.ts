@@ -104,7 +104,7 @@ export class MentionDialogComponent implements OnInit {
     }
   }
 
-  onSearchClick(thing: Things.Api.Models.Thing, autocomplete: MdAutocomplete) {
+  onSearchClick(thing: Things.Api.Models.Thing) {
     this.thingIdToSearchWithin = thing.id;
 
     this.selectedThings.push(thing);
