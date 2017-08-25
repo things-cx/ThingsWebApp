@@ -17,6 +17,7 @@ export class PostItemComponent implements OnInit, OnChanges {
 
   @Input() postModel: Things.Api.Models.Post.PostModel;
   @Input() clickable: boolean;
+  @Input() replyView = false;
   isProcessingLike = false;
   logedInUserId: number = this.authService.getLogedInUserId();
 

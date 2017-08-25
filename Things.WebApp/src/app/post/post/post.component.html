@@ -1,6 +1,6 @@
 <app-post-item [postModel]="post" [clickable]="false"></app-post-item>
 
-<app-post-item *ngFor="let postReply of postReplies" [postModel]="postReply" [clickable]="true" style="margin-left: 6%; display: block;"></app-post-item>
+<app-post-item *ngFor="let postReply of postReplies" [postModel]="postReply" [clickable]="true" [replyView]="true" style="margin-left: 6%; display: block;"></app-post-item>
 
 <md-card *ngIf="isProcessing || isProcessingReplies">
     <md-card-content>

@@ -8,7 +8,7 @@
         <div style="clear: both;"></div>
     </div>
 
-    <div *ngIf="postModel.repliedToPostUId !== null">
+    <div *ngIf="postModel.repliedToPostUId !== null && !replyView">
         <a md-raised-button routerLink="/post/post/{{postModel.repliedToPostUId}}">Replied to</a>
         <br><br>
     </div>
