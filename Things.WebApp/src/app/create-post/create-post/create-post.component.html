@@ -1,6 +1,5 @@
 <md-card [hidden]="isProcessing">
     <md-card-content>
-
         <app-post-item [postModel]="post" [clickable]="false"></app-post-item>
 
         <div *ngIf="post">
@@ -17,6 +16,7 @@
         <div #content contenteditable="true" (keydown)="onKeydown($event, content)" (keyup)="onSaveSelection()" (click)="onSaveSelection()"
             placeholder="Type a message..." id="box"></div>
         <div *ngIf="formErrors?.content" class="validation-message">{{ formErrors.content }}</div>
+
         <button md-icon-button (click)="openMentionDialog(content);" mdTooltip="Mention">@</button>
         <app-emoji-panel (onInserted)="onEmojiInset($event)" mdTooltip="Emoji"></app-emoji-panel>
 

@@ -1,4 +1,5 @@
-<div *ngFor="let poster of officialPosters" mdTooltip="official poster ({{poster.postCount}})" routerLink="/official-posters/{{thingId}}" class="official-poster-item">
+<div *ngFor="let poster of officialPosters" mdTooltip="official poster @{{poster.user.title}} ({{poster.postCount}})" routerLink="/official-posters/{{thingId}}"
+    class="official-poster-item">
     <app-media-type md-card-avatar [url]="poster?.user?.media ? poster?.user?.media[0] : ''" [thumbnail]="true"></app-media-type>
 </div>
 <div style="clear: both;"></div>

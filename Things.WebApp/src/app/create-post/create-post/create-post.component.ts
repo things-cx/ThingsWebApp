@@ -76,7 +76,6 @@ export class CreatePostComponent implements OnInit {
       this.router.navigate(link, { queryParams: { didcreate: true } });
     }, error => {
       this.formErrors = this.formService.showServerErrors(error);
-
       this.isProcessing = false;
     });
   }
