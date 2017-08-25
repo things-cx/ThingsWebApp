@@ -914,6 +914,27 @@ export class ThingsController {
         };
         /**
         *
+        * TODO: Observable<null>
+        */
+        public editThingSponsor(id: number, allowSponsor: boolean):
+        Observable<void> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/editThingSponsor/${id}?allowSponsor=${allowSponsor}`,
+                method: `post`,
+                body: null,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
         * TODO: Observable<viewModel>
         */
         public getPublicThingAuthToken(id: number, viewModel: Things.Api.ViewModels.Thing.ThingAuthTokenViewModel):
@@ -1533,6 +1554,27 @@ export class ThingsController {
 
             const request = new Request({
                 url: `${this.httpService.apiUrl}/api/things/getAllThingSponsors`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public getAvailableThingSponsors(id: number, viewModel: Things.Api.ViewModels.SkipViewModel):
+        Observable<Things.Api.Models.Thing[]> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/getAvailableThingSponsors/${id}`,
                 method: `post`,
                 body: viewModel,
                 headers: headers

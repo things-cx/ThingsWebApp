@@ -1,0 +1,27 @@
+<!-- TODO: this could maybe be made into a component (a lot of places) -->
+
+<md-card *ngFor="let thing of things" [routerLink]="['/thing', thing.id]" class="card-item">
+  <md-card-header>
+    <app-media-type md-card-avatar [url]="thing?.media ? thing?.media[0] : ''" [thumbnail]="true"></app-media-type>
+    <md-card-title>
+      {{thing.title}}
+    </md-card-title>
+    <md-card-subtitle *ngIf="thing.likes === 1">{{thing.likes}} like</md-card-subtitle>
+    <md-card-subtitle *ngIf="thing.likes !== 1">{{thing.likes}} likes</md-card-subtitle>
+  </md-card-header>
+</md-card>
+
+<md-card *ngIf="isProcessing">
+  <md-card-content>
+    <md-spinner class="preloader"></md-spinner>
+  </md-card-content>
+</md-card>
+
+<button md-raised-button class="center" *ngIf="things?.length > 0 && things?.length % 10 == 0" (click)="loadMore()">Load more</button>
+
+<md-card *ngIf="things?.length <= 0 && !isProcessing">
+  <md-card-content>
+    <md-icon>do_not_disturb</md-icon>
+    <span>no sponsors</span>
+  </md-card-content>
+</md-card>

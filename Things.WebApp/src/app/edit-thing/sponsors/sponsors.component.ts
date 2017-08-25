@@ -43,8 +43,15 @@ export class SponsorsComponent implements OnInit {
     });
 
     this.form.get('activateSponsor').valueChanges.subscribe(
-      data => {
-        // set as allow for sponsor
+      value => {
+        // CONTINUE!!!!!!!TODO: cater for when user denies operation
+        const response = confirm('This will allow other people to sponsor/pay for your Thing and place their name on it.');
+        if (response === true) {
+          this.thingsController.editThingSponsor(this.thingId, value).subscribe(
+            data => {
+              this.isProcessing = false;
+            });
+        }
       }, error => {
         this.formErrors = this.formService.showServerErrors(error);
       });

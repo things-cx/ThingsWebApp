@@ -30,6 +30,7 @@ import { AuthService } from 'app/shared/auth.service';
       { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
       { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackModule' },
       { path: 'official-posters', loadChildren: './official-posters/official-posters.module#OfficialPostersModule' },
+      { path: 'sponsors', loadChildren: './sponsors/sponsors.module#SponsorsModule' },
       { path: 'newsletter', loadChildren: './newsletter/newsletter.module#NewsletterModule' },
       { path: 'activity', loadChildren: './activity/activity.module#ActivityModule', canActivate: [AuthService] },
       { path: 'launch', loadChildren: './launch/launch.module#LaunchModule' },
