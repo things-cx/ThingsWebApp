@@ -1,0 +1,13 @@
+.chips-nowrap {
+    overflow: auto; 
+    white-space: nowrap;
+
+    ::ng-deep .mat-chip-list-wrapper {
+        flex-wrap: nowrap;
+    }
+
+    //TODO: Only works in Chrome
+    &::-webkit-scrollbar { 
+        display: none; 
+    }
+}
