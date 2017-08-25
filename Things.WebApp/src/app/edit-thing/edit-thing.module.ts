@@ -21,6 +21,8 @@ import { AmazonComponent } from './amazon/amazon.component';
 import { AmazonController } from 'api-typings/bundle';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { ThingButtonsModule } from 'app/shared/thing-buttons/thing-buttons.module';
+import { OfficialPostersComponent } from './official-posters/official-posters.component';
+import { SponsorsComponent } from './sponsors/sponsors.component';
 import {
   MdButtonModule,
   MdInputModule,
@@ -32,9 +34,9 @@ import {
   MdListModule,
   MdDialogModule,
   MdExpansionModule,
-  MdRadioModule
+  MdRadioModule,
+  MdSlideToggleModule
 } from '@angular/material';
-import { OfficialPostersComponent } from './official-posters/official-posters.component';
 
 @NgModule({
   imports: [
@@ -56,7 +58,8 @@ import { OfficialPostersComponent } from './official-posters/official-posters.co
     MediaTypeModule,
     MdExpansionModule,
     MdRadioModule,
-    ThingButtonsModule
+    ThingButtonsModule,
+    MdSlideToggleModule
   ],
   declarations: [
     TagsComponent,
@@ -71,7 +74,8 @@ import { OfficialPostersComponent } from './official-posters/official-posters.co
     PreviewMediaDialogComponent,
     AmazonComponent,
     ButtonsComponent,
-    OfficialPostersComponent
+    OfficialPostersComponent,
+    SponsorsComponent
   ],
   providers: [
     MediaUploaderService,

@@ -1437,6 +1437,111 @@ export class ThingsController {
                 .map((res) => this.httpService.extractData(res))
                 .catch((err) => this.httpService.handleError(err));
         };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public getThingSponsors(id: number, viewModel: Things.Api.ViewModels.SkipViewModel):
+        Observable<Things.Api.ViewModels.Thing.Sponsors.GetThingSponsorsViewModel[]> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/getThingSponsors/${id}`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<null>
+        */
+        public createThingSponsor(id: number, userId: number):
+        Observable<void> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/createThingSponsor/${id}?userId=${userId}`,
+                method: `post`,
+                body: null,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<null>
+        */
+        public createThingSponsorRequest(id: number, amount: number):
+        Observable<void> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/createThingSponsorRequest/${id}?amount=${amount}`,
+                method: `post`,
+                body: null,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<null>
+        */
+        public deleteThingSponsorRequest(id: number, userId: number):
+        Observable<void> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/deleteThingSponsorRequest/${id}?userId=${userId}`,
+                method: `post`,
+                body: null,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
+        /**
+        *
+        * TODO: Observable<viewModel>
+        */
+        public getAllThingSponsors(viewModel: Things.Api.ViewModels.SkipViewModel):
+        Observable<Things.Api.ViewModels.Thing.Sponsors.GetThingSponsorsViewModel[]> {
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            headers = this.httpService.addAuthHeaders(headers);
+
+            const request = new Request({
+                url: `${this.httpService.apiUrl}/api/things/getAllThingSponsors`,
+                method: `post`,
+                body: viewModel,
+                headers: headers
+            });
+
+            return this.http.request(request)
+                .map((res) => this.httpService.extractData(res))
+                .catch((err) => this.httpService.handleError(err));
+        };
 }
 
 @Injectable()
@@ -2004,6 +2109,13 @@ export namespace Things.Api.ViewModels.Thing {
     }
 }
 
+export namespace Things.Api.ViewModels.Thing.Sponsors {
+    export class CreateThingSponsorRequestViewModel {
+        userId: number;
+        amount: number;
+    }
+}
+
 export namespace Things.Api.Models {
     export class CreateThingValidationModel {
         doesTitleExist: boolean;
@@ -2138,6 +2250,11 @@ export namespace Things.Api.ViewModels.User {
     }
 }
 
+export namespace Things.Api.ViewModels.Thing.Sponsors {
+    export class GetAllThingSponsorsViewModel {
+    }
+}
+
 export namespace Things.Api.ViewModels.Post {
     export class GetFeedViewModel {
         skip: number;
@@ -2209,6 +2326,14 @@ export namespace Things.Api.ViewModels.Thing {
 export namespace Things.Api.ViewModels.Post {
     export class GetThingPostsViewModel {
         skip: number;
+    }
+}
+
+export namespace Things.Api.ViewModels.Thing.Sponsors {
+    export class GetThingSponsorsViewModel {
+        user: Things.Api.Models.Thing;
+        isSponsor: boolean;
+        thingSponsorRequest: Things.Api.Models.ThingSponsorRequest;
     }
 }
 
@@ -2803,6 +2928,13 @@ export namespace Things.Api.Models {
         followed: boolean;
         parentThingFollowId?: number;
         buttons: Object[];
+    }
+}
+
+export namespace Things.Api.Models {
+    export class ThingSponsorRequest {
+        dateTimeCreated: number;
+        amount: number;
     }
 }
 

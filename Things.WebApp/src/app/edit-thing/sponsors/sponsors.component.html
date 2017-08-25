@@ -1,0 +1,36 @@
+<md-card *ngIf="!isProcessing">
+  <md-card-content>
+    <form [formGroup]="form">
+      <md-slide-toggle formControlName="activateSponsor">Allow sponsorship</md-slide-toggle>
+    </form>
+  </md-card-content>
+</md-card>
+
+<md-card class="card-item" *ngFor="let sponsor of sponsors">
+  <md-card-header style="float: left;" [routerLink]="['/thing', sponsor.user.id]">
+    <app-media-type md-card-avatar [url]="sponsor.user?.media ? sponsor.user?.media[0] : ''" [thumbnail]="true"></app-media-type>
+    <md-card-title>
+      {{sponsor.user.title}}
+    </md-card-title>
+    <md-card-subtitle>${{sponsor.thingSponsorRequest.amount}}</md-card-subtitle>
+  </md-card-header>
+  <button md-raised-button style="float: right;" color="accent" type="button" (click)="setSponsor(sponsor.user.id)">
+        Set
+    </button>
+  <div style="clear: both;"></div>
+</md-card>
+
+<!-- TODO: think about creating a component from everything below this comment (processing spinner, load more button and no results message) -->
+<md-card *ngIf="isProcessing">
+  <md-card-content>
+    <md-spinner class="preloader"></md-spinner>
+  </md-card-content>
+</md-card>
+
+<button md-raised-button class="center" *ngIf="sponsors?.length > 0 && sponsors?.length % 10 == 0" (click)="loadMore()">Load more</button>
+
+<md-card *ngIf="sponsors?.length <= 0 && !isProcessing">
+  <md-card-content>
+    <span>no sponsors</span>
+  </md-card-content>
+</md-card>
