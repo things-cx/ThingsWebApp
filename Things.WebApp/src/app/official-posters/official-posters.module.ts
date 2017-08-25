@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdButtonModule, MdCardModule, MdProgressSpinnerModule, MdIconModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdProgressSpinnerModule, MdIconModule, MdTooltipModule } from '@angular/material';
 import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
 import { OfficialPostersComponent } from 'app/official-posters/official-posters/official-posters.component';
 import { OfficialPostersRoutingModule } from 'app/official-posters/official-posters-routing.module';
@@ -13,7 +13,8 @@ import { OfficialPostersRoutingModule } from 'app/official-posters/official-post
     MdCardModule,
     MdProgressSpinnerModule,
     MdIconModule,
-    MediaTypeModule
+    MediaTypeModule,
+    MdTooltipModule
   ],
   declarations: [OfficialPostersComponent]
 })

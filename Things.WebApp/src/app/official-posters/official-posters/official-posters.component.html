@@ -6,6 +6,10 @@
         </md-card-title>
         <md-card-subtitle *ngIf="poster.postCount === 1">{{poster.postCount}} post</md-card-subtitle>
         <md-card-subtitle *ngIf="poster.postCount !== 1">{{poster.postCount}} posts</md-card-subtitle>
+        <md-card-subtitle *ngIf="poster?.parentHierarchy === null" mdTooltip="official poster of Thing">@{{poster.officialPosterThing}}</md-card-subtitle>
+        <md-card-subtitle mdTooltip="official poster of Thing">
+            <span *ngFor="let hierarchyItem of poster?.parentHierarchy"><span>@{{hierarchyItem}}</span></span>
+        </md-card-subtitle>
     </md-card-header>
 </md-card>
 
