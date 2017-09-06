@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Things, ThingsController } from 'api-typings/bundle';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormService } from 'app/shared/form.service';
+import { FormService } from '../../../shared/form.service';
 import { MdDialogRef, MdAutocomplete, MdAutocompleteTrigger, MdInputDirective } from '@angular/material';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';

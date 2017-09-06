@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { MdButtonModule, MdCardModule, MdInputModule, MdProgressSpinnerModule } from '@angular/material';
-import { NewsletterRoutingModule } from 'app/newsletter/newsletter-routing.module';
+import { NewsletterRoutingModule } from '../newsletter/newsletter-routing.module';
 
 @NgModule({
   imports: [

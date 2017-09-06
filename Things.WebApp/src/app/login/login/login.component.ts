@@ -3,8 +3,8 @@ import { Things, UserController } from 'api-typings/bundle';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from 'app/shared/auth.service';
-import { FormService } from 'app/shared/form.service';
+import { AuthService } from '../../shared/auth.service';
+import { FormService } from '../../shared/form.service';
 
 @Component({
   selector: 'app-login',

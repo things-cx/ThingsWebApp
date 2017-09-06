@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ThingsController, Things } from 'api-typings/bundle';
-import { PublicThingService } from 'app/shared/public-thing.service';
+import { PublicThingService } from '../../shared/public-thing.service';
 import { MdSnackBar } from '@angular/material';
 
 @Component({

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdButtonModule, MdCardModule, MdProgressSpinnerModule, MdIconModule, MdTooltipModule } from '@angular/material';
-import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
-import { OfficialPostersComponent } from 'app/official-posters/official-posters/official-posters.component';
-import { OfficialPostersRoutingModule } from 'app/official-posters/official-posters-routing.module';
+import { MediaTypeModule } from '../shared/media-type/media-type.module';
+import { OfficialPostersComponent } from '../official-posters/official-posters/official-posters.component';
+import { OfficialPostersRoutingModule } from '../official-posters/official-posters-routing.module';
 
 @NgModule({
   imports: [

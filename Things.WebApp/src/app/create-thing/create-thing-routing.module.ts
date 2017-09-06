@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CreateThingComponent } from './create-thing/create-thing.component';
-import { CreatePublicThingComponent } from 'app/create-thing/create-public-thing/create-public-thing.component';
-import { AddShortcutComponent } from 'app/create-thing/add-shortcut/add-shortcut.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { CreatePublicThingComponent } from '../create-thing/create-public-thing/create-public-thing.component';
+import { AddShortcutComponent } from '../create-thing/add-shortcut/add-shortcut.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

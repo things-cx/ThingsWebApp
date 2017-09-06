@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { GoogleCustomSearchService } from 'app/shared/google-custom-search.service';
-import { PreviewMediaDialogComponent } from 'app/edit-thing/preview-media-dialog/preview-media-dialog.component';
+import { GoogleCustomSearchService } from '../../shared/google-custom-search.service';
+import { PreviewMediaDialogComponent } from '../../edit-thing/preview-media-dialog/preview-media-dialog.component';
 import { MdDialog } from '@angular/material';
 
 @Component({

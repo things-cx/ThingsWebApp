@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { MdDialog } from '@angular/material';
-import { ReportDialogComponent } from 'app/thing/report-dialog/report-dialog.component';
-import { AuthService } from 'app/shared/auth.service';
+import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
+import { AuthService } from '../../shared/auth.service';
 import { Router } from '@angular/router';
 
 @Component({

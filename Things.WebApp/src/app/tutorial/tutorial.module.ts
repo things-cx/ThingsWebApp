@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TutorialRoutingModule } from 'app/tutorial/tutorial-routing.module';
-import { TutorialComponent } from 'app/tutorial/tutorial/tutorial.component';
-import { TutorialService } from 'app/tutorial/tutorial.service';
+import { TutorialRoutingModule } from '../tutorial/tutorial-routing.module';
+import { TutorialComponent } from '../tutorial/tutorial/tutorial.component';
+import { TutorialService } from '../tutorial/tutorial.service';
 import { MdButtonModule, MdCardModule } from '@angular/material';
 import { FirstTimeUserComponent } from './first-time-user/first-time-user.component';
 import { CreatePublicThingComponent } from './create-public-thing/create-public-thing.component';

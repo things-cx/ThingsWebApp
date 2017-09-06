@@ -3,15 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Things, ThingsController } from 'api-typings/bundle';
 import { MdDialog, MdTabChangeEvent } from '@angular/material';
-import { ShareDialogComponent } from 'app/thing/share-dialog/share-dialog.component';
-import { AuthService } from 'app/shared/auth.service';
-import { ReportDialogComponent } from 'app/thing/report-dialog/report-dialog.component';
-import { PublicThingService } from 'app/shared/public-thing.service';
-import { TutorialArea, TutorialService } from 'app/tutorial/tutorial.service';
-import { PaymentService } from 'app/shared/payment.service';
-import { PaymentDialogComponent } from 'app/thing/payment-dialog/payment-dialog.component';
-import { RootPublicThingDialogComponent } from 'app/thing/root-public-thing-dialog/root-public-thing-dialog.component';
-import { ShareOptionsDialogComponent } from 'app/thing/share-options-dialog/share-options-dialog.component';
+
+import { ShareDialogComponent } from '../share-dialog/share-dialog.component';
+import { AuthService } from '../../shared/auth.service';
+import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
+import { PublicThingService } from '../../shared/public-thing.service';
+import { TutorialArea, TutorialService } from '../../tutorial/tutorial.service';
+import { PaymentService } from '../../shared/payment.service';
+import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
+import { RootPublicThingDialogComponent } from '../root-public-thing-dialog/root-public-thing-dialog.component';
+import { ShareOptionsDialogComponent } from '../share-options-dialog/share-options-dialog.component';
 import * as marked from 'marked';
 import * as emojione from 'emojione';
 

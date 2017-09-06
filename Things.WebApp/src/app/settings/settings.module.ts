@@ -4,7 +4,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { WebhooksComponent } from './webhooks/webhooks.component';
-import { SettingsRoutingModule } from 'app/settings/settings-routing.module';
+import { SettingsRoutingModule } from '../settings/settings-routing.module';
 import { MdButtonModule, MdCardModule, MdRadioModule } from '@angular/material';
 import { LanguageComponent } from './language/language.component';
 

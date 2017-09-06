@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { SearchRoutingModule } from './search-routing.module';
-import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
+import { MediaTypeModule } from '../shared/media-type/media-type.module';
 import {
   MdInputModule,
   MdChipsModule,

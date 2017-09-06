@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ValidationModel } from 'app/shared/http.service';
+import { ValidationModel } from './http.service';
 
 @Injectable()
 export class FormService {

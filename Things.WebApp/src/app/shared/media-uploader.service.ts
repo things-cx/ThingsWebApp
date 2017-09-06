@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Request } from '@angular/http';
 import { Things } from 'api-typings/bundle';
-import { HttpService } from 'app/shared/http.service';
+import { HttpService } from './http.service';
 
 @Injectable()
 export class MediaUploaderService {

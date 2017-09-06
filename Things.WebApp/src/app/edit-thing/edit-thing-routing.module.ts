@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TagsComponent } from 'app/edit-thing/tags/tags.component';
-import { DescriptionComponent } from 'app/edit-thing/description/description.component';
-import { MediaComponent } from 'app/edit-thing/media/media.component';
-import { EditComponent } from 'app/edit-thing/edit/edit.component';
-import { DeleteComponent } from 'app/edit-thing/delete/delete.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
-import { AmazonComponent } from 'app/edit-thing/amazon/amazon.component';
-import { ButtonsComponent } from 'app/edit-thing/buttons/buttons.component';
-import { OfficialPostersComponent } from 'app/edit-thing/official-posters/official-posters.component';
-import { SponsorsComponent } from 'app/edit-thing/sponsors/sponsors.component';
+import { TagsComponent } from '../edit-thing/tags/tags.component';
+import { DescriptionComponent } from '../edit-thing/description/description.component';
+import { MediaComponent } from '../edit-thing/media/media.component';
+import { EditComponent } from '../edit-thing/edit/edit.component';
+import { DeleteComponent } from '../edit-thing/delete/delete.component';
+import { Navigation } from '../layout/navigation/navigation.component';
+import { AmazonComponent } from '../edit-thing/amazon/amazon.component';
+import { ButtonsComponent } from '../edit-thing/buttons/buttons.component';
+import { OfficialPostersComponent } from '../edit-thing/official-posters/official-posters.component';
+import { SponsorsComponent } from '../edit-thing/sponsors/sponsors.component';
 
 @NgModule({
     imports: [

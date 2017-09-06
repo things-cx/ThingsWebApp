@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
-import { LoggingService } from 'app/shared/logging.service';
-import { AuthService } from 'app/shared/auth.service';
+import { LoggingService } from './logging.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class HttpService {

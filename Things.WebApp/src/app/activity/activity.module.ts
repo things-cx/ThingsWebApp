@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostsActivityComponent } from './posts-activity/posts-activity.component';
-import { ActivityRoutingModule } from 'app/activity/activity-routing.module';
+import { ActivityRoutingModule } from '../activity/activity-routing.module';
 import { ActivityListComponent } from './activity-list/activity-list.component';
-import { PostModule } from 'app/post/post.module';
+import { PostModule } from '../post/post.module';
 import { ActivityListPostsComponent } from './activity-list-posts/activity-list-posts.component';
 import { ActivityListThingsComponent } from './activity-list-things/activity-list-things.component';
 import { ThingsActivityComponent } from './things-activity/things-activity.component';
-import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
+import { MediaTypeModule } from '../shared/media-type/media-type.module';
 import {
   MdButtonModule,
   MdCardModule,

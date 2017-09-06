@@ -1,9 +1,9 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { ThingsController, Things } from 'api-typings/bundle';
-import { TutorialService, TutorialArea } from 'app/tutorial/tutorial.service';
+import { TutorialService, TutorialArea } from '../../tutorial/tutorial.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormService } from 'app/shared/form.service';
+import { FormService } from '../../shared/form.service';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/filter';

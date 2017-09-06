@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Things } from 'api-typings/bundle';
-import { TutorialArea, TutorialService, Tutorial } from 'app/tutorial/tutorial.service';
+import { TutorialArea, TutorialService, Tutorial } from '../../tutorial/tutorial.service';
 import { Location } from '@angular/common';
 
 @Component({

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LikesComponent } from 'app/likes/likes/likes.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { LikesComponent } from '../likes/likes/likes.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

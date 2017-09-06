@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Router, NavigationEnd } from '@angular/router';
-import { GaService } from 'app/shared/ga.service';
+import { GaService } from './shared/ga.service';
 
 @Component({
   selector: 'app-root',

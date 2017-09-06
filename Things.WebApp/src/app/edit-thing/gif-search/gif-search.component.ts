@@ -1,12 +1,12 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { ThingsController, Things } from 'api-typings/bundle';
 import { Observable } from 'rxjs/Observable';
-import { TutorialService, TutorialArea } from 'app/tutorial/tutorial.service';
+import { TutorialService, TutorialArea } from '../../tutorial/tutorial.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Http } from '@angular/http';
-import { FormService } from 'app/shared/form.service';
-import { PreviewMediaDialogComponent } from 'app/edit-thing/preview-media-dialog/preview-media-dialog.component';
+import { FormService } from '../../shared/form.service';
+import { PreviewMediaDialogComponent } from '../../edit-thing/preview-media-dialog/preview-media-dialog.component';
 import { MdDialog } from '@angular/material';
 
 @Component({

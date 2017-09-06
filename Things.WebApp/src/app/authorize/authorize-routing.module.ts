@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthorizeComponent } from 'app/authorize/authorize/authorize.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { AuthorizeComponent } from '../authorize/authorize/authorize.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

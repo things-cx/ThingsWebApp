@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ThingsController, Things } from 'api-typings/bundle';
-import { FormService } from 'app/shared/form.service';
+import { FormService } from '../../shared/form.service';
 
 @Component({
   selector: 'app-sponsors',

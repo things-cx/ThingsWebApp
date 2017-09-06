@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthService } from 'app/shared/auth.service';
+import { AuthService } from './shared/auth.service';
 
 @NgModule({
   imports: [

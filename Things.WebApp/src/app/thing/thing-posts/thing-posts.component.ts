@@ -1,8 +1,7 @@
 import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
-import { Things, PostController } from 'api-typings/bundle';
 import { Router } from '@angular/router';
-import { AuthService } from 'app/shared/auth.service';
 import { MdTabChangeEvent } from '@angular/material';
+import { Things, PostController } from 'api-typings/bundle';
 
 @Component({
   selector: 'app-thing-posts',

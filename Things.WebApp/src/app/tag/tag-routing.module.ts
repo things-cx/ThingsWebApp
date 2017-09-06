@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TagComponent } from 'app/tag/tag/tag.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { TagComponent } from '../tag/tag/tag.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

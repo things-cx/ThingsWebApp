@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TutorialArea } from 'app/tutorial/tutorial.service';
+import { TutorialArea } from '../../tutorial/tutorial.service';
 
 @Component({
   selector: 'app-create-shortcut-thing',

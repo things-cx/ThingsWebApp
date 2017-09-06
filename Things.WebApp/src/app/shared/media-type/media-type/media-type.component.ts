@@ -1,7 +1,7 @@
 import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MdDialog } from '@angular/material';
-import { ViewMediaDialogComponent } from 'app/shared/media-type/view-media-dialog/view-media-dialog.component';
+import { ViewMediaDialogComponent } from '../view-media-dialog/view-media-dialog.component';
 
 @Component({
   selector: 'app-media-type',

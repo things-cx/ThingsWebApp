@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PostComponent } from 'app/post/post/post.component';
-import { UserPostsComponent } from 'app/post/user-posts/user-posts.component';
-import { PostLikesComponent } from 'app/post/post-likes/post-likes.component';
-import { UserPostsLikedComponent } from 'app/post/user-posts-liked/user-posts-liked.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { PostComponent } from '../post/post/post.component';
+import { UserPostsComponent } from '../post/user-posts/user-posts.component';
+import { PostLikesComponent } from '../post/post-likes/post-likes.component';
+import { UserPostsLikedComponent } from '../post/user-posts-liked/user-posts-liked.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

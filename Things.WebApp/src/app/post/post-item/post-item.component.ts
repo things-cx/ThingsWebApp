@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Things, PostController } from 'api-typings/bundle';
 import { Router } from '@angular/router';
-import { AuthService } from 'app/shared/auth.service';
+import { AuthService } from '../../shared/auth.service';
 import { MdDialog } from '@angular/material';
-import { SharePostDialogComponent } from 'app/post/share-post-dialog/share-post-dialog.component';
-import { ReportPostDialogComponent } from 'app/post/report-post-dialog/report-post-dialog.component';
+import { SharePostDialogComponent } from '../../post/share-post-dialog/share-post-dialog.component';
+import { ReportPostDialogComponent } from '../../post/report-post-dialog/report-post-dialog.component';
 import { environment } from 'environments/environment';
 import * as emojione from 'emojione';
 

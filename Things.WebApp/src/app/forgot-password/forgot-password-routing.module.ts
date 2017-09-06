@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { RequestResetComponent } from 'app/forgot-password/request-reset/request-reset.component';
-import { ChangePasswordComponent } from 'app/forgot-password/change-password/change-password.component';
-import { ViewEmailComponent } from 'app/forgot-password/view-email/view-email.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { RequestResetComponent } from '../forgot-password/request-reset/request-reset.component';
+import { ChangePasswordComponent } from '../forgot-password/change-password/change-password.component';
+import { ViewEmailComponent } from '../forgot-password/view-email/view-email.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

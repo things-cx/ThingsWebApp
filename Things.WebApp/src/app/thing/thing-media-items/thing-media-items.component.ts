@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/cor
 import { Things, PostController } from 'api-typings/bundle';
 import { Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
-import { NoContentMediaDialogComponent } from 'app/thing/no-content-media-dialog/no-content-media-dialog.component';
+import { NoContentMediaDialogComponent } from '../no-content-media-dialog/no-content-media-dialog.component';
 
 @Component({
   selector: 'app-thing-media-items',

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { VisualizerComponent } from 'app/visualize/visualizer/visualizer.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { VisualizerComponent } from '../visualize/visualizer/visualizer.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

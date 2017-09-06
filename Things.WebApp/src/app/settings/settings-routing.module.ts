@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Navigation } from 'app/layout/navigation/navigation.component';
-import { SettingsComponent } from 'app/settings/settings/settings.component';
-import { NotificationsComponent } from 'app/settings/notifications/notifications.component';
-import { PaymentsComponent } from 'app/settings/payments/payments.component';
-import { WebhooksComponent } from 'app/settings/webhooks/webhooks.component';
-import { LanguageComponent } from 'app/settings/language/language.component';
+import { Navigation } from '../layout/navigation/navigation.component';
+import { SettingsComponent } from '../settings/settings/settings.component';
+import { NotificationsComponent } from '../settings/notifications/notifications.component';
+import { PaymentsComponent } from '../settings/payments/payments.component';
+import { WebhooksComponent } from '../settings/webhooks/webhooks.component';
+import { LanguageComponent } from '../settings/language/language.component';
 
 @NgModule({
     imports: [

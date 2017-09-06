@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FollowersComponent } from 'app/followers/followers/followers.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { FollowersComponent } from '../followers/followers/followers.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

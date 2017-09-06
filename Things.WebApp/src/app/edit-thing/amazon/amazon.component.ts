@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Things, ThingsController, AmazonController, AmazonProductAdvertising } from 'api-typings/bundle';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PublicThingService } from 'app/shared/public-thing.service';
+import { PublicThingService } from '../../shared/public-thing.service';
 import { MdSnackBar } from '@angular/material';
-import { TutorialService, TutorialArea } from 'app/tutorial/tutorial.service';
+import { TutorialService, TutorialArea } from '../../tutorial/tutorial.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { FormService } from 'app/shared/form.service';
+import { FormService } from '../../shared/form.service';
 
 @Component({
   selector: 'app-amazon',

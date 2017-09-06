@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CreateUserThingFormComponent } from './create-user-thing-form/create-user-thing-form.component';
 import { CreateUserThingRoutingModule } from './create-user-thing-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MediaUploaderService } from 'app/shared/media-uploader.service';
-import { TutorialService } from 'app/tutorial/tutorial.service';
+import { MediaUploaderService } from '../shared/media-uploader.service';
+import { TutorialService } from '../tutorial/tutorial.service';
 import { MdButtonModule, MdInputModule, MdProgressSpinnerModule, MdCardModule } from '@angular/material';
 
 @NgModule({

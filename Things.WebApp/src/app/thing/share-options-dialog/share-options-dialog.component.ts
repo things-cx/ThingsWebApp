@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { ShareDialogComponent } from 'app/thing/share-dialog/share-dialog.component';
+import { ShareDialogComponent } from '../share-dialog/share-dialog.component';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment';
 

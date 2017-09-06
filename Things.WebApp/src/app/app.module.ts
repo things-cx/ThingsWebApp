@@ -7,13 +7,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpService } from './shared/http.service';
 import { ThingsController, UserController, PostController } from 'api-typings/bundle';
-import { LayoutModule } from 'app/layout/layout.module';
-import { AuthService } from 'app/shared/auth.service';
-import { PublicThingService } from 'app/shared/public-thing.service';
-import { FormService } from 'app/shared/form.service';
-import { TutorialService } from 'app/tutorial/tutorial.service';
-import { GaService } from 'app/shared/ga.service';
-import { LoggerService } from 'app/shared/logger.service';
+import { LayoutModule } from './layout/layout.module';
+import { AuthService } from './shared/auth.service';
+import { PublicThingService } from './shared/public-thing.service';
+import { FormService } from './shared/form.service';
+import { TutorialService } from './tutorial/tutorial.service';
+import { GaService } from './shared/ga.service';
+import { LoggerService } from './shared/logger.service';
 // import { LoggingService } from './shared/logging.service';
 
 @NgModule({

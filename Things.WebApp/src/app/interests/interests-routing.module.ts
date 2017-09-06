@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { InterestsComponent } from 'app/interests/interests/interests.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { InterestsComponent } from '../interests/interests/interests.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

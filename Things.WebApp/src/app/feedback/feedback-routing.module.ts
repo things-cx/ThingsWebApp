@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from 'app/login/login/login.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
-import { FeedbackComponent } from 'app/feedback/feedback/feedback.component';
+import { LoginComponent } from '../login/login/login.component';
+import { Navigation } from '../layout/navigation/navigation.component';
+import { FeedbackComponent } from '../feedback/feedback/feedback.component';
 
 @NgModule({
     imports: [

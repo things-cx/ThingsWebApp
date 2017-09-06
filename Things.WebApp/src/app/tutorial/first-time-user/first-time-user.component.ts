@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { TutorialArea, TutorialService } from 'app/tutorial/tutorial.service';
+import { TutorialArea, TutorialService } from '../../tutorial/tutorial.service';
 import { Router } from '@angular/router';
 
 @Component({

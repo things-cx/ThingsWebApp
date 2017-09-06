@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Things, ThingsController } from 'api-typings/bundle';
-import { FormService } from 'app/shared/form.service';
+import { FormService } from '../../shared/form.service';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/filter';

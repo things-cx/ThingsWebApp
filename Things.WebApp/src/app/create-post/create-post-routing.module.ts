@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CreatePostComponent } from 'app/create-post/create-post/create-post.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { CreatePostComponent } from '../create-post/create-post/create-post.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

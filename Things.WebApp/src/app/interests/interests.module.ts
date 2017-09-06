@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InterestsComponent } from './interests/interests.component';
-import { InterestsRoutingModule } from 'app/interests/interests-routing.module';
+import { InterestsRoutingModule } from '../interests/interests-routing.module';
 
 @NgModule({
   imports: [

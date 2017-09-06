@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { TutorialArea } from 'app/tutorial/tutorial.service';
-import { AuthService } from 'app/shared/auth.service';
+import { TutorialArea } from '../../tutorial/tutorial.service';
+import { AuthService } from '../../shared/auth.service';
 
 @Component({
   selector: 'app-create-public-thing',

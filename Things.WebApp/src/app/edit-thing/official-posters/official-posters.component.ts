@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Things, ThingsController } from 'api-typings/bundle';
-import { PublicThingService } from 'app/shared/public-thing.service';
-import { FormService } from 'app/shared/form.service';
+import { PublicThingService } from '../../shared/public-thing.service';
+import { FormService } from '../../shared/form.service';
 
 @Component({
   selector: 'app-official-posters',

@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/cor
 import { Things, PostController, ThingsController } from 'api-typings/bundle';
 import { Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
-import { NoContentPostsDialogComponent } from 'app/thing/no-content-posts-dialog/no-content-posts-dialog.component';
+import { NoContentPostsDialogComponent } from '../no-content-posts-dialog/no-content-posts-dialog.component';
 
 @Component({
   selector: 'app-thing-posts-items',

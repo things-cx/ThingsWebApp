@@ -3,8 +3,8 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Things, UserController } from 'api-typings/bundle';
-import { AuthService } from 'app/shared/auth.service';
-import { FormService } from 'app/shared/form.service';
+import { AuthService } from '../../shared/auth.service';
+import { FormService } from '../../shared/form.service';
 
 @Component({
   selector: 'app-create-thing-form',

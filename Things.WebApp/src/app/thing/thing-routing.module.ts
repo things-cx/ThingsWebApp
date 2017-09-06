@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ThingChildrenComponent } from './thing-children/thing-children.component';
 import { ThingDetailsComponent } from './thing-details/thing-details.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
-import { DescriptionComponent } from 'app/thing/description/description.component';
+import { Navigation } from '../layout/navigation/navigation.component';
+import { DescriptionComponent } from '../thing/description/description.component';
 
 @NgModule({
     imports: [

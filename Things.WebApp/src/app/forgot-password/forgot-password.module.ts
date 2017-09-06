@@ -5,7 +5,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { MdProgressSpinnerModule, MdInputModule, MdButtonModule, MdCardModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewEmailComponent } from './view-email/view-email.component';
-import { ForgotPasswordRoutingModule } from 'app/forgot-password/forgot-password-routing.module';
+import { ForgotPasswordRoutingModule } from '../forgot-password/forgot-password-routing.module';
 
 @NgModule({
   imports: [

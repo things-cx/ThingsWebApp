@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Things, ThingsController } from 'api-typings/bundle';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { FormService } from 'app/shared/form.service';
+import { FormService } from '../../shared/form.service';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/filter';

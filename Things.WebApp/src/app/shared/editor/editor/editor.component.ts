@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges, ElementRef, ViewChild } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
+import { MentionDialogComponent } from '../../editor/mention-dialog/mention-dialog.component';
 import { Things } from 'api-typings/bundle';
 import * as marked from 'marked';
 import { environment } from 'environments/environment';
@@ -9,7 +9,7 @@ import * as emojione from 'emojione';
 import {
   MarkdownHelperDialogComponent,
   MarkdownHelperType
-} from 'app/shared/editor/markdown-helper-dialog/markdown-helper-dialog.component';
+} from '../../editor/markdown-helper-dialog/markdown-helper-dialog.component';
 
 @Component({
   selector: 'app-editor',

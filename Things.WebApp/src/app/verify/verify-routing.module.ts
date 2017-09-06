@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { VerifyComponent } from 'app/verify/verify/verify.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { VerifyComponent } from '../verify/verify/verify.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [

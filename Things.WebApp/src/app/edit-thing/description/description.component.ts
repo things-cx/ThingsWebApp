@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ThingsController, Things } from 'api-typings/bundle';
-import { PublicThingService } from 'app/shared/public-thing.service';
+import { PublicThingService } from '../../shared/public-thing.service';
 import { MdSnackBar } from '@angular/material';
-import { TutorialArea, TutorialService } from 'app/tutorial/tutorial.service';
+import { TutorialArea, TutorialService } from '../../tutorial/tutorial.service';
 
 @Component({
   selector: 'app-description',

@@ -1,11 +1,11 @@
 ﻿import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Things, ThingsController, PostController } from 'api-typings/bundle';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormService } from 'app/shared/form.service';
+import { FormService } from '../../shared/form.service';
 import { MdDialog } from '@angular/material';
-import { PreviewMediaDialogComponent } from 'app/edit-thing/preview-media-dialog/preview-media-dialog.component';
-import { TutorialService, TutorialArea } from 'app/tutorial/tutorial.service';
-import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
+import { PreviewMediaDialogComponent } from '../../edit-thing/preview-media-dialog/preview-media-dialog.component';
+import { TutorialService, TutorialArea } from '../../tutorial/tutorial.service';
+import { MentionDialogComponent } from '../../shared/editor/mention-dialog/mention-dialog.component';
 import * as emojione from 'emojione';
 
 @Component({

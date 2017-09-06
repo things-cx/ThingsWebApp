@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Navigation } from 'app/layout/navigation/navigation.component';
-import { OfficialPostersComponent } from 'app/official-posters/official-posters/official-posters.component';
+import { Navigation } from '../layout/navigation/navigation.component';
+import { OfficialPostersComponent } from '../official-posters/official-posters/official-posters.component';
 
 @NgModule({
     imports: [

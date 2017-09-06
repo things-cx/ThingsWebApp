@@ -3,7 +3,7 @@ import { Things, ThingsController } from 'api-typings/bundle';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog, MdSnackBar } from '@angular/material';
-import { NoContentUnderneathDialogComponent } from 'app/thing/no-content-underneath-dialog/no-content-underneath-dialog.component';
+import { NoContentUnderneathDialogComponent } from '../no-content-underneath-dialog/no-content-underneath-dialog.component';
 
 @Component({
   selector: 'app-thing-children',

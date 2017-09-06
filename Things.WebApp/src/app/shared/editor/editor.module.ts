@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MentionDialogComponent } from 'app/shared/editor/mention-dialog/mention-dialog.component';
-import { EditorComponent } from 'app/shared/editor/editor/editor.component';
+import { MentionDialogComponent } from '../editor/mention-dialog/mention-dialog.component';
+import { EditorComponent } from '../editor/editor/editor.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MediaTypeModule } from 'app/shared/media-type/media-type.module';
+import { MediaTypeModule } from '../media-type/media-type.module';
 import {
   MdButtonModule,
   MdInputModule,
@@ -17,7 +17,7 @@ import {
   MdSelectModule
 } from '@angular/material';
 import { MarkdownHelperDialogComponent } from './markdown-helper-dialog/markdown-helper-dialog.component';
-import { EmojiModule } from "app/shared/emoji/emoji.module";
+import { EmojiModule } from '../emoji/emoji.module';
 
 @NgModule({
   imports: [

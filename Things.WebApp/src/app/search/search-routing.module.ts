@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Navigation } from 'app/layout/navigation/navigation.component';
-import { DiscoverComponent } from 'app/search/discover/discover.component';
+import { Navigation } from '../layout/navigation/navigation.component';
+import { DiscoverComponent } from '../search/discover/discover.component';
 
 @NgModule({
     imports: [

@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Things, PostController } from 'api-typings/bundle';
 import { Router } from '@angular/router';
-import { AuthService } from 'app/shared/auth.service';
+import { AuthService } from '../../shared/auth.service';
 import { MdTabChangeEvent } from '@angular/material';
 
 @Component({

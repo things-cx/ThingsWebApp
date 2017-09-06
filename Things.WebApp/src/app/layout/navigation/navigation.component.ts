@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { MdDialog } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from 'app/shared/auth.service';
+import { AuthService } from '../../shared/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { Title } from '@angular/platform-browser';
-import { TutorialService, TutorialArea } from 'app/tutorial/tutorial.service';
+import { TutorialService, TutorialArea } from '../../tutorial/tutorial.service';
 import { environment } from 'environments/environment';
 
 @Component({

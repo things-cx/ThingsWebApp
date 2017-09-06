@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Navigation } from 'app/layout/navigation/navigation.component';
-import { AvailableSponsorsComponent } from 'app/sponsors/available-sponsors/available-sponsors.component';
+import { Navigation } from '../layout/navigation/navigation.component';
+import { AvailableSponsorsComponent } from '../sponsors/available-sponsors/available-sponsors.component';
 
 @NgModule({
     imports: [

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Things, ThingsController } from 'api-typings/bundle';
-import { PublicThingService } from 'app/shared/public-thing.service';
-import { FormService } from 'app/shared/form.service';
+import { PublicThingService } from '../../shared/public-thing.service';
+import { FormService } from '../../shared/form.service';
 
 @Component({
   selector: 'app-authorize',

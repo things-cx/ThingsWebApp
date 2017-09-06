@@ -2,7 +2,7 @@ import { Component, SimpleChanges, Input, OnChanges } from '@angular/core';
 import { ThingsController, Things } from 'api-typings/bundle';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog } from '@angular/material';
-import { NoContentRelatedDialogComponent } from "app/thing/no-content-related-dialog/no-content-related-dialog.component";
+import { NoContentRelatedDialogComponent } from '../no-content-related-dialog/no-content-related-dialog.component';
 
 @Component({
   selector: 'app-thing-related',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from '../../environments/environment';
-import { LoggerService } from 'app/shared/logger.service';
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class GaService {

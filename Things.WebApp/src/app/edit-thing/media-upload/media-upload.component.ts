@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { MediaUploaderService } from 'app/shared/media-uploader.service';
+import { MediaUploaderService } from '../../shared/media-uploader.service';
 import { Things } from 'api-typings/bundle';
 
 @Component({

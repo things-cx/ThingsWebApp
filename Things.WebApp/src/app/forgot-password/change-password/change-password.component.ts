@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserController, Things } from 'api-typings/bundle';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FormService } from 'app/shared/form.service';
+import { FormService } from '../../shared/form.service';
 
 @Component({
   selector: 'app-change-password',

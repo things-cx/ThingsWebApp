@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CreateUserThingFormComponent } from './create-user-thing-form/create-user-thing-form.component';
-import { Navigation } from 'app/layout/navigation/navigation.component';
+import { Navigation } from '../layout/navigation/navigation.component';
 
 @NgModule({
     imports: [
