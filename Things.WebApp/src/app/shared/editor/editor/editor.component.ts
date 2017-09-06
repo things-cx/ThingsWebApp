@@ -148,7 +148,6 @@ export class EditorComponent implements OnInit, OnChanges {
     if (textArea.selectionStart || textArea.selectionStart === 0) {
       const startPos = textArea.selectionStart;
       const endPos = textArea.selectionEnd;
-      // tslint:disable-next-line:max-line-length
       textArea.value = `${textArea.value.substring(0, startPos)}[${value}](thing/${value})${textArea.value.substring(startPos, textArea.value.length)}`;
 
       textArea.selectionStart = startPos;

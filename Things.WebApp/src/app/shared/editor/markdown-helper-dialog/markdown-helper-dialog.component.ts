@@ -88,7 +88,6 @@ export class MarkdownHelperDialogComponent implements OnInit {
         this.dialogRef.close(`\n![${defaultimageAltText}](https://${this.form.get('imageUrl').value})`);
         break;
       case MarkdownHelperType.youtube:
-        // tslint:disable-next-line:max-line-length
         const defaultYoutTubeAltText = this.form.get('youtubeAltText').value === '' ? 'YouTube video' : this.form.get('youtubeAltText').value;
         this.dialogRef.close(`\n[![${defaultYoutTubeAltText}](https://img.youtube.com/vi/${this.form.get('youtubeId').value}/0.jpg)](https://www.youtube.com/watch?v=${this.form.get('youtubeId').value})`);
         break;
@@ -99,7 +98,6 @@ export class MarkdownHelperDialogComponent implements OnInit {
         this.dialogRef.close(`[${this.form.get('mailtoName').value}](mailto:${this.form.get('mailtoUrl').value})`);
         break;
       case MarkdownHelperType.imgLink:
-        // tslint:disable-next-line:max-line-length
         const defaultImgLinkAltText = this.form.get('imgLinkAltText').value === '' ? 'Image' : this.form.get('imgLinkAltText').value;
         this.dialogRef.close(`\n[![${defaultImgLinkAltText}](https://${this.form.get('imgLinkImgUrl').value})](${this.form.get('imgLinkHost').value + this.form.get('imgLinkUrl').value})`);
         break;

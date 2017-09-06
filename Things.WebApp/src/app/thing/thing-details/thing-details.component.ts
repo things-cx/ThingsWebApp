@@ -97,7 +97,6 @@ export class ThingDetailsComponent implements OnInit {
 
         this.isProcessing = false;
 
-        // tslint:disable-next-line:max-line-length
         if (this.thingModel.description !== null && this.thingModel.description.content !== null && this.thingModel.description.content !== '') {
           // Render markdown
           this.thingModel.description.content = marked(this.thingModel.description.content);
